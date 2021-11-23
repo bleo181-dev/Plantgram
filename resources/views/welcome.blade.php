@@ -72,11 +72,9 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <hr>
-                <h1>Beccati questo hello world x 2!</h1>
-                <h2>Se sei arrivato fino a qui provamelo scrivendomi "ventricina"</h2>
-                <hr>
-                <img class="flexino" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Ventricina_vastese.jpg/1200px-Ventricina_vastese.jpg" alt="Mia Immagine">
-                <hr>
+                <h1>Beccati questo hello world x 3!</h1>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/P4CFyUxClR0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
             </div>
         </div>
     </body>
