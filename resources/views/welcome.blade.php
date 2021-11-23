@@ -61,14 +61,21 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .flexino {
+                max-width: 20%
+            }
+
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <div class="content">   
+            <div class="content">
                 <hr>
-                <h1>Beccati questo hello world!</h1>
+                <h1>Beccati questo hello world x 2!</h1>
                 <h2>Se sei arrivato fino a qui provamelo scrivendomi "ventricina"</h2>
+                <hr>
+                <img class="flexino" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Ventricina_vastese.jpg/1200px-Ventricina_vastese.jpg" alt="Mia Immagine">
                 <hr>
             </div>
         </div>
