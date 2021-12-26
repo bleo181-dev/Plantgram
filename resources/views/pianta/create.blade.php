@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Creazione pianta') }}</div>
 
                 <div class="card-body">
-                    <form action="{{ URL::action('PiantaController@store') }}" method="POST">
+                    <form action="{{ URL::action('PiantaController@store') }}" method="POST" >
                         {{ csrf_field() }}
                         <h1> Inserisci i dati della pianta </h1>
                         <input type="number" name="codice_serra" placeholder="1111" /> Codice serra

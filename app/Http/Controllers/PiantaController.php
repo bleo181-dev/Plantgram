@@ -15,7 +15,7 @@ class PiantaController extends Controller
     public function index()
     {
         //$piante = Pianta::all();
-        $piante = Pianta::orderBy('Codice_pianta', 'desc')->get();
+        $piante = Pianta::all();
         return view('pianta.index', compact('piante'));
     }
 
@@ -39,6 +39,10 @@ class PiantaController extends Controller
     {
         $input = $request->all();
         Pianta::create($input);
+        /*$file = $request->file('foto');
+        $destinationPath = 'img/';
+        $originalFile = $file->getClientOriginalName();
+        $file->move($destinationPath, $originalFile);*/
         return redirect()->route('pianta.index');
     }
 

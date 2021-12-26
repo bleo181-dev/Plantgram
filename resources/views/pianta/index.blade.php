@@ -18,6 +18,7 @@
                                 <th>Codice Pianta</th>
                                 <th>Codice Serra</th>
                                 <th>Nome</th>
+                                <th>Foto</th>
                                 <th>Luogo</th>
                                 <th>Stato</th>
                             </tr>   
@@ -28,6 +29,7 @@
                                     <td>{{ $i->Codice_pianta }}</td>
                                     <td>{{ $i->Codice_serra }}</td>
                                     <td>{{ $i->Nome }}</td>
+                                    <td>{{ $i->Foto }}</td>
                                     <td>{{ $i->Luogo }}</td>
                                     <td>{{ $i->Stato }}</td>
                                 </tr>
