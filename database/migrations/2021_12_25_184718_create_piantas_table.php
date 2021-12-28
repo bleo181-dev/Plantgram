@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePiantaTable extends Migration
+class CreatePiantasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePiantaTable extends Migration
      */
     public function up()
     {
-        Schema::create('pianta', function (Blueprint $table) {
+        Schema::create('Piantas', function (Blueprint $table) {
             $table->bigIncrements('Codice_pianta');
             
             $table->integer('Codice_serra');
