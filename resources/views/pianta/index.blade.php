@@ -21,6 +21,7 @@
                                 <th>Foto</th>
                                 <th>Luogo</th>
                                 <th>Stato</th>
+                                <th>Azioni</th>
                             </tr>   
                         </thead> 
                         <tbody>
@@ -32,6 +33,9 @@
                                     <td>{{ $i->Foto }}</td>
                                     <td>{{ $i->Luogo }}</td>
                                     <td>{{ $i->Stato }}</td>
+                                    <td>
+                                        <a href="{{ URL::action('PiantaController@edit', $i->Codice_pianta) }}" > Modifica </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

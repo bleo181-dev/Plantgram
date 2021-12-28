@@ -37,12 +37,16 @@ class PiantaController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'codice_serra' => 'required', 
+            'nome'         => 'required|max:100', 
+            'foto'         => 'required', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
+            'luogo'        => 'required|max:100', 
+            'stato'        => 'required'
+        ]);
+
         $input = $request->all();
         Pianta::create($input);
-        /*$file = $request->file('foto');
-        $destinationPath = 'img/';
-        $originalFile = $file->getClientOriginalName();
-        $file->move($destinationPath, $originalFile);*/
         return redirect()->route('pianta.index');
     }
 
@@ -65,7 +69,9 @@ class PiantaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pianta = Pianta::find($id);
+        // $pianta = Pianta::where('nome_campo', 'operatore', 'valore');
+        return view('pianta.edit', compact('pianta'));
     }
 
     /**
@@ -77,7 +83,25 @@ class PiantaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'codice_serra' => 'required', 
+            'nome'         => 'required|max:100', 
+            'foto'         => 'required', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
+            'luogo'        => 'required|max:100', 
+            'stato'        => 'required'
+        ]);
+
+        $input = $request->all();
+        $pianta = Pianta::find($id); 
+
+        $pianta->Codice_serra = $input['codice_serra'];
+        $pianta->Nome = $input['nome']; 
+        $pianta->Luogo = $input['luogo'];
+        $pianta->Foto = $input['foto'];
+        $pianta->Stato = $input['stato'];
+
+        $pianta->save();
+        return redirect()->route('pianta.index');
     }
 
     /**
