@@ -17,7 +17,6 @@ class CreateBisognoTable extends Migration
             $table->bigIncrements('codice_bisogno');
             $table->unsignedBigInteger('codice_pianta');
             $table->string('nome', 100);
-            $table->bigInteger('id');
             $table->bigInteger('cadenza');
             $table->timestamps();
 

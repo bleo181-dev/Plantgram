@@ -14,11 +14,11 @@ class CreateEventoTable extends Migration
     public function up()
     {
         Schema::create('evento', function (Blueprint $table) {
-            $table->bigIncrements('coidce_evento');
+            $table->bigIncrements('codice_evento');
             $table->unsignedBigInteger('codice_pianta');
             $table->unsignedBigInteger('codice_utente');
             $table->string('nome', 100);
-            $table->date('data');
+            $table->timestamps('data', $precision = 0);
             $table->timestamps();
 
             $table->foreign('codice_pianta')->references('codice_pianta')->on('pianta')->onDelete('cascade');

@@ -13,7 +13,7 @@ class CreateCollboraTable extends Migration
      */
     public function up()
     {
-        Schema::create('collbora', function (Blueprint $table) {
+        Schema::create('collabora', function (Blueprint $table) {
             $table->bigIncrements('codice_collaborazione');
             $table->unsignedBigInteger('codice_utente');
             $table->unsignedBigInteger('codice_serra');

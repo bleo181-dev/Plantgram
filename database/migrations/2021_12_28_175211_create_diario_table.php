@@ -19,7 +19,7 @@ class CreateDiarioTable extends Migration
             $table->unsignedBigInteger('codice_pianta');
             $table->binary('foto');
             $table->string('testo',1000);
-            $table->date('data');
+            $table->timestamps('data', $precision = 0);
             $table->timestamps();
 
             $table->foreign('codice_pianta')->references('codice_pianta')->on('pianta')->onDelete('cascade');
