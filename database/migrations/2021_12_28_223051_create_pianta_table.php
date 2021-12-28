@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePiantasTable extends Migration
+class CreatePiantaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,8 +20,8 @@ class CreatePiantasTable extends Migration
             $table->string('luogo', 100);
             $table->tinyInteger('stato');
             $table->timestamps();
-
-            //$table->foreign('codice_serra')->references('codice_serra')->on('serra')->onDelete('cascade');
+    
+            $table->foreign('codice_serra')->references('codice_serra')->on('serra')->onDelete('cascade');
         });
     }
 

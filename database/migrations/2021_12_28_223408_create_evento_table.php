@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCollboraTable extends Migration
+class CreateEventoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateCollboraTable extends Migration
      */
     public function up()
     {
-        Schema::create('collabora', function (Blueprint $table) {
-            $table->bigIncrements('codice_collaborazione');
+        Schema::create('evento', function (Blueprint $table) {
+            $table->bigIncrements('codice_evento');
+            $table->unsignedBigInteger('codice_pianta');
             $table->unsignedBigInteger('codice_utente');
-            $table->unsignedBigInteger('codice_serra');
+            $table->string('nome', 100);
+            //$table->timestamps('data', 0);
             $table->timestamps();
 
-            //$table->foreign('codice_serra')->references('codice_serra')->on('serra')->onDelete('cascade');
+            $table->foreign('codice_pianta')->references('codice_pianta')->on('pianta')->onDelete('cascade');
             $table->foreign('codice_utente')->references('codice_utente')->on('users')->onDelete('cascade');
         });
     }
@@ -31,6 +33,6 @@ class CreateCollboraTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collbora');
+        Schema::dropIfExists('evento');
     }
 }

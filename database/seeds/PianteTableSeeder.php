@@ -13,12 +13,12 @@ class PianteTableSeeder extends Seeder
     public function run()
     {
 
-        Pianta::create(
+        Pianta::create([
             'codice_serra' => '111', 
             'nome'         => 'Basilico', 
             'foto'         => 'foto.jpg', 
             'luogo'        => 'Giardino', 
             'stato'        => '1'
-        );
+        ]);
     }
 } 
