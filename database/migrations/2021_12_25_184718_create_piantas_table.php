@@ -13,7 +13,7 @@ class CreatePiantasTable extends Migration
      */
     public function up()
     {
-        Schema::create('Piantas', function (Blueprint $table) {
+        Schema::create('Pianta', function (Blueprint $table) {
             $table->bigIncrements('Codice_pianta');
             
             $table->integer('Codice_serra');
