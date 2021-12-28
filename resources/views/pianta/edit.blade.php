@@ -43,11 +43,20 @@
 
                         Visibilità
                         <br>
-                        <input type="radio" name="stato" value="0" /> privata
+                        <input type="radio" name="stato" value="1"
+                            @if($pianta->Stato == 1){
+                                checked
+                            }
+                            @endif
+                        /> privata
                         <br>
                         <input type="radio" name="stato" value="1" /> pubblica
                         <br>
                         <br>
+                        
+                        document.getElementById("stato").checked = true;
+
+                        
 
                         <input type="submit" value="Modifica pianta" />
                     </form>   
