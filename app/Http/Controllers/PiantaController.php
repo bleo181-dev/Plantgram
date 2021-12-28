@@ -112,6 +112,7 @@ class PiantaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pianta = Pianta::where('codice_pianta', $id)->delete();
+        return redirect()->route('pianta.index');
     }
 }

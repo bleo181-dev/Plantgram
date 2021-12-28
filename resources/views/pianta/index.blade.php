@@ -35,7 +35,12 @@
                                     <td>{{ $i->Stato }}</td>
                                     <td>
                                         <a href="{{ URL::action('PiantaController@edit', $i->Codice_pianta) }}" > Modifica </a>
+                                        <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->Codice_pianta}}').submit();"> Elimina </a>
                                     </td>
+                                    <form id="delete-form-{{$i->Codice_pianta}}" action="{{ URL::action('PiantaController@destroy', $i->Codice_pianta) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        @method('DELETE')
+                                    </form>
                                 </tr>
                             @endforeach
                         </tbody>
