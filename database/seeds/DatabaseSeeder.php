@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SerreTableSeeder::class);
         $this->call(PianteTableSeeder::class);
         $this->call(BisognoTableSeeder::class);
-        $this->call(EventiTabeleSeeder::class);
+        $this->call(EventiTableSeeder::class);
         $this->call(DiarioTableSeeder::class);
     }
 }

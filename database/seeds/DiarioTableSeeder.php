@@ -13,7 +13,7 @@ class DiarioTableSeeder extends Seeder
     public function run()
     {
         Diario::create([
-            'codice_pianta'     => '4', 
+            'codice_pianta'     => '1', 
             'codice_utente'     => '1', 
             'foto'              => '',
             'testo'             => 'nascita della pianta'

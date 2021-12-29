@@ -13,7 +13,7 @@ class BisognoTableSeeder extends Seeder
     public function run()
     {
         Bisogno::create([
-            'codice_pianta' => '4', 
+            'codice_pianta' => '1', 
             'nome'         => 'acqua', 
             'cadenza'      => '3'
         ]);

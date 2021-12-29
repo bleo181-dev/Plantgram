@@ -13,7 +13,7 @@ class EventiTableSeeder extends Seeder
     public function run()
     {
         Evento::create([
-            'codice_pianta'     => '4', 
+            'codice_pianta'     => '1', 
             'codice_utente'     => '1', 
             'nome'              => 'nascita'
         ]);
