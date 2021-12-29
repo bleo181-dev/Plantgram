@@ -18,9 +18,10 @@ class CreatePiantaTable extends Migration
             $table->unsignedBigInteger('codice_serra');
             $table->string('nome', 100);
             $table->string('luogo', 100);
+            $table->binary('foto');
             $table->tinyInteger('stato');
             $table->timestamps();
-    
+
             $table->foreign('codice_serra')->references('codice_serra')->on('serra')->onDelete('cascade');
         });
     }

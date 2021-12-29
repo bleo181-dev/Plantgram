@@ -22,8 +22,8 @@
                                 <th>Luogo</th>
                                 <th>Stato</th>
                                 <th>Azioni</th>
-                            </tr>   
-                        </thead> 
+                            </tr>
+                        </thead>
                         <tbody>
                             @foreach($piante as $i)
                                 <tr>
@@ -32,7 +32,14 @@
                                     <td>{{ $i->nome }}</td>
                                     <td>{{ $i->foto }}</td>
                                     <td>{{ $i->luogo }}</td>
-                                    <td>{{ $i->stato }}</td>
+                                    <td>
+                                        @if ($i->stato == 0)
+                                            Privato
+                                            @elseif ($i->stato == 1)
+                                                Pubblico
+                                        @endif
+
+                                    </td>
                                     <td>
                                         <a href="{{ URL::action('PiantaController@edit', $i->codice_pianta) }}" class="btn btn-primary" > Modifica </a>
                                         <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->codice_pianta}}').submit();" class="btn btn-danger"> Elimina </a>
