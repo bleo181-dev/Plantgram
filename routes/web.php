@@ -21,6 +21,8 @@ Route::get('/', 'PiantaController@index')->name('index');  //solo per adesso in 
 
 Route::resource('pianta', 'PiantaController');
 
+Route::resource('serra', 'SerraController');
+
 /*
 Route::get('/pianta', 'PiantaController@create');
 Route::get('/pianta/{id}', 'PiantaController@show');
