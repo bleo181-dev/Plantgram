@@ -27,17 +27,17 @@
                         <tbody>
                             @foreach($piante as $i)
                                 <tr>
-                                    <td>{{ $i->Codice_pianta }}</td>
-                                    <td>{{ $i->Codice_serra }}</td>
-                                    <td>{{ $i->Nome }}</td>
-                                    <td>{{ $i->Foto }}</td>
-                                    <td>{{ $i->Luogo }}</td>
-                                    <td>{{ $i->Stato }}</td>
+                                    <td>{{ $i->codice_pianta }}</td>
+                                    <td>{{ $i->codice_serra }}</td>
+                                    <td>{{ $i->nome }}</td>
+                                    <td>{{ $i->foto }}</td>
+                                    <td>{{ $i->luogo }}</td>
+                                    <td>{{ $i->stato }}</td>
                                     <td>
-                                        <a href="{{ URL::action('PiantaController@edit', $i->Codice_pianta) }}" > Modifica </a>
-                                        <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->Codice_pianta}}').submit();"> Elimina </a>
+                                        <a href="{{ URL::action('PiantaController@edit', $i->codice_pianta) }}" class="btn btn-primary" > Modifica </a>
+                                        <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->codice_pianta}}').submit();" class="btn btn-danger"> Elimina </a>
                                     </td>
-                                    <form id="delete-form-{{$i->Codice_pianta}}" action="{{ URL::action('PiantaController@destroy', $i->Codice_pianta) }}" method="POST">
+                                    <form id="delete-form-{{$i->codice_pianta}}" action="{{ URL::action('PiantaController@destroy', $i->codice_pianta) }}" method="POST">
                                         {{ csrf_field() }}
                                         @method('DELETE')
                                     </form>
