@@ -75,7 +75,7 @@ class SerraController extends Controller
      */
     public function edit($id)
     {
-        $serra = find($id);
+        $serra = Serra::find($id);
         return view('serra.edit', compact('serra'));
     }
 
@@ -88,7 +88,23 @@ class SerraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'nome'          => 'required|max:100', 
+            'latitudine'    => 'required',
+            'longitudine'   => 'required', 
+            'capienza'      => 'required'
+        ]);
+
+        $input = $request->all();
+        $serra = Serra::find($id); 
+
+        $serra->nome = $input['nome']; 
+        $serra->latitudine = $input['latitudine'];
+        $serra->longitudine = $input['longitudine'];
+        $serra->capienza = $input['capienza'];
+
+        $serra->save();
+        return redirect()->route('serra.index');
     }
 
     /**
@@ -99,6 +115,9 @@ class SerraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $serra=Serra::find($id);
+        $serra->delete();
+
+        return redirect()->route('pianta.index');
     }
 }
