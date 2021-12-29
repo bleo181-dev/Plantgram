@@ -40,7 +40,7 @@ class PiantaController extends Controller
         $validateData = $request->validate([
             'codice_serra' => 'required', 
             'nome'         => 'required|max:100', 
-            'foto'         => 'required', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
+            //'foto'         => 'required', discutibile, per ora lo metto per evitare di rompere l'intefaccia
             'luogo'        => 'required|max:100', 
             'stato'        => 'required'
         ]);

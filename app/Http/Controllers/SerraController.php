@@ -15,7 +15,8 @@ class SerraController extends Controller
      */
     public function index()
     {
-        //
+        $piante = Pianta::where('codice_serra', 2)->get();
+        return view('serra.index', compact('piante'));
     }
 
     /**
