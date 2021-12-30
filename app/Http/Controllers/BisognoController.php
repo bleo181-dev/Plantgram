@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Bisogno;
 use Illuminate\Http\Request;
+use App\Bisogno;
 
 class BisognoController extends Controller
 {
@@ -12,10 +12,11 @@ class BisognoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $bisogni = Bisogno::all();
-        return view('bisogno.index', compact('bisogni'));
+        $bisogni = Bisogno::where('codice_pianta', $id)->get();
+
+        return view('bisogno.index', compact('bisogni', 'id'));
     }
 
     /**

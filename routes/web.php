@@ -23,7 +23,13 @@ Route::resource('pianta', 'PiantaController');
 
 Route::resource('serra', 'SerraController');
 
-Route::resource('bisogno', 'BisognoController');
+Route::get('/bisogno/{id}', 'BisognoController@index');
+Route::get('/bisogno/{id}', 'BisognoController@index');
+Route::get('/bisogno/{id}/create', 'BisognoController@create');
+Route::post('/bisogno/{id}/store', 'BisognoController@store');
+Route::delete('/bisogno/{id}', 'BisognoController@destroy');
+Route::get('/bisogno/{id}/edit', 'BisognoController@edit');
+Route::put('/bisogno/{id}/update', 'BisognoController@update');
 
 Route::get('/diario/{id}', 'DiarioController@index');
 Route::get('/diario/{id}/create', 'DiarioController@create');
