@@ -31,11 +31,9 @@
                         <br>
                         <br>
                         
-<<<<<<< HEAD
-                        <input type="number" name="cadenza" placeholder="1" value="{{ old('cadenza') }}" /> <label> Cadenza </label>
-=======
+
                         <input type="number" name="cadenza" placeholder="111" value="{{ old('cadenza') }}" /> <label> Cadenza </label>
->>>>>>> 4eb115aff189d3ec3dab89a69e43c733fc0053cf
+
                         <br>
                         <br>
                         

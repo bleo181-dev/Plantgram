@@ -24,11 +24,7 @@ class BisognoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-    public function create($id)
-=======
     public function create($codice_pianta)
->>>>>>> 4eb115aff189d3ec3dab89a69e43c733fc0053cf
     {
         return view('bisogno.create', compact('codice_pianta'));
     }
@@ -41,22 +37,6 @@ class BisognoController extends Controller
      */
     public function store(Request $request, $id)
     {
-<<<<<<< HEAD
-        $validateData = $request->validate([
-            'nome'   => 'required|max:1000', 
-            'cadenza'    => 'required',
-        ]);
-
-        Bisogno::create([
-            'codice_pianta' => $id,
-            'nome'    => $validateData['nome'],
-            'cadenza'   => $validateData['cadenza'],
-        ]);
-
-        $bisogni = Bisogno::where('codice_pianta', $id)->get();
-
-        return view('bisogno.index', compact('bisogni', 'id'));
-=======
         $validateData = $request->validate([ 
             'nome'           => 'required|max:100', 
             'cadenza'        => 'required'
@@ -69,7 +49,6 @@ class BisognoController extends Controller
         ]);
 
         return redirect()->route('bisogno.index', $request->codice_pianta);
->>>>>>> 4eb115aff189d3ec3dab89a69e43c733fc0053cf
     }
 
     /**
