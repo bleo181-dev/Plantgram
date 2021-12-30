@@ -23,15 +23,15 @@
                         {{ csrf_field() }}
                         <h1> Inserisci i dati della serra </h1>
                         
-                        <input type="text" name="nome" placeholder="serraname" value="{{ old('codice_serra') }}"/> <label> Nome serra </label>
+                        <input type="text" name="nome" placeholder="disneyland" value="{{ old('codice_serra') }}"/> <label> Nome </label>
                         <br>
                         <br>
                         
-                        <input type="number" name="latitudine" placeholder="latitudine" value="{{ old('latitudine') }}" /> <label> Latitudine serra </label>
+                        <input type="number" name="latitudine" placeholder="xx.xxxxxx" value="{{ old('latitudine') }}" /> <label> Latitudine </label>
                         <br>
                         <br>
                         
-                        <input type="number" name="longitudine" placeholder="longitudine" value="{{ old('longitudine') }}"/> <label> Longitudine serra </label>
+                        <input type="number" name="longitudine" placeholder="yy.yyyyyy" value="{{ old('longitudine') }}"/> <label> Longitudine </label>
                         <br>
                         <br>
 
