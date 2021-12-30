@@ -105,11 +105,11 @@ class PiantaController extends Controller
         $input = $request->all();
         $pianta = Pianta::find($id); 
 
-        $pianta->Codice_serra = $input['codice_serra'];
-        $pianta->Nome = $input['nome']; 
-        $pianta->Luogo = $input['luogo'];
-        $pianta->Foto = $input['foto'];
-        $pianta->Stato = $input['stato'];
+        $pianta->codcie_serra = $input['codice_serra'];
+        $pianta->nome = $input['nome']; 
+        $pianta->luogo = $input['luogo'];
+        $pianta->foto = $input['foto'];
+        $pianta->stato = $input['stato'];
 
         $pianta->save();
         return redirect()->route('pianta.index');
