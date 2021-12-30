@@ -33,6 +33,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Pianta') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ URL::action('SerraController@index')}}">{{ __('Serra') }}</a>
+                        </li>
 
                     </ul>
 
