@@ -26,7 +26,7 @@ class BisognoController extends Controller
      */
     public function create()
     {
-        //
+        return view('bisogno.create', compact('id'));
     }
 
     /**
@@ -82,6 +82,7 @@ class BisognoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bisogno = Bisogno::find($id)->delete();
+        return redirect()->route('bisogno.index');
     }
 }

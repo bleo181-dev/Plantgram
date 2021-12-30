@@ -24,7 +24,6 @@ Route::resource('pianta', 'PiantaController');
 Route::resource('serra', 'SerraController');
 
 Route::get('/bisogno/{id}', 'BisognoController@index');
-Route::get('/bisogno/{id}', 'BisognoController@index');
 Route::get('/bisogno/{id}/create', 'BisognoController@create');
 Route::post('/bisogno/{id}/store', 'BisognoController@store');
 Route::delete('/bisogno/{id}', 'BisognoController@destroy');
