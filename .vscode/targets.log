@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Dec 26 20:58:33 2021
+# Make data base, printed on Thu Dec 30 10:58:09 2021
 
 # Variables
 
@@ -21,7 +21,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9a15eeb1-0d32-4bc2-89d5-3b4fb55ea094.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-723cca80-0668-4ed0-ae41-5a5071ca0283.sock
 # environment
 VSCODE_CWD = /home/bleo
 # default
@@ -35,7 +35,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/bleo/progettoTecnologieWeb
+PWD = /home/bleo/ProgettoTecnologieWeb
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -51,7 +51,7 @@ VSCODE_CODE_CACHE_PATH = /home/bleo/.config/Code/CachedData/899d46d82c4c95423fb7
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.GVUZE1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.TCL6E1
 # default
 .LOADED := 
 # default
@@ -59,7 +59,7 @@ XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.GVUZE1
 # makefile
 MAKEFLAGS = pqrR
 # makefile
-CURDIR := /home/bleo/progettoTecnologieWeb
+CURDIR := /home/bleo/ProgettoTecnologieWeb
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -91,7 +91,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 17217
+VSCODE_PID = 2319
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -137,7 +137,7 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 9053878703c64733bafb984c21e981af
+INVOCATION_ID = 5b3103a4bde84eeb922a61cd8b98929d
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
@@ -177,13 +177,13 @@ MAKE_VERSION := 4.3
 # environment
 MANAGERPID = 1545
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 17217
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2319
 # environment
 _ = /usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:24115
+JOURNAL_STREAM = 8:25626
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -219,7 +219,7 @@ GDMSESSION = ubuntu
 
 # Directories
 
-# . (device 2051, inode 1179673): 30 files, no impossibilities.
+# . (device 2051, inode 537468): 30 files, no impossibilities.
 
 # 30 files, no impossibilities in 1 directories.
 
@@ -277,7 +277,7 @@ GNUmakefile:
 # strcache performance: lookups = 41 / hit rate = 7%
 # hash-table stats:
 # Load=38/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Sun Dec 26 20:58:33 2021
+# Finished Make data base on Thu Dec 30 10:58:09 2021
 
  
 make: *** No rule to make target 'all'.  Stop.

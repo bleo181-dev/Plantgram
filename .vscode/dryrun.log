@@ -1,6 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/bleo/progettoTecnologieWeb'
-make: Leaving directory '/home/bleo/progettoTecnologieWeb'
+make: Entering directory '/home/bleo/ProgettoTecnologieWeb'
+make: Leaving directory '/home/bleo/ProgettoTecnologieWeb'
  
 make: *** No targets specified and no makefile found.  Stop.
  
