@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Pianta;
+use App\Serra;
+
 
 class PiantaController extends Controller
 {
@@ -37,16 +40,24 @@ class PiantaController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'codice_serra' => 'required', 
+        $validateData = $request->validate([ 
             'nome'         => 'required|max:100', 
             'foto'         => 'required', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
             'luogo'        => 'required|max:100', 
             'stato'        => 'required'
         ]);
 
-        $input = $request->all();
-        Pianta::create($input);
+        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                     
+
+        Pianta::create([
+            'codice_serra'  => $serra,
+            'nome'          => $validateData['nome'],
+            'foto'          => $validateData['foto'],
+            'luogo'         => $validateData['luogo'],
+            'stato'         => $validateData['stato'],
+        ]);
+
         return redirect()->route('pianta.index');
     }
 

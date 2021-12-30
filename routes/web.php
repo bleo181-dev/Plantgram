@@ -23,6 +23,12 @@ Route::resource('pianta', 'PiantaController');
 
 Route::resource('serra', 'SerraController');
 
+Route::get('/diario/{id}', 'DiarioController@index');
+
+Route::get('/diario/{id}/create', 'DiarioController@create');
+
+Route::post('/diario/{id}/store', 'DiarioController@store');
+
 /*
 Route::get('/pianta', 'PiantaController@create');
 Route::get('/pianta/{id}', 'PiantaController@show');

@@ -15,7 +15,8 @@ class SerraController extends Controller
      */
     public function index()
     {
-        $piante = Pianta::where('codice_serra', 1)->get();
+        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+        $piante = Pianta::where('codice_serra', $serra)->get();
         return view('serra.index', compact('piante'));
     }
 
@@ -53,7 +54,7 @@ class SerraController extends Controller
         ]);
 
         $piante = Pianta::all();
-        return view('pianta.index', compact('piante'));
+        return view('serra.index', compact('piante'));
     }
 
     /**

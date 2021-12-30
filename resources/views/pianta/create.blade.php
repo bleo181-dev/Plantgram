@@ -24,9 +24,9 @@
                         {{ csrf_field() }}
                         <h1> Inserisci i dati della pianta </h1>
                         
-                        <input type="number" name="codice_serra" placeholder="1111" value="{{ old('codice_serra') }}"/> <label> Codice serra </label>
+                        <!--<input type="number" name="codice_serra" placeholder="1111" value="{{ old('codice_serra') }}"/> <label> Codice serra </label>
                         <br>
-                        <br>
+                        <br>-->
                         
                         <input type="text" name="nome" placeholder="Basilico" value="{{ old('nome') }}" /> <label> Nome pianta </label>
                         <br>

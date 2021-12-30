@@ -15,7 +15,7 @@
 
                 <button type = "submit" class = "btn btn-danger">Elimina</button>
             </form>
-            <a href = "#"><button class="btn btn-secondary">Diario</button></a>
+            <a href = "{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><button class="btn btn-secondary">Diario</button></a>
         </div>
     </div>
     <div class="card-footer">
