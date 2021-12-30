@@ -43,5 +43,33 @@ class DiarioController extends Controller
 
         return view('diario.index', compact('diario', 'id'));
     }
+
+    public function edit($id)
+    {
+        $diario=Diario::find($id);
+        return view('diario.edit', compact('diario'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'testo'   => 'required|max:1000', 
+            'foto'    => 'required',
+        ]);
+
+        $input = $request->all();
+        $d = Diario::find($id); 
+
+        $d->testo = $input['testo'];
+        $d->foto = $input['foto']; 
+
+        $d->save();
+
+        $diario = Diario::where('codice_pianta', $id)
+                ->where('codice_utente', auth()->id())
+                ->get();
+
+        return view('diario.index', compact('diario', 'id'));
+    }
     
 }
