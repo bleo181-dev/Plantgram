@@ -17,7 +17,6 @@ class PiantaController extends Controller
      */
     public function index()
     {
-        //$piante = Pianta::all();
         $piante = Pianta::all();
         return view('pianta.index', compact('piante'));
     }
@@ -69,7 +68,8 @@ class PiantaController extends Controller
      */
     public function show($id)
     {
-        //
+        $pianta = Pianta::find($id);
+        return view('pianta.show', compact('pianta'));
     }
 
     /**

@@ -23,15 +23,11 @@ Route::resource('pianta', 'PiantaController');
 
 Route::resource('serra', 'SerraController');
 
+Route::resource('bisogno', 'BisognoController');
+
 Route::get('/diario/{id}', 'DiarioController@index');
 Route::get('/diario/{id}/create', 'DiarioController@create');
 Route::post('/diario/{id}/store', 'DiarioController@store');
 Route::delete('/diario/{id}', 'DiarioController@destroy');
 Route::get('/diario/{id}/edit', 'DiarioController@edit');
 Route::put('/diario/{id}/update', 'DiarioController@update');
-
-/*
-Route::get('/pianta', 'PiantaController@create');
-Route::get('/pianta/{id}', 'PiantaController@show');
-Route::post('/pianta', 'PiantaController@index');
-*/
