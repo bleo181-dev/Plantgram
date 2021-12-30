@@ -19,16 +19,16 @@
                         </div>
                     @endif
 
-                    <form action="{{ URL::action('DiarioController@update') }}" method="POST" >
+                    <form action="{{ URL::action('DiarioController@update', $diario->codice_diario )}}" method="POST" >
                         {{ csrf_field() }}
-                        @method('PATCH')
+                        @method('PUT')
                         <h1> Modifica i dati del ricordo </h1>
                         
-                        <input type="text" name="testo" placeholder="testo" value="{{ old('testo') }}"/> <label> Descrizione </label>
+                        <input type="text" name="testo" placeholder="testo" value="{{ $diario->testo }}"/> <label> Descrizione </label>
                         <br>
                         <br>
                         
-                        <input type="file" name="foto" placeholder="" value="{{ old('foto') }}" /> <label> foto </label>
+                        <input type="file" name="foto" placeholder="" value="{{ $diario->foto }}" /> <label> foto </label>
                         <br>
                         <br>
                         

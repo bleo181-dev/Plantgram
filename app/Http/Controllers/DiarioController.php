@@ -50,7 +50,7 @@ class DiarioController extends Controller
         return view('diario.edit', compact('diario'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $codice_diario)
     {
         $validateData = $request->validate([
             'testo'   => 'required|max:1000', 
@@ -58,16 +58,31 @@ class DiarioController extends Controller
         ]);
 
         $input = $request->all();
-        $d = Diario::find($id); 
+        $d = Diario::find($codice_diario); 
 
         $d->testo = $input['testo'];
         $d->foto = $input['foto']; 
 
         $d->save();
 
+        $id=$d->codice_pianta;
+
         $diario = Diario::where('codice_pianta', $id)
                 ->where('codice_utente', auth()->id())
                 ->get();
+
+        return view('diario.index', compact('diario', 'id'));
+    }
+
+    public function destroy($codice_diario)
+    {
+        $d = Diario::find($codice_diario);
+        $id=$d->codice_pianta;
+        $d->delete();
+        
+        $diario = Diario::where('codice_pianta', $id)
+        ->where('codice_utente', auth()->id())
+        ->get();
 
         return view('diario.index', compact('diario', 'id'));
     }
