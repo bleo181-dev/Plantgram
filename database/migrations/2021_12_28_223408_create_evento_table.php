@@ -18,7 +18,7 @@ class CreateEventoTable extends Migration
             $table->unsignedBigInteger('codice_pianta');
             $table->unsignedBigInteger('codice_utente');
             $table->string('nome', 100);
-            //$table->timestamps('data', 0);
+            $table->timestampTz('data', $precision = 0);
             $table->timestamps();
 
             $table->foreign('codice_pianta')->references('codice_pianta')->on('pianta')->onDelete('cascade');

@@ -24,7 +24,7 @@ class BisognoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         return view('bisogno.create', compact('id'));
     }
@@ -35,9 +35,22 @@ class BisognoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'nome'   => 'required|max:1000', 
+            'cadenza'    => 'required',
+        ]);
+
+        Bisogno::create([
+            'codice_pianta' => $id,
+            'nome'    => $validateData['nome'],
+            'cadenza'   => $validateData['cadenza'],
+        ]);
+
+        $bisogni = Bisogno::where('codice_pianta', $id)->get();
+
+        return view('bisogno.index', compact('bisogni', 'id'));
     }
 
     /**

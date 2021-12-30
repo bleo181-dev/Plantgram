@@ -27,7 +27,7 @@
                         <br>
                         <br>
                         
-                        <input type="file" name="cadenza" placeholder="111" value="{{ old('cadenza') }}" /> <label> Cadenza </label>
+                        <input type="number" name="cadenza" placeholder="1" value="{{ old('cadenza') }}" /> <label> Cadenza </label>
                         <br>
                         <br>
                         
