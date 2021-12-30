@@ -1,7 +1,7 @@
 <div class="card">
     <div class="row no-gutters">
         <div class="col-md-4">
-            <img src="{{ ($i->foto) }}" class="card-img" >
+            <img src="/app/immagini/pianta.jpg" alt="" class="card-img" >
         </div>
         <div class="col-md-8">
             <div class="card-body">
