@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Tutte le piante') }}</div>
                     <div style="padding: 10px;"> 
-                        <a href="{{ URL::action('BisognoController@create', $id) }}" class="btn btn-success"> Crea bisogno</a>
+                        <a href="{{ URL::action('BisognoController@create', $codice_pianta) }}" class="btn btn-success"> Crea bisogno</a>
                     </div>
                 <div class="card-body">
 

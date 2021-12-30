@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Crea bisogno') }}</div>
+                <div class="card-header">{{ __('Modifica bisogno') }}</div>
 
                 <div class="card-body">
 
@@ -19,27 +19,24 @@
                         </div>
                     @endif
 
-                    <form action="{{ URL::action('BisognoController@store', $codice_pianta) }}" method="POST" >
+                    <form action="{{ URL::action('BisognoController@update', $bisogno->codice_bisogno) }}" method="POST" >
                         {{ csrf_field() }}
-                        <h1> Inserisci i dati del bisogno </h1>
+                        @method('PATCH')
+                        <h1> Modifica i dati del bisogno </h1>
                         
-                        <input type="hidden" name="codice_pianta" value="{{ $codice_pianta }}"/>
+                        <input type="hidden" name="codice_pianta" value="{{ $bisogno->codice_pianta }}"/>
                         <br>
                         <br>
 
-                        <input type="text" name="nome" placeholder="nome" value="{{ old('nome') }}"/> <label> Nome </label>
+                        <input type="text" name="nome" placeholder="nome" value="{{ $bisogno->nome }}"/> <label> Nome </label>
                         <br>
                         <br>
                         
-<<<<<<< HEAD
-                        <input type="number" name="cadenza" placeholder="1" value="{{ old('cadenza') }}" /> <label> Cadenza </label>
-=======
-                        <input type="number" name="cadenza" placeholder="111" value="{{ old('cadenza') }}" /> <label> Cadenza </label>
->>>>>>> 4eb115aff189d3ec3dab89a69e43c733fc0053cf
+                        <input type="number" name="cadenza" placeholder="111" value="{{ $bisogno->cadenza }}" /> <label> Cadenza </label>
                         <br>
                         <br>
                         
-                        <input type="submit" class="btn btn-primary" value="Crea bisogno"/>
+                        <input type="submit" class="btn btn-primary" value="Modifica bisogno"/>
                     </form>   
                 </div>
             </div>
