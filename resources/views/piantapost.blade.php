@@ -15,7 +15,9 @@
 
                 <button type = "submit" class = "btn btn-danger">Elimina</button>
             </form>
-            <a href = "{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><button class="btn btn-secondary">Diario</button></a>
+            <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><button class="btn btn-secondary">Diario</button></a>
+            <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}" class="btn btn-light" > Bisogni </a>
+            <a href="{{ URL::action('EventoController@index', $pianta->codice_pianta) }}" class="btn btn-info" > Eventi </a>
         </div>
     </div>
     <div class="card-footer">
