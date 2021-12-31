@@ -25,10 +25,6 @@
                         @method('PATCH')
                         <h1> Modifica i dati della pianta </h1>
 
-                        <input type="number" name="codice_serra" placeholder="1111" value="{{ $pianta->codice_serra }}"/> <label> Codice serra </label>
-                        <br>
-                        <br>
-
                         <input type="text" name="nome" placeholder="Basilico" value="{{ $pianta->nome }}" /> <label> Nome pianta </label>
                         <br>
                         <br>

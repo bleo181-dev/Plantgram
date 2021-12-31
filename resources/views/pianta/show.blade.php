@@ -34,14 +34,15 @@
                                     <td>
                                         @if ($pianta->stato == 0)
                                             Privato
-                                            @elseif ($pianta->stato == 1)
-                                                Pubblico
+                                        @elseif ($pianta->stato == 1)
+                                            Pubblico
                                         @endif
 
                                     </td>
                                     <td>
                                         <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta) }}" class="btn btn-info" > Diario </a>
-                                        <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}" class="btn btn-primary" > Bisogni </a>
+                                        <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}" class="btn btn-info" > Bisogni </a>
+                                        <a href="{{ URL::action('EventoController@index', $pianta->codice_pianta) }}" class="btn btn-info" > Eventi </a>
                                     </td>
                                 </tr>
                         </tbody>

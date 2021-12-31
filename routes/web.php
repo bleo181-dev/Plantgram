@@ -36,3 +36,6 @@ Route::post('/diario/{id}/store', 'DiarioController@store');
 Route::delete('/diario/{id}', 'DiarioController@destroy');
 Route::get('/diario/{id}/edit', 'DiarioController@edit');
 Route::put('/diario/{id}/update', 'DiarioController@update');
+
+Route::get('/evento/{id}', 'EventoController@index');
+Route::put('/evento/{id}/update', 'EventoController@update');
