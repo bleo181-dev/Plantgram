@@ -1,5 +1,5 @@
 <div class="card w-50">
-    <img src="{{ ('$pianta->foto') }}" alt="" class="card-img-top">
+    <img src="/immagini/pianta.jpg" class="card-img-top">
     <div class="card-body">
         <h5 class="card-title">{{$pianta->nome}}</h5>
         <p>Luogo: {{$pianta->luogo}}</p>
