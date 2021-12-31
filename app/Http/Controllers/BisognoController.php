@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bisogno;
+use App\Evento;
 
 class BisognoController extends Controller
 {
@@ -42,10 +43,17 @@ class BisognoController extends Controller
             'cadenza'        => 'required'
         ]);                     
 
-        Bisogno::create([
+        $var = Bisogno::create([
             'codice_pianta'   => $request->codice_pianta,
             'nome'            => $validateData['nome'],
             'cadenza'         => ($validateData['cadenza'])*86400,
+        ]);
+
+        Evento::create([
+            'codice_utente'    => auth()->id(),
+            'codice_pianta'    => $request->codice_pianta,
+            'nome'             => $validateData['nome'],
+            'data'             => $var->created_at,
         ]);
 
         return redirect()->route('bisogno.index', $request->codice_pianta);
