@@ -32,7 +32,7 @@
                         <br>
                         <br>
                         
-                        <input type="number" name="cadenza" placeholder="111" value="{{ $bisogno->cadenza }}" /> <label> Cadenza </label>
+                        <input type="number" name="cadenza" placeholder="" value="{{ ($bisogno->cadenza)/86400}}" /> <label> Cadenza </label>
                         <br>
                         <br>
                         

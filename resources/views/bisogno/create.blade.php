@@ -32,7 +32,7 @@
                         <br>
                         
 
-                        <input type="number" name="cadenza" placeholder="111" value="{{ old('cadenza') }}" /> <label> Cadenza </label>
+                        <input type="number" name="cadenza" placeholder="" value="{{ old('cadenza') }}" /> <label> Ogni quanti giorni? </label>
 
                         <br>
                         <br>

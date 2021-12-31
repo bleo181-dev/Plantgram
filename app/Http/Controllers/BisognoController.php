@@ -45,7 +45,7 @@ class BisognoController extends Controller
         Bisogno::create([
             'codice_pianta'   => $request->codice_pianta,
             'nome'            => $validateData['nome'],
-            'cadenza'         => $validateData['cadenza'],
+            'cadenza'         => ($validateData['cadenza'])*86400,
         ]);
 
         return redirect()->route('bisogno.index', $request->codice_pianta);
@@ -92,7 +92,7 @@ class BisognoController extends Controller
 
         $bisogno->codice_pianta = $request->codice_pianta;
         $bisogno->nome = $request->nome; 
-        $bisogno->cadenza = $request->cadenza;
+        $bisogno->cadenza = ($request->cadenza)*86400;
 
         $bisogno->save();
         return redirect()->route('bisogno.index', $request->codice_pianta);
