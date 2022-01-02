@@ -22,23 +22,34 @@
                     <form action="{{ URL::action('SerraController@store') }}" method="POST" >
                         {{ csrf_field() }}
                         <h1> Inserisci i dati della serra </h1>
-                        
+
                         <input type="text" name="nome" placeholder="disneyland" value="{{ old('codice_serra') }}"/> <label> Nome </label>
                         <br>
                         <br>
-                        
-                        <input type="number" name="latitudine" placeholder="xx.xxxxxx" value="{{ old('latitudine') }}" /> <label> Latitudine </label>
+
+                        <input type="hidden" id="lat" name="latitudine" placeholder="xx.xxxxxx" value="{{ old('latitudine') }}" />
                         <br>
                         <br>
-                        
-                        <input type="number" name="longitudine" placeholder="yy.yyyyyy" value="{{ old('longitudine') }}"/> <label> Longitudine </label>
+
+                        <input type="hidden" id="lng" name="longitudine" placeholder="yy.yyyyyy" value="{{ old('longitudine') }}"/>
                         <br>
                         <br>
 
                         <input type="hidden" name="capienza" value="20">
-                        
+
+                        @csrf
+                        <div>
+
+
+                            <div id="map" style="height:300px; width: 600px;" class="my-3"></div>
+
+                            <script src="{{ asset('js/posizione.js') }}"></script>
+                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap"
+                                    type="text/javascript"></script>
+                        </div>
+
                         <input type="submit" class="btn btn-primary" value="Crea serra"/>
-                    </form>   
+                    </form>
                 </div>
             </div>
         </div>

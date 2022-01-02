@@ -23,23 +23,27 @@
                         {{ csrf_field() }}
                         @method('PATCH')
                         <h1> Modifica i dati della serra </h1>
-                        
+
                         <input type="text" name="nome" placeholder="serraname" value="{{ $serra->nome }}"/> <label> Nome serra </label>
                         <br>
                         <br>
-                        
-                        <input type="number" name="latitudine" placeholder="latitudine" value="{{ $serra->latitudine }}" /> <label> Latitudine serra </label>
+
+                        <input type="hidden" name="latitudine" placeholder="latitudine" value="{{ $serra->latitudine }}" /> <label> Latitudine serra </label>
                         <br>
                         <br>
-                        
-                        <input type="number" name="longitudine" placeholder="longitudine" value="{{ $serra->longitudine }}" /> <label> Longitudine serra </label>
+
+                        <input type="hidden" name="longitudine" placeholder="longitudine" value="{{ $serra->longitudine }}" /> <label> Longitudine serra </label>
                         <br>
                         <br>
 
                         <input type="hidden" name="capienza" value="20">
-                        
+
+                        <script src="{{ asset('js/posizione.js') }}"></script>
+                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap"
+                                    type="text/javascript"></script>
+
                         <input type="submit" class="btn btn-primary" value="Modifica serra"/>
-                    </form>   
+                    </form>
                 </div>
             </div>
         </div>
