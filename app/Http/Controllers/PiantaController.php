@@ -109,7 +109,7 @@ class PiantaController extends Controller
         $pianta->codice_serra = $input['codice_serra'];
         $pianta->nome = $input['nome'];
         $pianta->luogo = $input['luogo'];
-        if(!isEmpty($input['foto'])){
+        if(!empty($input['foto'])){
             $pianta->foto = $input['foto'];
         }
         $pianta->stato = $input['stato'];

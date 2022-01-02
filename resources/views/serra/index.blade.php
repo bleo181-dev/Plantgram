@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card">
-            <div class="card-header">{{ __('la mia serra') }}</div>
+            <div class="card-header">{{ __('la mia serra') }}
+            </div>
 
                 <div class="card-body">
                     <div style="padding: 10px;">

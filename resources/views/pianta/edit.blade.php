@@ -24,6 +24,7 @@
                         {{ csrf_field() }}
                         @method('PATCH')
                         <h1> Modifica i dati della pianta </h1>
+                        <input type="hidden" value="{{ $pianta->codice_serra }}" name="codice_serra" />
 
                         <input type="text" name="nome" placeholder="Basilico" value="{{ $pianta->nome }}" /> <label> Nome pianta </label>
                         <br>
@@ -47,6 +48,7 @@
                         <input type="hidden" name="SetStatus" id="status" value="">
 
                         <input type="submit" value="Modifica pianta" />
+
 
 
                     </form>
