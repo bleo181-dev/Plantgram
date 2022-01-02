@@ -15,6 +15,7 @@ class EventiTableSeeder extends Seeder
         Evento::create([
             'codice_pianta'     => '1', 
             'codice_utente'     => '1', 
+            'codice_bisogno'    => '1',
             'data'              => '2021-12-30 17:55:20',
             'nome'              => 'nascita'
         ]);

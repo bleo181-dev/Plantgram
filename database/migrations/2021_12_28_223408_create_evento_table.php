@@ -17,12 +17,14 @@ class CreateEventoTable extends Migration
             $table->bigIncrements('codice_evento');
             $table->unsignedBigInteger('codice_pianta');
             $table->unsignedBigInteger('codice_utente');
+            $table->unsignedBigInteger('codice_bisogno');
             $table->string('nome', 100);
             $table->timestampTz('data', $precision = 0);
             $table->timestamps();
 
             $table->foreign('codice_pianta')->references('codice_pianta')->on('pianta')->onDelete('cascade');
             $table->foreign('codice_utente')->references('codice_utente')->on('users')->onDelete('cascade');
+            $table->foreign('codice_bisogno')->references('codice_bisogno')->on('bisogno')->onDelete('cascade');
         });
     }
 
