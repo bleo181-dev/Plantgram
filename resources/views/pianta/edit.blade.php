@@ -33,7 +33,7 @@
                         <br>
                         <br>
 
-                        <input type="file" name="foto" value="{{ $pianta->foto }}"> <label> Carica una foto (non funzionante, placeholder) </label>
+                        <input type="file" name="foto" > <label> Carica una foto </label>
                         <br>
                         <br>
 

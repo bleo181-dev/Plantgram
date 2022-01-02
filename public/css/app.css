@@ -4998,7 +4998,7 @@ input[type=button].btn-block {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  width: 960px;
+  width: auto;
   word-wrap: break-word;
   background-color: #F7F260;
   background-clip: border-box;
@@ -10986,7 +10986,7 @@ a.text-dark:focus {
 .btn-custom-acqua:hover {
   color: #fff;
   background-color: hsl(205, 100%, 53%) ;
-  border-color: hsl(215, 100%, 53%); 
+  border-color: hsl(215, 100%, 53%);
 }
 
 .btn-custom-acqua.disabled:hover,
@@ -11215,4 +11215,9 @@ a.text-dark:focus {
 .show > .btn-custom-raccolto.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
   background-color: #000;
+}
+
+.imageHomePianta
+{
+    max-width: 100%
 }

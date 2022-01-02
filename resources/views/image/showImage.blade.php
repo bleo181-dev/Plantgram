@@ -32,16 +32,10 @@
                                     <td>{{ $i->codice_pianta }}</td>
                                     <td>{{ $i->codice_serra }}</td>
                                     <td>{{ $i->nome }}</td>
-                                    <td>
-                                        <div style="height: 30px; width: 30px;">
-                                            <?php
-
-                                            echo '<img src="data:image/jpeg;base64,'.base64_encode($i->foto).'" class="imageHomePianta"/>';
-
-                                            ?>
-                                        </div>
-
-
+                                    <td> <img value="<?php
+                                        header('content-type: image/jpeg');
+                                        echo $i->foto;
+                                        ?>">
                                     </td>
                                     <td>{{ $i->luogo }}</td>
                                     <td>

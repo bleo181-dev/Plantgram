@@ -20,23 +20,23 @@
                         </div>
                     @endif
 
-                    <form action="{{ URL::action('PiantaController@store') }}" method="POST" >
+                    <form action="{{ URL::action('PiantaController@store') }}" method="POST" enctype="multipart/form-data" >
                         {{ csrf_field() }}
                         <h1> Inserisci i dati della pianta </h1>
-                        
+
                         <!--<input type="number" name="codice_serra" placeholder="1111" value="{{ old('codice_serra') }}"/> <label> Codice serra </label>
                         <br>
                         <br>-->
-                        
+
                         <input type="text" name="nome" placeholder="Basilico" value="{{ old('nome') }}" /> <label> Nome pianta </label>
                         <br>
                         <br>
-                        
+
                         <input type="text" name="luogo" placeholder="Giardino" value="{{ old('luogo') }}"/> <label> Dove si trova </label>
                         <br>
                         <br>
 
-                        <input type="file" name="foto"> <label> Carica una foto (non funzionante, placeholder) </label>
+                        <input type="file" name="foto"> <label> Carica una foto</label>
                         <br>
                         <br>
 
@@ -47,9 +47,9 @@
                         <input type="radio" name="stato" value="1" /> pubblica
                         <br>
                         <br>
-                        
+
                         <input type="submit" value="Aggiungi pianta" />
-                    </form>   
+                    </form>
                 </div>
             </div>
         </div>

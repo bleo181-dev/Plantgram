@@ -39,25 +39,26 @@ class PiantaController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([ 
-            'nome'         => 'required|max:100', 
+        $validateData = $request->validate([
+            'nome'         => 'required|max:100',
             'foto'         => 'required', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
-            'luogo'        => 'required|max:100', 
+            'luogo'        => 'required|max:100',
             'stato'        => 'required'
         ]);
 
         $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
-                     
+
+        $data = file_get_contents($_FILES['foto']['tmp_name']);
 
         Pianta::create([
             'codice_serra'  => $serra,
             'nome'          => $validateData['nome'],
-            'foto'          => $validateData['foto'],
+            'foto'          => $data,
             'luogo'         => $validateData['luogo'],
             'stato'         => $validateData['stato'],
         ]);
 
-        return redirect()->route('pianta.index');
+        return redirect()->route('serra.index');
     }
 
     /**
@@ -95,24 +96,26 @@ class PiantaController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
-            'codice_serra' => 'required', 
-            'nome'         => 'required|max:100', 
-            'foto'         => 'required', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
-            'luogo'        => 'required|max:100', 
+            'codice_serra' => 'required',
+            'nome'         => 'required|max:100',
+            'foto'         => 'nullable', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
+            'luogo'        => 'required|max:100',
             'stato'        => 'required'
         ]);
 
         $input = $request->all();
-        $pianta = Pianta::find($id); 
+        $pianta = Pianta::find($id);
 
         $pianta->codice_serra = $input['codice_serra'];
-        $pianta->nome = $input['nome']; 
+        $pianta->nome = $input['nome'];
         $pianta->luogo = $input['luogo'];
-        $pianta->foto = $input['foto'];
+        if(!isEmpty($input['foto'])){
+            $pianta->foto = $input['foto'];
+        }
         $pianta->stato = $input['stato'];
 
         $pianta->save();
-        return redirect()->route('pianta.index');
+        return redirect()->route('serra.index');
     }
 
     /**

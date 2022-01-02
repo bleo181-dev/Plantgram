@@ -1,5 +1,11 @@
 <div class="card w-50">
-    <img src="/immagini/pianta.jpg" class="card-img-top">
+    <div>
+        <?php
+
+        echo '<img src="data:image/jpeg;base64,'.base64_encode($pianta->foto).'" class="card-img-top"/>';
+
+        ?>
+    </div>
     <div class="card-body">
         <h5 class="card-title">{{$pianta->nome}}</h5>
         <p>Luogo: {{$pianta->luogo}}</p>
@@ -7,7 +13,7 @@
     <div class="card-body">
         <div class="row">
             <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><button class="btn btn-primary">Modifica</button></a>
-                                            
+
             <form action = "{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method = "POST">
 
                 {{ csrf_field() }}
