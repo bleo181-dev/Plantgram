@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card">
-            <div class="card-header">{{ __('diario') }}</div>
+            <div class="card-header"> Diario di {{ $pianta->nome }}</div>
 
                 <div class="card-body">
                     <div style="padding: 10px;"> 

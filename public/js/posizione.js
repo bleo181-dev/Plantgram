@@ -1,7 +1,7 @@
 let map, infoWindow;;
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 41.87242987532504, lng: 14.579792463656322 },
+    center: { lat: 41.87242987532504, lng: 14.579792463656322 }, // Cerenza sul Trigno
     zoom: 8,
     scrollwheel: true,
     });
