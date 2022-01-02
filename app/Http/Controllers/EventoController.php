@@ -36,10 +36,11 @@ class EventoController extends Controller
 
         $evento->save();
 
-        $eventi = Evento::where('codice_pianta', $evento->codice_pianta)
-                ->where('codice_utente', auth()->id())
+        $eventi = Evento::
+                Join('bisogno', 'bisogno.codice_bisogno', '=', 'evento.codice_bisogno')
+                ->where('evento.codice_pianta', $evento->codice_pianta)
+                ->where('evento.codice_utente', auth()->id())
                 ->get();
-        $stato=0;
 
         return view('evento.index', compact('eventi'));
     }

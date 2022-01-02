@@ -25,15 +25,13 @@
 
                         <input type="text" name="nome" placeholder="disneyland" value="{{ old('codice_serra') }}"/> <label> Nome </label>
                         <br>
-                        <br>
+                        
 
                         <input type="hidden" id="lat" name="latitudine" placeholder="xx.xxxxxx" value="{{ old('latitudine') }}" />
-                        <br>
-                        <br>
+    
 
                         <input type="hidden" id="lng" name="longitudine" placeholder="yy.yyyyyy" value="{{ old('longitudine') }}"/>
-                        <br>
-                        <br>
+                        
 
                         <input type="hidden" name="capienza" value="20">
 

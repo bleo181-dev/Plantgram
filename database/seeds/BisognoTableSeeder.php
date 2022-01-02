@@ -15,7 +15,7 @@ class BisognoTableSeeder extends Seeder
         Bisogno::create([
             'codice_pianta' => '1', 
             'nome'         => 'acqua', 
-            'cadenza'      => '3'
+            'cadenza'      => '259520'
         ]);
     }
 }
