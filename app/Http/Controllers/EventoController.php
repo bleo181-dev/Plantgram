@@ -18,14 +18,16 @@ class EventoController extends Controller
 
     public function update(Request $request, $id)
     {
+        date_default_timezone_set("Europe/Rome");
         $validateData = $request->validate([
-            'nome'          => 'required|max:100' 
+            'nome'          => 'required|max:100'
         ]);
 
         $input = $request->all();
         $evento = Evento::find($id); 
 
-        $evento->nome = $input['nome']; 
+        $evento->nome = $input['nome'];
+        $evento->data = (date("Y-m-d H:i:s")); 
 
         $evento->save();
 

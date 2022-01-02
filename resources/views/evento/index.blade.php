@@ -15,7 +15,7 @@
                             <form action="{{ URL::action('EventoController@update', $evento->codice_evento) }}" method="POST" class="col-md-2">
                                 {{ csrf_field() }}
                                 @method('PUT')
-                                <input type="hidden" id="data" name="nome" value="{{$evento->nome}}">
+                                <input type="hidden" name="nome" value="{{$evento->nome}}">
                                 <button class="btn btn-primary" type="submit">{{$evento->nome}}</button>
                             </form>
                         </div>
