@@ -10,7 +10,7 @@
                     @foreach($eventi as $evento)
                         <div class="row">
                             <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: {{ ((strtotime(date('Y-m-d H:i:s'))-strtotime($evento->data))*100)/$evento->cadenza }}%" aria-valuenow="{{ strtotime(date('Y-m-d H:i:s'))-strtotime($evento->data) }}" aria-valuemin="0" aria-valuemax="{{$evento->cadenza}}">{{$evento->nome}}</div>
+                                <div class="progress-bar" role="progressbar" style="width: {{ ((strtotime(date('Y-m-d H:i:s'))-strtotime($evento->updated_at))*100)/$evento->cadenza }}%" aria-valuenow="{{ strtotime(date('Y-m-d H:i:s'))-strtotime($evento->updated_at) }}" aria-valuemin="0" aria-valuemax="{{$evento->cadenza}}">{{$evento->nome}}</div>
                             </div>
                             <form action="{{ URL::action('EventoController@update', $evento->codice_evento) }}" method="POST" class="col-md-2">
                                 {{ csrf_field() }}
