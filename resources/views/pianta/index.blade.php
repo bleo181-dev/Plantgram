@@ -10,8 +10,10 @@
                 <div class="card-header">{{ __('Tutte le piante') }}</div>
 
                 <div class="card-body">
-                    <a href="{{ URL::action('PiantaController@create') }}"> Nuova pianta</a>
-
+                    <div style="padding: 10px;"> 
+                        <a href="{{ URL::action('PiantaController@create') }}"  class="btn btn-success" > Nuova pianta</a>
+                    </div>
+                    
                     <table>
                         <thead>
                             <tr>
