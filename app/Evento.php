@@ -8,5 +8,5 @@ class Evento extends Model
 {
     protected $primaryKey = 'codice_evento';
     protected $table = 'evento';
-    protected $fillable = ['codice_pianta', 'codice_utente', 'data', 'nome'];
+    protected $fillable = ['codice_pianta','codice_bisogno', 'codice_utente', 'data', 'nome'];
 }

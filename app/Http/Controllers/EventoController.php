@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Evento;
+use App\Bisogno;
 
 class EventoController extends Controller
 {
     public function index($id)
     {
-        $eventi = Evento::where('codice_pianta', $id)
-                ->where('codice_utente', auth()->id())
+        $eventi = Evento::
+                Join('bisogno', 'bisogno.codice_bisogno', '=', 'evento.codice_bisogno')
+                ->where('evento.codice_pianta', $id)
+                ->where('evento.codice_utente', auth()->id())
                 ->get();
+
+
 
         return view('evento.index', compact('eventi'));
     }
@@ -34,6 +39,7 @@ class EventoController extends Controller
         $eventi = Evento::where('codice_pianta', $evento->codice_pianta)
                 ->where('codice_utente', auth()->id())
                 ->get();
+        $stato=0;
 
         return view('evento.index', compact('eventi'));
     }
