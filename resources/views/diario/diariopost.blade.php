@@ -7,6 +7,8 @@
             <div class="card-body">
                 <h5 class="card-title"></h5>
                 <p class="card-text">{{ ($i->testo)}}</p>
+                
+                <p class="card-text">{{$i->updated_at}}<small class="text-muted"></small></p>
 
                 <a href = "{{ URL::action('DiarioController@edit', $i->codice_diario)}}"><button class="btn btn-primary">Modifica</button></a>
                                             
@@ -17,7 +19,7 @@
 
                     <button type = "submit" class = "btn btn-danger">Elimina</button>
                 </form>
-                <p class="card-text"><small class="text-muted"></small></p>
+                
             </div>
         </div>
     </div>
