@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Dec 31 12:01:20 2021
+# Make data base, printed on Sun Jan  2 18:11:45 2022
 
 # Variables
 
@@ -23,7 +23,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1a4e8548-5bd3-466a-882f-5dd0192ae8fb.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0c0c282a-f91b-4d07-aa7e-5c02b164d649.sock
 # environment
 VSCODE_CWD = /home/bleo
 # default
@@ -53,7 +53,7 @@ VSCODE_CODE_CACHE_PATH = /home/bleo/.config/Code/CachedData/899d46d82c4c95423fb7
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.IDW2E1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.LT2VF1
 # default
 .LOADED := 
 # default
@@ -93,13 +93,13 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2228
+VSCODE_PID = 2467
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/UbuntuVM:@/tmp/.ICE-unix/1616,unix/UbuntuVM:/tmp/.ICE-unix/1616
+SESSION_MANAGER = local/UbuntuVM:@/tmp/.ICE-unix/1876,unix/UbuntuVM:/tmp/.ICE-unix/1876
 # automatic
 *F = $(notdir $*)
 # environment
@@ -139,7 +139,7 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 88503a18890e45d0b4aec5545b5449ab
+INVOCATION_ID = 496dfbdd4a484948ae345dcd1bb04dbb
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
@@ -177,15 +177,15 @@ GTK_MODULES = gail:atk-bridge
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1474
+MANAGERPID = 1729
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2228
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2467
 # environment
 _ = /usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:24392
+JOURNAL_STREAM = 8:25031
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -279,6 +279,6 @@ GNUmakefile:
 # strcache performance: lookups = 41 / hit rate = 7%
 # hash-table stats:
 # Load=38/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Fri Dec 31 12:01:20 2021
+# Finished Make data base on Sun Jan  2 18:11:45 2022
 
  

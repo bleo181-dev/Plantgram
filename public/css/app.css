@@ -10978,21 +10978,19 @@ a.text-dark:focus {
 
 .btn-custom-acqua.disabled,
 .btn-custom-acqua:disabled {
-  color: #fff;
-  background-color: hsl(205, 50%, 53%);
+  color: #000;
   border-color: #ff0000;
 }
 
 .btn-custom-acqua:hover {
-  color: #fff;
-  background-color: hsl(205, 100%, 53%) ;
+  color: #000;
   border-color: hsl(215, 100%, 53%); 
 }
 
 .btn-custom-acqua.disabled:hover,
 .btn-custom-acqua:disabled:hover {
-  color: #fff;
-  background-color: hsl(205, 50%, 53%);
+  color: #ff0000;
+  background-color: #fff ;
   border-color: #ff0000;
 }
 
@@ -11028,8 +11026,7 @@ a.text-dark:focus {
 
 .btn-custom-concime.disabled,
 .btn-custom-concime:disabled {
-  color: #fff;
-  background-color: hsl(27, 50%, 50%) ;
+  color: #000;
   border-color: #ff0000;
 }
 
@@ -11041,8 +11038,8 @@ a.text-dark:focus {
 
 .btn-custom-concime.disabled:hover,
 .btn-custom-concime:disabled:hover {
-  color: #fff;
-  background-color: hsl(27, 50%, 50%) ;
+  color: #ff0000;
+  background-color: #fff ;
   border-color: #ff0000;
 }
 
@@ -11078,8 +11075,7 @@ a.text-dark:focus {
 
 .btn-custom-potatura.disabled,
 .btn-custom-potatura:disabled {
-  color: #fff;
-  background-color: hsl(213, 50%, 64%) ;
+  color: #000;
   border-color: #ff0000;
 }
 
@@ -11091,8 +11087,8 @@ a.text-dark:focus {
 
 .btn-custom-potatura.disabled:hover,
 .btn-custom-potatura:disabled:hover {
-  color: #fff;
-  background-color: hsl(213, 50%, 64%) ;
+  color: #ff0000;
+  background-color: #fff ;
   border-color: #ff0000;
 }
 
@@ -11128,8 +11124,7 @@ a.text-dark:focus {
 
 .btn-custom-svasatura.disabled,
 .btn-custom-svasatura:disabled {
-  color: #fff;
-  background-color: hsl(10, 40%, 32%) ;
+  color: #000;
   border-color: #ff0000;
 }
 
@@ -11141,8 +11136,8 @@ a.text-dark:focus {
 
 .btn-custom-svasatura.disabled:hover,
 .btn-custom-svasatura:disabled:hover {
-  color: #fff;
-  background-color: hsl(10, 40%, 32%) ;
+  color: #ff0000;
+  background-color: #fff ;
   border-color: #ff0000;
 }
 
@@ -11178,15 +11173,14 @@ a.text-dark:focus {
 
 .btn-custom-raccolto.disabled,
 .btn-custom-raccolto:disabled {
-  color: #fff;
-  background-color: hsl(126, 41%, 42%) ;
+  color: #000;
   border-color: #ff0000;
 }
 
 .btn-custom-raccolto.disabled:hover,
 .btn-custom-raccolto:disabled:hover {
-  color: #fff;
-  background-color: hsl(126, 41%, 42%) ;
+  color: #ff0000;
+  background-color: #fff ;
   border-color: #ff0000;
 }
 
