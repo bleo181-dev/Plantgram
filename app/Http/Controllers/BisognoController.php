@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Bisogno;
 use App\Evento;
+use App\Pianta;
+use Illuminate\Support\Facades\DB;
 
 class BisognoController extends Controller
 {
@@ -16,8 +18,9 @@ class BisognoController extends Controller
     public function index($codice_pianta)
     {
         $bisogni = Bisogno::where('codice_pianta', $codice_pianta)->get();
+        $pianta = Pianta::find($codice_pianta);
 
-        return view('bisogno.index', compact('bisogni', 'codice_pianta'));
+        return view('bisogno.index', compact('bisogni' , 'pianta', 'codice_pianta'));
     }
 
     /**

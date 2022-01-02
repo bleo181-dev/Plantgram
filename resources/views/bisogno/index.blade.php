@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Tutte le piante') }}</div>
+                <div class="card-header">Tutti i bisogni di {{ $pianta->nome }}</div>
                     <div style="padding: 10px;"> 
                         <a href="{{ URL::action('BisognoController@create', $codice_pianta) }}" class="btn btn-success"> Crea bisogno</a>
                     </div>

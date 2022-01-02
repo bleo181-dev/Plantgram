@@ -15,7 +15,9 @@ class DiarioController extends Controller
                 ->where('codice_utente', auth()->id())
                 ->get();
 
-        return view('diario.index', compact('diario', 'id'));
+        $pianta = Pianta::find($id);
+
+        return view('diario.index', compact('diario', 'pianta', 'id'));
     }
 
     public function create($id)
