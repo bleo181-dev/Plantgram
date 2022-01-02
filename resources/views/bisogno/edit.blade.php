@@ -29,20 +29,20 @@
                         
                         <h3>Tipologia</h3>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn active btn-custom-acqua ">
-                                <input type="radio" name="nome" id="s1" autocomplete="off" value="acqua" {{ $bisogno->nome == 'acqua' ? 'checked' : ''}}> Acqua
+                            <label class="btn btn-custom-acqua {{ $bisogno->nome == 'acqua' ? '' : 'disabled'}} ">
+                                <input type="radio" name="nome" id="s1" autocomplete="off" value="acqua" {{ $bisogno->nome == 'acqua' ? 'checked' : 'disabled'}}> Acqua
                             </label>
-                            <label class="btn active btn-custom-concime">
-                                <input type="radio" name="nome" id="s2" autocomplete="off" value="concime" {{ $bisogno->nome == 'concime' ? 'checked' : ''}}> Concime
+                            <label class="btn btn-custom-concime {{ $bisogno->nome == 'concime' ? '' : 'disabled'}}">
+                                <input type="radio" name="nome" id="s2" autocomplete="off" value="concime" {{ $bisogno->nome == 'concime' ? 'checked' : 'disabled'}}> Concime
                             </label>
-                            <label class="btn active btn-custom-svasatura">
-                                <input type="radio" name="nome" id="s3" autocomplete="off" value="svasatura" {{ $bisogno->nome == 'svasatura' ? 'checked' : ''}}> Svasatura
+                            <label class="btn btn-custom-svasatura {{ $bisogno->nome == 'svasatura' ? '' : 'disabled'}}">
+                                <input type="radio" name="nome" id="s3" autocomplete="off" value="svasatura" {{ $bisogno->nome == 'svasatura' ? 'checked' : 'disabled'}}> Svasatura
                             </label>
-                            <label class="btn active btn-custom-raccolto">
-                                <input type="radio" name="nome" id="s4" autocomplete="off" value="raccolto" {{ $bisogno->nome == 'raccolto' ? 'checked' : ''}}> Raccolto
+                            <label class="btn btn-custom-raccolto {{ $bisogno->nome == 'raccolto' ? '' : 'disabled'}}">
+                                <input type="radio" name="nome" id="s4" autocomplete="off" value="raccolto" {{ $bisogno->nome == 'raccolto' ? 'checked' : 'disabled'}}> Raccolto
                             </label>
-                            <label class="btn active btn-custom-potatura">
-                                <input type="radio" name="nome" id="s5" autocomplete="off" value="potatura" {{ $bisogno->nome == 'potatura' ? 'checked' : ''}}> Potatura
+                            <label class="btn btn-custom-potatura {{ $bisogno->nome == 'potatura' ? '' : 'disabled'}}">
+                                <input type="radio" name="nome" id="s5" autocomplete="off" value="potatura" {{ $bisogno->nome == 'potatura' ? 'checked' : 'disabled'}}> Potatura
                             </label>
                         </div>
                         
