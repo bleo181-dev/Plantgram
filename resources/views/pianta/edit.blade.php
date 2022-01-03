@@ -20,7 +20,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ URL::action('PiantaController@update', $pianta->codice_pianta) }}" method="POST" >
+                    <form action="{{ URL::action('PiantaController@update', $pianta->codice_pianta) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         @method('PATCH')
                         <h1> Modifica i dati della pianta </h1>

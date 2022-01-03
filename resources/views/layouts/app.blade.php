@@ -45,6 +45,9 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -59,6 +62,11 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->nome }} <span class="caret"></span>
+                                    <?php
+
+                                        echo '<img src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
+                                        echo Auth::user()->foto
+                                    ?>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -110,7 +110,8 @@ class PiantaController extends Controller
         $pianta->nome = $input['nome'];
         $pianta->luogo = $input['luogo'];
         if(!empty($input['foto'])){
-            $pianta->foto = $input['foto'];
+            $data = file_get_contents($_FILES['foto']['tmp_name']);
+            $pianta->foto = $data;
         }
         $pianta->stato = $input['stato'];
 
@@ -127,6 +128,6 @@ class PiantaController extends Controller
     public function destroy($id)
     {
         $pianta = Pianta::where('codice_pianta', $id)->delete();
-        return redirect()->route('pianta.index');
+        return redirect()->route('serra.index');
     }
 }

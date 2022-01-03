@@ -65,6 +65,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        //$dataFoto = file_get_contents($_FILES['foto']['tmp_name']); <----Si rompe
+
         return User::create([
             'nome' => $data['nome'],
             'cognome' => $data['cognome'],
