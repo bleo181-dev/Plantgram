@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Crea bisogno') }}</div>
+                <div class="card-header">Crea un bisogno per {{ $pianta->nome }} </div>
 
                 <div class="card-body">
 
@@ -28,19 +28,19 @@
 
                         <h3>Tipologia</h3>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn active btn-custom-acqua ">
+                            <label class="btn btn-custom-acqua {{ in_array('acqua', $bisogni) ? 'disabled' : ''}}" >
                                 <input type="radio" name="nome" id="option1" autocomplete="off" value="acqua"> Acqua
                             </label>
-                            <label class="btn active btn-custom-concime">
+                            <label class="btn btn-custom-concime {{ in_array('concime', $bisogni) ? 'disabled' : ''}}" >
                                 <input type="radio" name="nome" id="option2" autocomplete="off" value="concime"> Concime
                             </label>
-                            <label class="btn active btn-custom-svasatura">
+                            <label class="btn btn-custom-svasatura {{ in_array('svasatura', $bisogni) ? 'disabled' : ''}}" >
                                 <input type="radio" name="nome" id="option3" autocomplete="off" value="svasatura"> Svasatura
                             </label>
-                            <label class="btn active btn-custom-raccolto">
+                            <label class="btn btn-custom-raccolto {{ in_array('raccolto', $bisogni) ? 'disabled' : ''}}" >
                                 <input type="radio" name="nome" id="option3" autocomplete="off" value="raccolto"> Raccolto
                             </label>
-                            <label class="btn active btn-custom-potatura">
+                            <label class="btn btn-custom-potatura {{ in_array('potatura', $bisogni) ? 'disabled' : ''}}" >
                                 <input type="radio" name="nome" id="option3" autocomplete="off" value="potatura"> Potatura
                             </label>
                         </div>

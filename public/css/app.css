@@ -10978,12 +10978,12 @@ a.text-dark:focus {
 
 .btn-custom-acqua.disabled,
 .btn-custom-acqua:disabled {
-  color: #000;
+  color: #ff0000;
   border-color: #ff0000;
 }
 
 .btn-custom-acqua:hover {
-  color: #fff;
+  color: #ff0000;
   background-color: hsl(205, 100%, 53%) ;
   border-color: hsl(215, 100%, 53%);
 }
@@ -11027,7 +11027,7 @@ a.text-dark:focus {
 
 .btn-custom-concime.disabled,
 .btn-custom-concime:disabled {
-  color: #000;
+  color: #ff0000;
   border-color: #ff0000;
 }
 
@@ -11076,7 +11076,7 @@ a.text-dark:focus {
 
 .btn-custom-potatura.disabled,
 .btn-custom-potatura:disabled {
-  color: #000;
+  color: #ff0000;
   border-color: #ff0000;
 }
 
@@ -11125,7 +11125,7 @@ a.text-dark:focus {
 
 .btn-custom-svasatura.disabled,
 .btn-custom-svasatura:disabled {
-  color: #000;
+  color: #ff0000;
   border-color: #ff0000;
 }
 
@@ -11174,7 +11174,7 @@ a.text-dark:focus {
 
 .btn-custom-raccolto.disabled,
 .btn-custom-raccolto:disabled {
-  color: #000;
+  color: #ff0000;
   border-color: #ff0000;
 }
 

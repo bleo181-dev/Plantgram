@@ -30,7 +30,9 @@ class BisognoController extends Controller
      */
     public function create($codice_pianta)
     {
-        return view('bisogno.create', compact('codice_pianta'));
+        $bisogni = Bisogno::where('codice_pianta', $codice_pianta)->pluck('nome')->toArray();
+        $pianta = Pianta::find($codice_pianta);
+        return view('bisogno.create', compact('codice_pianta', 'bisogni', 'pianta'));
     }
 
     /**
