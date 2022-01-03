@@ -60,7 +60,7 @@ class DiarioController extends Controller
     {
         $validateData = $request->validate([
             'testo'   => 'required|max:1000',
-            'foto'    => 'required',
+            'foto'    => 'nullable',
         ]);
 
 
