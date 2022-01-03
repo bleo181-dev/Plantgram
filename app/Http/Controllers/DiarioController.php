@@ -39,6 +39,7 @@ class DiarioController extends Controller
             'codice_pianta' => $id,
             'testo'    => $validateData['testo'],
             'foto'   => $data,
+            'data'    => (date("Y-m-d H:i:s")),
         ]);
 
         $diario = Diario::where('codice_pianta', $id)
@@ -69,6 +70,7 @@ class DiarioController extends Controller
         $d = Diario::find($codice_diario);
 
         $d->testo = $input['testo'];
+        $d->data = (date("Y-m-d H:i:s"));
 
         if(!empty($input['foto'])){
             $data = file_get_contents($_FILES['foto']['tmp_name']);
