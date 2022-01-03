@@ -64,8 +64,8 @@
                                     {{ Auth::user()->nome }} <span class="caret"></span>
                                     <?php
 
-                                        echo '<img src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
-                                        echo Auth::user()->foto
+                                        echo '<img  class="rounded-circle" style="width: 40px; heigth:40px;"src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
+
                                     ?>
                                 </a>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -51,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nome' => ['required', 'string', 'max:100'],
             'cognome' => ['required', 'string', 'max:100'],
+            'foto' => ['required', ''],
             'nickname' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -66,7 +68,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        //$dataFoto = file_get_contents($_FILES['foto']['tmp_name']); <----Si rompe
+        $dataFile = file_get_contents($_FILES['foto']['tmp_name']);
+
 
         return User::create([
             'nome' => $data['nome'],
@@ -74,7 +77,7 @@ class RegisterController extends Controller
             'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'foto' => $data['foto']
+            'foto' => $dataFile
         ]);
     }
 }
