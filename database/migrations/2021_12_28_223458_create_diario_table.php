@@ -17,14 +17,14 @@ class CreateDiarioTable extends Migration
             $table->bigIncrements('codice_diario');
             $table->unsignedBigInteger('codice_utente');
             $table->unsignedBigInteger('codice_pianta');
-            $table->binary('foto');
             $table->string('testo',1000);
-            //$table->timestamps('data', 0);
+            $table->timestampTz('data',$precision=0);
             $table->timestamps();
 
             $table->foreign('codice_pianta')->references('codice_pianta')->on('pianta')->onDelete('cascade');
             $table->foreign('codice_utente')->references('codice_utente')->on('users')->onDelete('cascade');
         });
+        DB::statement("ALTER TABLE diario ADD foto MEDIUMBLOB");
     }
 
     /**

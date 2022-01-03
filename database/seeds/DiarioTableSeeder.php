@@ -16,6 +16,7 @@ class DiarioTableSeeder extends Seeder
             'codice_pianta'     => '1', 
             'codice_utente'     => '1', 
             'foto'              => '',
+            'data'              => '2021-12-30 17:55:20',
             'testo'             => 'nascita della pianta'
         ]);   
     }
