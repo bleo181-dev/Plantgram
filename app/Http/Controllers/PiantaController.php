@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Pianta;
 use App\Serra;
+use App\Diario;
+use App\Evento;
+use App\Bisogno;
 
 
 class PiantaController extends Controller
@@ -70,7 +73,17 @@ class PiantaController extends Controller
     public function show($id)
     {
         $pianta = Pianta::find($id);
-        return view('pianta.show', compact('pianta'));
+
+        $diario = Diario::where('codice_pianta',$id)->get();
+
+        $eventi = Bisogno::
+                Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                ->where('evento.codice_pianta', $id)
+                ->where('evento.codice_utente', auth()->id())
+                ->get();
+
+        
+        return view('pianta.show', compact('pianta','diario','eventi'));
     }
 
     /**
