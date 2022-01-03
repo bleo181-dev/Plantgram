@@ -35,8 +35,7 @@
                         <input type="text" name="luogo" placeholder="Giardino" value="{{ old('luogo') }}"/> <label> Dove si trova </label>
                         <br>
                         <br>
-
-                        <input type="file" name="foto"> <label> Carica una foto</label>
+                        @include('foto') <!-- Serve per includere il capo foto e la sua preview -->
                         <br>
                         <br>
 
@@ -55,4 +54,6 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/preview.js') }}"></script>
 @endsection

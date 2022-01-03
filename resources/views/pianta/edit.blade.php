@@ -34,7 +34,15 @@
                         <br>
                         <br>
 
-                        <input type="file" name="foto" > <label> Carica una foto </label>
+                        <div class="card col-md-7">
+                            <p>Carica una foto</p>
+                            <input type="file" name="foto" id="imgInp"> <br>
+                            <?php
+                                echo '<img id="blah" class="imagePreviewPianta" src="data:image/jpeg;base64,'.base64_encode($pianta->foto).'"/>';
+                            ?>
+
+                        </div>
+
                         <br>
                         <br>
 
@@ -78,4 +86,5 @@
         }
     }
 </script>
+<script src="{{ asset('js/previewEdit.js') }}"></script>
 @endsection

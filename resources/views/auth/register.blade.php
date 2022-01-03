@@ -57,8 +57,11 @@
                             <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
                             <div class="col-md-6">
-                                <input id="foto" type="file" class="@error('foto') is-invalid @enderror" name="foto" required autocomplete="foto" autofocus>
-
+                                <div class="card col-md-7">
+                                <input id="imgInp" type="file" class="@error('foto') is-invalid @enderror" name="foto" required autocomplete="foto" autofocus>
+                                    <br>
+                                    <img class="imagePreviewPianta" id="blah" src="#"/>
+                                </div>
                                 @error('foto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -116,4 +119,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/preview.js') }}"></script>
 @endsection

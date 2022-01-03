@@ -26,8 +26,7 @@
                         <input type="text" name="testo" placeholder="testo" value="{{ old('testo') }}"/> <label> Descrizione </label>
                         <br>
                         <br>
-
-                        <input type="file" name="foto" placeholder="" value="{{ old('foto') }}" /> <label> foto </label>
+                        @include('foto') <!-- Serve per includere il capo foto e la sua preview -->
                         <br>
                         <br>
 
@@ -38,4 +37,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/preview.js') }}"></script>
 @endsection
