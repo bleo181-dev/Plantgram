@@ -10,8 +10,8 @@ class EventoController extends Controller
 {
     public function index($id)
     {
-        $eventi = Evento::
-                Join('bisogno', 'bisogno.codice_bisogno', '=', 'evento.codice_bisogno')
+        $eventi = Bisogno::
+                Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                 ->where('evento.codice_pianta', $id)
                 ->where('evento.codice_utente', auth()->id())
                 ->get();
@@ -23,7 +23,6 @@ class EventoController extends Controller
 
     public function update(Request $request, $id)
     {
-        date_default_timezone_set("Europe/Rome");
         $validateData = $request->validate([
             'nome'          => 'required|max:100'
         ]);
@@ -36,8 +35,8 @@ class EventoController extends Controller
 
         $evento->save();
 
-        $eventi = Evento::
-                Join('bisogno', 'bisogno.codice_bisogno', '=', 'evento.codice_bisogno')
+        $eventi = Bisogno::
+                Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                 ->where('evento.codice_pianta', $evento->codice_pianta)
                 ->where('evento.codice_utente', auth()->id())
                 ->get();
