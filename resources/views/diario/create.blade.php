@@ -19,20 +19,20 @@
                         </div>
                     @endif
 
-                    <form action="{{ URL::action('DiarioController@store', $id) }}" method="POST" >
+                    <form action="{{ URL::action('DiarioController@store', $id) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <h1> Inserisci i dati del ricordo </h1>
-                        
+
                         <input type="text" name="testo" placeholder="testo" value="{{ old('testo') }}"/> <label> Descrizione </label>
                         <br>
                         <br>
-                        
+
                         <input type="file" name="foto" placeholder="" value="{{ old('foto') }}" /> <label> foto </label>
                         <br>
                         <br>
-                        
+
                         <input type="submit" class="btn btn-primary" value="Crea ricordo"/>
-                    </form>   
+                    </form>
                 </div>
             </div>
         </div>
