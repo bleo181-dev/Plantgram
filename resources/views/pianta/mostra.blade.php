@@ -30,6 +30,7 @@
                                             <button class="btn btn-primary" type="submit">{{$evento->nome}}</button>
                                         </form>
                                     </div>
+                                    <br>
                                 @endforeach
                             </div>
                         </div>
