@@ -10983,7 +10983,7 @@ a.text-dark:focus {
 }
 
 .btn-custom-acqua:hover {
-  color: #ff0000;
+  color: #fff;
   background-color: hsl(205, 100%, 53%) ;
   border-color: hsl(215, 100%, 53%);
 }

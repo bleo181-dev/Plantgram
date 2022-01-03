@@ -53,7 +53,8 @@ class SerraController extends Controller
             'capienza'      => $validateData['capienza'],
         ]);
 
-        $piante = Pianta::all();
+        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+        $piante = Pianta::where('codice_serra', $serra)->get();
         return view('serra.index', compact('piante'));
     }
 
