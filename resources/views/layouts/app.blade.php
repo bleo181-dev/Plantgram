@@ -61,11 +61,13 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    
                                     <?php
-
-                                        echo '<img  class="rounded-circle" style="width: 40px; heigth:40px;"src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
-
+                                        echo '<img class="thumb" src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
                                     ?>
+
+
+
                                     {{ Auth::user()->nome }} <span class="caret"></span>
 
                                 </a>
