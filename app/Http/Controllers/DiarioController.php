@@ -42,8 +42,10 @@ class DiarioController extends Controller
         $diario = Diario::where('codice_pianta', $id)
                 ->where('codice_utente', auth()->id())
                 ->get();
+        
+        $pianta = Pianta::find($id);
 
-        return view('diario.index', compact('diario', 'id'));
+        return view('diario.index', compact('diario','pianta', 'id'));
     }
 
     public function edit($id)
@@ -72,8 +74,9 @@ class DiarioController extends Controller
         $diario = Diario::where('codice_pianta', $id)
                 ->where('codice_utente', auth()->id())
                 ->get();
+        $pianta = Pianta::find($id);
 
-        return view('diario.index', compact('diario', 'id'));
+        return view('diario.index', compact('diario','pianta', 'id'));
     }
 
     public function destroy($codice_diario)
@@ -85,8 +88,9 @@ class DiarioController extends Controller
         $diario = Diario::where('codice_pianta', $id)
         ->where('codice_utente', auth()->id())
         ->get();
+        $pianta = Pianta::find($id);
 
-        return view('diario.index', compact('diario', 'id'));
+        return view('diario.index', compact('diario','pianta', 'id'));
     }
     
 }
