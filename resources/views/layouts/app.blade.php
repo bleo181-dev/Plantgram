@@ -68,7 +68,7 @@
 
 
 
-                                    {{ Auth::user()->nome }} <span class="caret"></span>
+                                    {{ Auth::user()->nickname }} <span class="caret"></span>
 
                                 </a>
 
