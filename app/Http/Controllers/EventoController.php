@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Evento;
 use App\Bisogno;
+use App\Pianta;
+use App\Diario;
 
 class EventoController extends Controller
 {
@@ -35,12 +37,16 @@ class EventoController extends Controller
 
         $evento->save();
 
+        $pianta = Pianta::find($evento->codice_pianta);
+
+        $diario = Diario::where('codice_pianta',$evento->codice_pianta)->get();
+
         $eventi = Bisogno::
                 Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                 ->where('evento.codice_pianta', $evento->codice_pianta)
                 ->where('evento.codice_utente', auth()->id())
                 ->get();
 
-        return view('evento.index', compact('eventi'));
+        return view('pianta.show', compact('pianta','diario','eventi'));
     }
 }
