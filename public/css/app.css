@@ -15,7 +15,7 @@
   --red: #e3342f;
   --orange: #f6993f;
   --yellow: #ffed4a;
-  --green: #38c172;
+  --green: #37b96d;
   --teal: #4dc0b5;
   --cyan: #6cb2eb;
   --white: #fff;
@@ -5722,7 +5722,7 @@ a.badge-dark.focus {
   overflow: hidden;
   line-height: 0;
   font-size: 0.675rem;
-  background-color: #e9ecef;
+  background-color: #6c757d;
   border-radius: 0.25rem;
 }
 
@@ -5734,7 +5734,7 @@ a.badge-dark.focus {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #3490dc;
+  background-color: #37b96d;;
   transition: width 0.6s ease;
 }
 
