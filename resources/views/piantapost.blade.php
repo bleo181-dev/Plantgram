@@ -9,6 +9,13 @@
     <div class="card-body">
         <h5 class="card-title">{{$pianta->nome}}</h5>
         <p>Luogo: {{$pianta->luogo}}</p>
+        <p> 
+            @foreach($bisogni as $b)
+                @if($b['codice_pianta'] == $pianta->codice_pianta)
+                        {{$b['nome']}} 
+                @endif
+            @endforeach
+        </p>
     </div>
     <div class="card-body">
         <div class="row">
