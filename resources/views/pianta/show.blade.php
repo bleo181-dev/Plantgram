@@ -29,11 +29,35 @@
                             <div class="progress w-75">
                                 <div class="progress-bar" role="progressbar" style="width: {{((strtotime('now')-strtotime($evento->data))*100)/$evento->cadenza }}%" aria-valuenow="{{strtotime(date('Y-m-d H:i:s'))-strtotime($evento->data) }}" aria-valuemin="0" aria-valuemax="{{$evento->cadenza}}">{{$evento->nome}}</div>
                             </div>
-                            <form action="{{ URL::action('EventoController@update', $evento->codice_evento) }}" method="POST" class="col-md-2">
-                                {{ csrf_field() }}
-                                @method('PUT')
-                                <input type="hidden" name="nome" value="{{$evento->nome}}">
-                                <button class="btn btn-primary" type="submit">{{$evento->nome}}</button>
+                            <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class="btn btn-primary">{{$evento->nome}}</a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop{{$evento->codice_evento}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{$evento->nome}}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di aver dato cio di cui la pianta ha bisogno?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                <form action="{{ URL::action('EventoController@update', $evento->codice_evento) }}" method="POST" class="col-md-2">
+                                                    {{ csrf_field() }}
+                                                    @method('PUT')
+                                                    <input type="hidden" name="nome" value="{{$evento->nome}}">
+                                                    <button class="btn btn-primary" type="submit">Si</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--endmodal-->
+
                             </form>
                         </div>
                         <br>
