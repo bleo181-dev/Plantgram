@@ -72,7 +72,7 @@ body {
   line-height: 1.6;
   color: #7B862A;
   text-align: left;
-  background-color: #26300D;
+  background-color: #082241;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -5000,7 +5000,7 @@ input[type=button].btn-block {
   min-width: 0;
   width: auto;
   word-wrap: break-word;
-  background-color: #F7F260;
+  background-color: #e8e8ff;
   background-clip: border-box;
   border: 1px solid;
   border-color: #FCFFE2;
@@ -7112,7 +7112,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-color: #FCFFE2 !important;
+  background-color: #fff !important;
 }
 
 .bg-transparent {

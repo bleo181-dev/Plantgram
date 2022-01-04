@@ -1,6 +1,7 @@
 <div class="card">
     <div class="row no-gutters">
         <div class="col-md-4">
+            
             <?php
 
                 echo '<img class="card-img" src="data:image/jpeg;base64,'.base64_encode($i->foto).'"/>';

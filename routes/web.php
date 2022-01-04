@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'PiantaController@index')->name('index');  //solo per adesso in mancanza di una landing page
+Route::get('/', 'LandingpageController@index')->name('index');
 
 Route::resource('pianta', 'PiantaController');
 
