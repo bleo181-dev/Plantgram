@@ -61,7 +61,7 @@
                             </form>
                         </div>
                         <br>
-                        <canvas id="myChart" style="width:100%;max-width:700px; height: 300px;"></canvas>
+                       <!-- <canvas id="myChart" style="width:100%;max-width:700px; height: 300px;"></canvas>-->
                         <br>
                     @endforeach
                     @foreach($diario as $i)
