@@ -83,7 +83,7 @@ class PiantaController extends Controller
                 ->get();
 
         
-        return view('pianta.mostra', compact('pianta','diario','eventi'));
+        return view('pianta.show', compact('pianta','diario','eventi'));
     }
 
     /**
