@@ -37,9 +37,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Pianta') }}</a>
                         </li>
+                        @guest
+                        @if (Route::has('register'))
+
+                        @endif
+                        @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('SerraController@index')}}">{{ __('Serra') }}</a>
                         </li>
+                        @endguest
+
 
                     </ul>
 

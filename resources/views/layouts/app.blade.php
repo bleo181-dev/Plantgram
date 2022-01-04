@@ -19,8 +19,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!--script per plot-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
     <div id="app">
@@ -39,9 +37,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Pianta') }}</a>
                         </li>
+                        
+                        @guest
+                        @if (Route::has('register'))
+
+                        @endif
+                        @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('SerraController@index')}}">{{ __('Serra') }}</a>
                         </li>
+                        @endguest
 
                     </ul>
 
