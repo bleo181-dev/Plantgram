@@ -12,9 +12,15 @@
       </div>
       <div class="carousel-item" data-interval="4000">
         <img src="/immagini/2.jpg" class="d-block w-100">
+        <div class="card-img-overlay text-center">
+            <a class="btn btn-primary btn-lg" href="/register" role="button">Registrati ora</a>
+        </div>
       </div>
       <div class="carousel-item">
         <img src="/immagini/3.jpg" class="d-block w-100">
+        <div class="card-img-overlay text-center">
+            <a class="btn btn-primary btn-lg" href="/register" role="button">Registrati ora</a>
+        </div>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
@@ -54,4 +60,13 @@
         </div>
       </div>
   </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
 @endsection

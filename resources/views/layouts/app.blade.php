@@ -37,7 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Pianta') }}</a>
                         </li>
-                        
+
                         @guest
                         @if (Route::has('register'))
 
@@ -101,5 +101,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>
