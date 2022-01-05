@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
             'email'                 => 'admin@admin.it',
             'password'              =>  Hash::make('password'),
             'foto'                  => 'lupo.jpg',
-            'email_verified_at'     => '2021-12-29 10:33:43'
+            'email_verified_at'     => '2021-12-29 10:33:43',
+            'admin'                 => true
         ]);
     }
 }
