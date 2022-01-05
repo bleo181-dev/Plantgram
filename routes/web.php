@@ -15,7 +15,7 @@ use App\Http\Controllers\PiantaController;
 
 Auth::routes();
 
-Route::get('/home', 'SerraController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'LandingpageController@index')->name('index');
 
