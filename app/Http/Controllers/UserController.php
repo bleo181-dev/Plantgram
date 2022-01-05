@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -58,7 +60,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -70,7 +73,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nickname'         => 'required', 'string', 'max:100',
+            'foto'         => 'nullable', 
+            'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'password'        => 'required', 'string', 'min:8', 'confirmed'
+        ]);
+        $user = Auth::user();
+        $user->nickname = $request['nickname'];
+        $user->email = $request['email'];
+        if(!empty($request['foto'])){
+            $data = file_get_contents($_FILES['foto']['tmp_name']);
+            $user->foto = $data;
+        }
+        $user->password = Hash::make($request['password']);
+        $user->save();
+        return redirect()->route('user.index');
     }
 
     /**

@@ -104,7 +104,6 @@ class PiantaController extends Controller
     public function edit($id)
     {
         $pianta = Pianta::find($id);
-        // $pianta = Pianta::where('nome_campo', 'operatore', 'valore');
         return view('pianta.edit', compact('pianta'));
     }
 
@@ -120,7 +119,7 @@ class PiantaController extends Controller
         $validateData = $request->validate([
             'codice_serra' => 'required',
             'nome'         => 'required|max:100',
-            'foto'         => 'nullable', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
+            'foto'         => 'nullable', 
             'luogo'        => 'required|max:100',
             'stato'        => 'required'
         ]);
