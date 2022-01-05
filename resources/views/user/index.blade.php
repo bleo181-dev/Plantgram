@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::user()->admin)
 
 <div class="container">
     <div class="row justify-content-center">
@@ -10,13 +11,14 @@
                 <div class="card-header">{{ __('Tutte le piante') }}</div>
 
                 <div class="card-body">
-                    <table>
+                    <table class = "col-md-12">
                         <thead>
                             <tr>
                                 <th>Codice utente</th>
                                 <th>Nickname</th>
                                 <th>E-mail</th>
                                 <th>Foto</th>
+                                <th>isAdmin</th>
                                 <th>Azioni</th>
                             </tr>
                         </thead>
@@ -35,6 +37,7 @@
                                             ?>
                                         </div>
                                     </td>
+                                    <td>{{ $i->admin }}</td>
                                     <td>
                                         <a href="{{ URL::action('UserController@edit', $i->codice_utente) }}" class="btn btn-primary" > Modifica </a>
                                         <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->codice_utente}}').submit();" class="btn btn-danger"> Elimina </a>
@@ -52,4 +55,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection

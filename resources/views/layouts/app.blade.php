@@ -34,10 +34,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('UserController@index')}}">{{ __('Utenti') }}</a>
-                        </li>
+                        @if(Auth::user()) 
+                            @if(Auth::user()->admin)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::action('UserController@index')}}">{{ __('Utenti') }}</a>
+                                </li>
+                            @endif
+                        @endif
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Piante') }}</a>
@@ -90,10 +93,11 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    <a class="dropdown-item" href="{{ URL::action('UserController@edit', Auth()->id()) }}">Modifica profilo</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
                                 </div>
                             </li>
                         @endguest

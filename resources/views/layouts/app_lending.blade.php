@@ -34,13 +34,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if(Auth::user())   
+                            @if(Auth::user()->admin)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::action('UserController@index')}}">{{ __('Utenti') }}</a>
+                                </li>
+                            @endif
+                        @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('UserController@index')}}">{{ __('Utenti') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Pianta') }}</a>
+                            <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Piante') }}</a>
                         </li>
                         @guest
                         @if (Route::has('register'))
