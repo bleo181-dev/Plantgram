@@ -89,7 +89,7 @@ class PiantaController extends Controller
                 ->get();
 
         if($pianta == null){
-            return view('/home');
+            return view('landingpage');
         }else{
             return view('pianta.show', compact('pianta','diario','eventi'));
         }
@@ -119,7 +119,7 @@ class PiantaController extends Controller
         $validateData = $request->validate([
             'codice_serra' => 'required',
             'nome'         => 'required|max:100',
-            'foto'         => 'nullable', 
+            'foto'         => 'nullable',
             'luogo'        => 'required|max:100',
             'stato'        => 'required'
         ]);

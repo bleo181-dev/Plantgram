@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
 
+
 class UserController extends Controller
 {
     /**
@@ -43,7 +44,7 @@ class UserController extends Controller
     {
         $request->validate([
             'nickname'         => 'required', 'string', 'max:100',
-            'foto'         => 'nullable', 
+            'foto'         => 'nullable',
             'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
             'password'        => 'required', 'string', 'min:8', 'confirmed'
         ]);
