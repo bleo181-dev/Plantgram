@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Serra;
 use App\Pianta;
+use Illuminate\Support\Facades\Auth;
 
 class SerraController extends Controller
 {
@@ -26,7 +27,15 @@ class SerraController extends Controller
         $delta = strtotime($eventi);
         $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
-        return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi'));
+        if( Auth::check() )
+        {
+            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi'));
+
+        } else {
+            return view('/auth/login');
+        }
+
+
     }
 
     /**
@@ -48,9 +57,9 @@ class SerraController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nome'          => 'required|max:100', 
+            'nome'          => 'required|max:100',
             'latitudine'    => 'required',
-            'longitudine'   => 'required', 
+            'longitudine'   => 'required',
             'capienza'      => 'required'
         ]);
 
@@ -100,16 +109,16 @@ class SerraController extends Controller
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
-            'nome'          => 'required|max:100', 
+            'nome'          => 'required|max:100',
             'latitudine'    => 'required',
-            'longitudine'   => 'required', 
+            'longitudine'   => 'required',
             'capienza'      => 'required'
         ]);
 
         $input = $request->all();
-        $serra = Serra::find($id); 
+        $serra = Serra::find($id);
 
-        $serra->nome = $input['nome']; 
+        $serra->nome = $input['nome'];
         $serra->latitudine = $input['latitudine'];
         $serra->longitudine = $input['longitudine'];
         $serra->capienza = $input['capienza'];

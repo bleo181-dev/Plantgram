@@ -72,9 +72,15 @@ class PiantaController extends Controller
      */
     public function show($id)
     {
-        $pianta = Pianta::find($id);
+        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
 
-        $diario = Diario::where('codice_pianta',$id)->get();
+        $pianta = Pianta::where('codice_pianta', '=', $id)
+                        ->where('codice_serra', '=', $serra)
+                        ->get()->first();
+
+        $diario = Diario::where('codice_pianta',$id)
+                        ->where('codice_utente','=', auth()->id())
+                        ->get();
 
         $eventi = Bisogno::
                 Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
@@ -82,8 +88,11 @@ class PiantaController extends Controller
                 ->where('evento.codice_utente', auth()->id())
                 ->get();
 
-        
-        return view('pianta.show', compact('pianta','diario','eventi'));
+        if($pianta == null){
+            return view('/home');
+        }else{
+            return view('pianta.show', compact('pianta','diario','eventi'));
+        }
     }
 
     /**
