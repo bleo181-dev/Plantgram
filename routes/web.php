@@ -23,6 +23,8 @@ Route::resource('pianta', 'PiantaController');
 
 Route::resource('serra', 'SerraController');
 
+Route::resource('user', 'UserController');
+
 Route::get('/bisogno/{codice_pianta}', 'BisognoController@index')->name('bisogno.index');
 Route::get('/bisogno/{codice_pianta}/create', 'BisognoController@create');
 Route::post('/bisogno/{codice_pianta}/store', 'BisognoController@store');
