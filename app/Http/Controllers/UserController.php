@@ -69,7 +69,13 @@ class UserController extends Controller
     {
         $utente=User::find($id);
         $utente->delete();
-
-        return redirect()->route('user.index');
+        
+        if(Auth::user()->admin)
+        {
+            return redirect()->route('user.index');
+        }else{
+            return redirect()->route('serra.index');
+        }
+        
     }
 }
