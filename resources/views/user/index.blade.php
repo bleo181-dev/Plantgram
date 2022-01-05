@@ -16,8 +16,8 @@
                                 <th>Codice utente</th>
                                 <th>Nickname</th>
                                 <th>E-mail</th>
-                                <th>Password</th>
                                 <th>Foto</th>
+                                <th>Azioni</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,7 +26,6 @@
                                     <td>{{ $i->codice_utente }}</td>
                                     <td>{{ $i->nickname }}</td>
                                     <td>{{ $i->email }}</td>
-                                    <td>{{ $i->password }}</td>
                                     <td>
                                         <div style="height: 30px; width: 30px;">
                                             <?php
@@ -37,7 +36,6 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="{{ URL::action('UserController@show', $i->codice_utente) }}" class="btn btn-info" > Mostra </a>
                                         <a href="{{ URL::action('UserController@edit', $i->codice_utente) }}" class="btn btn-primary" > Modifica </a>
                                         <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->codice_utente}}').submit();" class="btn btn-danger"> Elimina </a>
                                     </td>

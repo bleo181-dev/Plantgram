@@ -4998,7 +4998,7 @@ input[type=button].btn-block {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  width: auto;
+  width: auto ;
   word-wrap: break-word;
   background-color: #cedfff;
   background-clip: border-box;
@@ -5036,6 +5036,7 @@ input[type=button].btn-block {
 
 .card-body {
   flex: 1 1 auto;
+  width: auto;
   min-height: 1px;
   padding: 1.25rem;
 }
