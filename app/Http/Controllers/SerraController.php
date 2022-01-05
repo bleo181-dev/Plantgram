@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bisogno;
 use App\Evento;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Serra;
 use App\Pianta;
 
@@ -20,10 +21,12 @@ class SerraController extends Controller
         $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
         $piante = Pianta::where('codice_serra', $serra)->get();
         $cod_pianta = Pianta::where('codice_serra', $serra)->pluck('codice_pianta');
-        $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->pluck('DATA');
+        $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
+        $dataoggi = strtotime(date('Y-m-d H:i:s'));
+        $delta = strtotime($eventi);
         $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
-        return view('serra.index', compact('piante', 'bisogni'));
+        return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi'));
     }
 
     /**

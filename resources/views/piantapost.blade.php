@@ -12,7 +12,13 @@
         <p> 
             @foreach($bisogni as $b)
                 @if($b['codice_pianta'] == $pianta->codice_pianta)
-                        {{$b['nome']}} 
+                    @foreach($eventi as $d)
+                        @if($d['nome'] == $b['nome'])
+                            @if($dataoggi - strtotime($d['data']) > $b['cadenza'])
+                                {{ $b['nome'] }}
+                            @endif
+                        @endif
+                    @endforeach
                 @endif
             @endforeach
         </p>

@@ -33,7 +33,7 @@ class EventoController extends Controller
         $evento = Evento::find($id); 
 
         $evento->nome = $input['nome'];
-        $evento->data = (date("Y-m-d H:i:s")); 
+        $evento->data = date('Y-m-d H:i:s');
 
         $evento->save();
 
