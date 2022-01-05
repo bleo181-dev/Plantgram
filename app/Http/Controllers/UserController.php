@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
-
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class UserController extends Controller
 {
@@ -29,8 +29,18 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+
+        if(($id == auth()->id() ) || (Auth::user()->admin) ){
+
         $user = User::find($id);
         return view('user.edit', compact('user'));
+
+        }else{
+
+            return redirect()->route('user.edit', auth()->id());
+
+        }
+
     }
 
     /**
@@ -70,13 +80,13 @@ class UserController extends Controller
     {
         $utente=User::find($id);
         $utente->delete();
-        
+
         if(Auth::user()->admin)
         {
             return redirect()->route('user.index');
         }else{
             return redirect()->route('serra.index');
         }
-        
+
     }
 }
