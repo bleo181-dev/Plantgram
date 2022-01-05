@@ -11,7 +11,7 @@
 |
 */
 
-use App\Http\Controllers\PiantaController;
+use App\Http\Controllers\UserController;
 
 Auth::routes();
 
@@ -22,6 +22,8 @@ Route::get('/', 'LandingpageController@index')->name('index');
 Route::resource('pianta', 'PiantaController');
 
 Route::resource('serra', 'SerraController');
+
+Route::resource('user', 'UserController');
 
 Route::get('/bisogno/{codice_pianta}', 'BisognoController@index')->name('bisogno.index');
 Route::get('/bisogno/{codice_pianta}/create', 'BisognoController@create');
