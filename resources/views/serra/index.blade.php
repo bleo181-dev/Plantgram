@@ -26,26 +26,22 @@
                 </p>
             @endif
         </p>
-
     </div>
-  </div>
+</div>
 <div class="container">
-
-
-
-
-                    <div class="card-body">
-                        <div style="padding: 10px;">
-                            <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> Nuova pianta</a>
-                        </div>
-
-                        <div class="row row-cols-1 row-cols-md-3">
-                            @foreach($piante as $pianta)
-                                @include('piantapost')
-                            @endforeach
-                        </div>
+    <div class="card-body">
+        <div class="row row-cols-1 row-cols-md-4">
+            @foreach($piante as $pianta)
+                @include('piantapost')
+            @endforeach
+            <div class="col mb-4">
+                <div class="col mb-4">
+                    <div class="card">
+                        <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> <img src="/immagini/add.png" class="card-img-top" /></a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 @endsection

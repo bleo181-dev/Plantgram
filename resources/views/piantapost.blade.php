@@ -22,16 +22,20 @@
             @endforeach
         </p>
         <p class="card-text">
-            <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><button class="btn btn-primary">Modifica</button></a>
 
-            <form action = "{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method = "POST">
+            <div class="bg-info clearfix">
+                <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><button class="btn btn-primary float-left">Modifica</button></a>
 
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
+                <form action = "{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method = "POST">
 
-                <button type = "submit" class = "btn btn-danger">Elimina</button>
-            </form>
-            <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><button class="btn btn-secondary">Diario</button></a>
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+
+                    <button type = "submit" class = "btn btn-danger btn-secondary float-right">Elimina</button>
+                </form>
+            </div>
+            <br>
+            <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><button class="btn btn-info">Diario</button></a>
             <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}" class="btn btn-light" > Bisogni </a>
             <a href="{{ URL::action('EventoController@index', $pianta->codice_pianta) }}" class="btn btn-info" > Eventi </a>
             <a href="{{ URL::action('PiantaController@show', $pianta->codice_pianta) }}" class="btn btn-secondary" > Mostra </a>
@@ -39,4 +43,5 @@
       </div>
     </div>
 </div>
+
 
