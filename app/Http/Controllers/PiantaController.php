@@ -9,6 +9,7 @@ use App\Serra;
 use App\Diario;
 use App\Evento;
 use App\Bisogno;
+use Auth;
 
 
 class PiantaController extends Controller
@@ -72,26 +73,44 @@ class PiantaController extends Controller
      */
     public function show($id)
     {
-        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+        if(Auth::user()){
 
-        $pianta = Pianta::where('codice_pianta', '=', $id)
-                        ->where('codice_serra', '=', $serra)
-                        ->get()->first();
+            if(Auth::user()->admin){
 
-        $diario = Diario::where('codice_pianta',$id)
-                        ->where('codice_utente','=', auth()->id())
-                        ->get();
+                $pianta = Pianta::find($id);
+                //$userId = Serra::where('codice_serra', $pianta->codice_serra)->pluck('codice_utente')->first();
+                $diario = Diario::where('codice_pianta',$id)->get();
+                $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                                ->where('evento.codice_pianta', $id)->get();
 
-        $eventi = Bisogno::
-                Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
-                ->where('evento.codice_pianta', $id)
-                ->where('evento.codice_utente', auth()->id())
-                ->get();
+                return view('pianta.show', compact('pianta','diario','eventi'));
 
-        if($pianta == null){
-            return view('landingpage');
+            }else if(Auth::user()){
+
+                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $pianta = Pianta::where('codice_pianta', '=', $id)
+                            ->where('codice_serra', '=', $serra)
+                            ->get()->first();
+
+                $diario = Diario::where('codice_pianta',$id)
+                                //->where('codice_utente','=', auth()->id())
+                                ->get();
+
+                $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                                ->where('evento.codice_pianta', $id)
+                                //->where('evento.codice_utente', auth()->id())
+                                ->get();
+
+                if($pianta == null){
+                    return redirect()->route('home');
+                }else{
+                    return view('pianta.show', compact('pianta','diario','eventi'));
+                }
+
+                }
+
         }else{
-            return view('pianta.show', compact('pianta','diario','eventi'));
+            return view('/auth/login');
         }
     }
 

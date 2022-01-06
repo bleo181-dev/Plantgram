@@ -58,7 +58,13 @@ class UserController extends Controller
             'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
             'password'        => 'required', 'string', 'min:8', 'confirmed'
         ]);
-        $user = Auth::user();
+
+        if(Auth::user()->admin){
+            $user = User::find($id);
+        }else if(Auth::user()){
+            $user = Auth::user();
+        }
+
         $user->nickname = $request['nickname'];
         $user->email = $request['email'];
         if(!empty($request['foto'])){
