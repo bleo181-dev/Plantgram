@@ -40,10 +40,17 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
+                                <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
-                                   @include('foto')
+                                <div class="col-md-8">
+                                @include('foto')
+                                    @error('foto')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
+                        </div>
 
                                 <div class="form-group row">
                                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
@@ -111,6 +118,7 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/preview.js') }}"></script>
         @endif
     @endif
 @endsection
