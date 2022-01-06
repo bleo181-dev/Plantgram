@@ -127,6 +127,8 @@ class SerraController extends Controller
 
         $lat_serra = Serra::where('codice_utente', auth()->id())->pluck('latitudine')->first();
         $long_serra = Serra::where('codice_utente', auth()->id())->pluck('longitudine')->first();
+        $nome_serra = Serra::where('codice_utente', auth()->id())->pluck('nome')->first();
+        $nickname_utente = User::where('codice_utente', auth()->id())->pluck('nickname')->first();
 
         Log::info("Not from cache");
         $APIkey = "d2c909932430658a343ead2d18b1191f";
@@ -145,7 +147,7 @@ class SerraController extends Controller
 
         if( Auth::check() )
         {
-            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data'));
+            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data', 'nome_serra', 'nickname_utente'));
 
         } else {
             return view('/auth/login');
