@@ -21,8 +21,12 @@ class PiantaController extends Controller
      */
     public function index()
     {
-        $piante = Pianta::all();
-        return view('pianta.index', compact('piante'));
+        if(Auth::user()->admin){
+            $piante = Pianta::all();
+            return view('pianta.index', compact('piante'));
+        }else{
+            return redirect()->route('serra.index');
+        }
     }
 
     /**
@@ -32,7 +36,12 @@ class PiantaController extends Controller
      */
     public function create()
     {
-        return view('pianta.create');
+        if(Auth::user()){
+            return view('pianta.create');
+        }else{
+            return view('/auth/login');
+        }
+
     }
 
     /**
@@ -122,8 +131,30 @@ class PiantaController extends Controller
      */
     public function edit($id)
     {
-        $pianta = Pianta::find($id);
-        return view('pianta.edit', compact('pianta'));
+        if(Auth::user()){
+
+            if(Auth::user()->admin){
+
+                $pianta = Pianta::find($id);
+                return view('pianta.edit', compact('pianta'));
+
+            }elseif(Auth::user()){
+
+                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $pianta = Pianta::where('codice_pianta', '=', $id)
+                                ->where('codice_serra', '=', $serra)
+                                ->get()->first();
+
+                if($pianta == null){
+                    return redirect()->route('home');
+                }else{
+                    return view('pianta.edit', compact('pianta'));
+                }
+            }
+
+        }else{
+            return view('/auth/login');
+        }
     }
 
     /**
@@ -135,28 +166,39 @@ class PiantaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'codice_serra' => 'required',
-            'nome'         => 'required|max:100',
-            'foto'         => 'nullable',
-            'luogo'        => 'required|max:100',
-            'stato'        => 'required'
-        ]);
+        if(Auth::user()){
 
-        $input = $request->all();
-        $pianta = Pianta::find($id);
+            $validateData = $request->validate([
+                'codice_serra' => 'required',
+                'nome'         => 'required|max:100',
+                'foto'         => 'nullable',
+                'luogo'        => 'required|max:100',
+                'stato'        => 'required'
+            ]);
 
-        $pianta->codice_serra = $input['codice_serra'];
-        $pianta->nome = $input['nome'];
-        $pianta->luogo = $input['luogo'];
-        if(!empty($input['foto'])){
-            $data = file_get_contents($_FILES['foto']['tmp_name']);
-            $pianta->foto = $data;
+            $input = $request->all();
+            if(Auth::user()->admin){
+                $pianta = Pianta::find($id);
+            }else{
+                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                    $pianta = Pianta::where('codice_pianta', '=', $id)
+                                    ->where('codice_serra', '=', $serra)
+                                    ->get()->first();
+            }
+
+
+            $pianta->codice_serra = $input['codice_serra'];
+            $pianta->nome = $input['nome'];
+            $pianta->luogo = $input['luogo'];
+            if(!empty($input['foto'])){
+                $data = file_get_contents($_FILES['foto']['tmp_name']);
+                $pianta->foto = $data;
+            }
+            $pianta->stato = $input['stato'];
+
+            $pianta->save();
+            return redirect()->route('serra.index');
         }
-        $pianta->stato = $input['stato'];
-
-        $pianta->save();
-        return redirect()->route('serra.index');
     }
 
     /**
@@ -167,7 +209,19 @@ class PiantaController extends Controller
      */
     public function destroy($id)
     {
-        $pianta = Pianta::where('codice_pianta', $id)->delete();
-        return redirect()->route('serra.index');
+        if(Auth::user()){
+            if(Auth::user()->admin){
+                $pianta = Pianta::where('codice_pianta', $id)
+                            ->delete();
+                return redirect()->route('pianta.index');
+            }else{
+                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $pianta = Pianta::where('codice_pianta', '=', $id)
+                                ->where('codice_serra', '=', $serra)
+                                ->delete();
+                return redirect()->route('serra.index');
+            }
+
+        }
     }
 }

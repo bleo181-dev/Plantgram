@@ -15,7 +15,7 @@ class EventoController extends Controller
         $eventi = Bisogno::
                 Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                 ->where('evento.codice_pianta', $id)
-                ->where('evento.codice_utente', auth()->id())
+                ->where('evento.codice_utente', '=', auth()->id())
                 ->get();
 
 
@@ -30,7 +30,7 @@ class EventoController extends Controller
         ]);
 
         $input = $request->all();
-        $evento = Evento::find($id); 
+        $evento = Evento::find($id);
 
         $evento->nome = $input['nome'];
         $evento->data = date('Y-m-d H:i:s');

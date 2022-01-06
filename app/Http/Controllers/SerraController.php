@@ -167,8 +167,12 @@ class SerraController extends Controller
      */
     public function edit($id)
     {
-        $serra = Serra::find($id);
-        return view('serra.edit', compact('serra'));
+        if(Auth::user()->admin){
+            $serra = Serra::find($id);
+            return view('serra.edit', compact('serra'));
+        }else{
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -180,23 +184,27 @@ class SerraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'nome'          => 'required|max:100',
-            'latitudine'    => 'required',
-            'longitudine'   => 'required',
-            'capienza'      => 'required'
-        ]);
+        if(Auth::user()->admin){
+            $validateData = $request->validate([
+                'nome'          => 'required|max:100',
+                'latitudine'    => 'required',
+                'longitudine'   => 'required',
+                'capienza'      => 'required'
+            ]);
 
-        $input = $request->all();
-        $serra = Serra::find($id);
+            $input = $request->all();
+            $serra = Serra::find($id);
 
-        $serra->nome = $input['nome'];
-        $serra->latitudine = $input['latitudine'];
-        $serra->longitudine = $input['longitudine'];
-        $serra->capienza = $input['capienza'];
+            $serra->nome = $input['nome'];
+            $serra->latitudine = $input['latitudine'];
+            $serra->longitudine = $input['longitudine'];
+            $serra->capienza = $input['capienza'];
 
-        $serra->save();
-        return redirect()->route('serra.index');
+            $serra->save();
+            return redirect()->route('serra.index');
+        }else{
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -207,9 +215,14 @@ class SerraController extends Controller
      */
     public function destroy($id)
     {
-        $serra=Serra::find($id);
-        $serra->delete();
+        if(Auth::user()->admin){
 
-        return redirect()->route('pianta.index');
+            $serra=Serra::find($id);
+            $serra->delete();
+
+            return redirect()->route('pianta.index');
+        }else{
+            return redirect()->route('home');
+        }
     }
 }
