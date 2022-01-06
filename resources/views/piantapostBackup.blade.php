@@ -1,11 +1,12 @@
-<div class="col mb-4">
-    <div class="card">
+<div class="card col-md-4">
+    <div>
         <?php
 
         echo '<img src="data:image/jpeg;base64,'.base64_encode($pianta->foto).'" class="card-img-top"/>';
 
         ?>
-      <div class="card-body">
+    </div>
+    <div class="card-body">
         <h5 class="card-title">{{$pianta->nome}}</h5>
         <p>Luogo: {{$pianta->luogo}}</p>
         <p>
@@ -21,7 +22,9 @@
                 @endif
             @endforeach
         </p>
-        <p class="card-text">
+    </div>
+    <div class="card-body">
+        <div class="row">
             <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><button class="btn btn-primary">Modifica</button></a>
 
             <form action = "{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method = "POST">
@@ -35,8 +38,9 @@
             <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}" class="btn btn-light" > Bisogni </a>
             <a href="{{ URL::action('EventoController@index', $pianta->codice_pianta) }}" class="btn btn-info" > Eventi </a>
             <a href="{{ URL::action('PiantaController@show', $pianta->codice_pianta) }}" class="btn btn-secondary" > Mostra </a>
-        </p>
-      </div>
+        </div>
     </div>
-</div>
-
+    <div class="card-footer">
+        <small class="text-muted"></small>
+    </div>
+  </div>
