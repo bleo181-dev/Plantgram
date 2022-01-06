@@ -8,9 +8,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Tutte le piante') }}</div>
+                <div class="card-header">{{ __('tutti gli utenti') }}</div>
 
                 <div class="card-body">
+                    <div style="padding: 10px;">
+                            <a href="{{ URL::action('UserController@create') }}" class="btn btn-success"> Nuovo utente</a>
+                        </div>
                     <table class = "col-md-12">
                         <thead>
                             <tr>

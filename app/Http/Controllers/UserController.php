@@ -21,6 +21,36 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
+
+    public function create()
+    {
+        return view('user.create');
+    }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nickname'          => 'required', 'string', 'max:100',
+            'foto'              => 'nullable',
+            'email'             => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'password'          => 'required', 'string', 'min:8', 'confirmed',
+            'admin'             => 'required'
+        ]);
+
+        $data = file_get_contents($_FILES['foto']['tmp_name']);
+
+        User::create([
+            'nickname'         => $request['nickname'],
+            'foto'              => $data,
+            'email'             => $request['email'],
+            'password'          => Hash::make($request['password']),
+            'admin'             => $request['admin'],
+        ]);
+
+        return redirect()->route('user.index');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
