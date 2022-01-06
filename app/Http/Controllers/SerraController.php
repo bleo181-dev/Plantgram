@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Bisogno;
 use App\Evento;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Log;
 use App\Serra;
 use App\Pianta;
 use Illuminate\Support\Facades\Auth;
@@ -27,9 +27,27 @@ class SerraController extends Controller
         $delta = strtotime($eventi);
         $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
+        $lat_serra = Serra::where('codice_utente', auth()->id())->pluck('latitudine')->first();
+        $long_serra = Serra::where('codice_utente', auth()->id())->pluck('longitudine')->first();
+        
+        Log::info("Not from cache");
+        $APIkey = "d2c909932430658a343ead2d18b1191f";
+        $lat = $lat_serra;
+        $lon = $long_serra;
+        $url = "https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=it&appid=${APIkey}";
+        Log::info($url);
+        $client = new \GuzzleHttp\Client();
+        $res = $client->get($url);
+        if ($res->getStatusCode() == 200) {
+          $j = $res->getBody();
+          $obj = json_decode($j);
+          $forecast = $obj->current->weather ;
+          $forecast_data = $obj->current;
+        }
+
         if( Auth::check() )
         {
-            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi'));
+            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data'));
 
         } else {
             return view('/auth/login');
@@ -73,7 +91,37 @@ class SerraController extends Controller
 
         $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
         $piante = Pianta::where('codice_serra', $serra)->get();
-        return view('serra.index', compact('piante'));
+        $cod_pianta = Pianta::where('codice_serra', $serra)->pluck('codice_pianta');
+        $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
+        $dataoggi = strtotime(date('Y-m-d H:i:s'));
+        $delta = strtotime($eventi);
+        $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
+
+        $lat_serra = Serra::where('codice_utente', auth()->id())->pluck('latitudine')->first();
+        $long_serra = Serra::where('codice_utente', auth()->id())->pluck('longitudine')->first();
+        
+        Log::info("Not from cache");
+        $APIkey = "d2c909932430658a343ead2d18b1191f";
+        $lat = $lat_serra;
+        $lon = $long_serra;
+        $url = "https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=it&appid=${APIkey}";
+        Log::info($url);
+        $client = new \GuzzleHttp\Client();
+        $res = $client->get($url);
+        if ($res->getStatusCode() == 200) {
+          $j = $res->getBody();
+          $obj = json_decode($j);
+          $forecast = $obj->current->weather ;
+          $forecast_data = $obj->current;
+        }
+
+        if( Auth::check() )
+        {
+            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data'));
+
+        } else {
+            return view('/auth/login');
+        }
     }
 
     /**

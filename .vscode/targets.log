@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+ 
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jan  3 12:14:42 2022
+# Make data base, printed on Wed Jan  5 23:39:51 2022
 
 # Variables
 
@@ -21,7 +23,7 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-95e08e7b-cb38-4260-834b-72faefd619a4.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-80a80ae0-a8ef-48e9-90e5-5e1ec8a32ff1.sock
 # environment
 VSCODE_CWD = /home/bleo
 # default
@@ -51,7 +53,7 @@ VSCODE_CODE_CACHE_PATH = /home/bleo/.config/Code/CachedData/899d46d82c4c95423fb7
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.EEJWF1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.KX2UF1
 # default
 .LOADED := 
 # default
@@ -91,13 +93,13 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 5134
+VSCODE_PID = 4072
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/UbuntuVM:@/tmp/.ICE-unix/1630,unix/UbuntuVM:/tmp/.ICE-unix/1630
+SESSION_MANAGER = local/UbuntuVM:@/tmp/.ICE-unix/1659,unix/UbuntuVM:/tmp/.ICE-unix/1659
 # automatic
 *F = $(notdir $*)
 # environment
@@ -137,7 +139,7 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = 6eb0b153a62e4d58821d067a0f402963
+INVOCATION_ID = 06a69ae90ad148dd847df7c431cc3264
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
@@ -175,15 +177,15 @@ GTK_MODULES = gail:atk-bridge
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1481
+MANAGERPID = 1523
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5134
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4072
 # environment
 _ = /usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
-JOURNAL_STREAM = 8:24813
+JOURNAL_STREAM = 8:24329
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -277,8 +279,6 @@ GNUmakefile:
 # strcache performance: lookups = 41 / hit rate = 7%
 # hash-table stats:
 # Load=38/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Mon Jan  3 12:14:42 2022
+# Finished Make data base on Wed Jan  5 23:39:51 2022
 
- 
-make: *** No rule to make target 'all'.  Stop.
  
