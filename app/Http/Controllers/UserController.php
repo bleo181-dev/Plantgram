@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         $request->validate([
             'nickname'          => 'required', 'string', 'max:100',
-            'foto'              => 'nullable',
+            'foto'              => 'required',
             'email'             => 'required', 'string', 'email', 'max:255', 'unique:users',
             'password'          => 'required', 'string', 'min:8', 'confirmed',
             'admin'             => 'required'

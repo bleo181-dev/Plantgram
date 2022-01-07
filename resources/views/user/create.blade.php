@@ -43,11 +43,6 @@
                                     <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
                                     @include('foto')
-                                    @error('foto')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
                 
 
@@ -117,7 +112,7 @@
                 </div>
             </div>
         </div>
-        <script src="{{ asset('js/preview.js') }}"></script>
         @endif
     @endif
+<script src="{{ asset('js/preview.js') }}"></script>
 @endsection
