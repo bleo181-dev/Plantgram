@@ -28,7 +28,7 @@
                         <br>
                         <br>-->
 
-                        <input type="text" name="nome" placeholder="Basilico" value="{{ old('nome') }}" /> <label> Nome pianta </label>
+                        <input id="namePlant" type="text" name="nome" placeholder="Basilico" value="{{ old('nome') }}" /> <label> Nome pianta </label>
                         <br>
                         <br>
 
@@ -38,6 +38,11 @@
                         @include('foto') <!-- Serve per includere il capo foto e la sua preview -->
                         <br>
                         <br>
+                        <h10 id="description"> Assomiglia a: </h1>
+
+                        <img id="similar" src="" class="imagePreviewPianta">
+
+                        <button id="cerca" type="button"><img src="/immagini/occhio.png" class="card-img-top" /></button><br>
 
                         Visibilità
                         <br>
@@ -56,4 +61,5 @@
 </div>
 
 <script src="{{ asset('js/preview.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/AItrovapianta.js') }}"></script>
 @endsection
