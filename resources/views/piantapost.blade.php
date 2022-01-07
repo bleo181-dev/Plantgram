@@ -2,7 +2,7 @@
     <div class="card">
         <?php
 
-        echo '<img src="data:image/jpeg;base64,'.base64_encode($pianta->foto).'" class="card-img-top"/>';
+        echo '<img src="data:image/jpeg;base64,'.base64_encode($pianta->foto).'" class="card-img-top" style="height: 250px;"/>';
 
         ?>
       <div class="card-body">
