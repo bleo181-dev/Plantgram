@@ -61,6 +61,16 @@ class PiantaController extends Controller
 
         $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
 
+        /* Ottengo le informazioni sull'immagine originale
+        list($width, $height, $type, $attr) = getimagesize($_SERVER['DOCUMENT_ROOT'].'/foto/mydog.jpg');
+
+        // Creo la versione 120*90 dell'immagine (thumbnail)
+        $thumb = imagecreatetruecolor(120, 90);
+        $source = imagecreatefromjpeg($_FILES['foto']['tmp_name']);
+        imagecopyresized($thumb, $source, 0, 0, 0, 0, 120, 90, $width, $height);
+
+         Salvo l'immagine ridimensionata */
+
         $data = file_get_contents($_FILES['foto']['tmp_name']);
 
         Pianta::create([
