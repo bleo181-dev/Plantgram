@@ -8,6 +8,13 @@
             {{$nome_serra}}
         </h1>
 
+        <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a>
+        <a href="{{ URL::action('SerraController@collab') }}" class="btn btn-info" > Aggiungi collaboratore a questa serra </a>
+        <p>Numero collaboratori attuali: {{$num_collaborazioni}}</p>
+        @foreach($collaboratori as $c)
+            <p>Nickname: {{$c}}</p>
+        @endforeach
+
         <p class="lead text-right" style="color: white" >
             @foreach($forecast as $f)
                 <img width=50px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">

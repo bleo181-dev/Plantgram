@@ -11,7 +11,9 @@
 |
 */
 
+use App\Http\Controllers\CollaboraController;
 use App\Http\Controllers\PiantaController;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
@@ -21,9 +23,14 @@ Route::get('/', 'LandingpageController@index')->name('index');
 
 Route::resource('pianta', 'PiantaController');
 
+Route::get('serra/collab', 'SerraController@collab')->name('invito_view');
+Route::post('serra/process_collab', 'SerraController@process_collab');
+Route::get('/handle_collab/{token}', 'SerraController@handle_collab')->name('handle_collab');
 Route::resource('serra', 'SerraController');
 
 Route::resource('user', 'UserController');
+
+Route::resource('collabora', 'CollaboraController');
 
 Route::get('/bisogno/{codice_pianta}', 'BisognoController@index')->name('bisogno.index');
 Route::get('/bisogno/{codice_pianta}/create', 'BisognoController@create');
@@ -41,3 +48,4 @@ Route::put('/diario/{id}/update', 'DiarioController@update');
 
 Route::get('/evento/{id}', 'EventoController@index');
 Route::put('/evento/{id}/update', 'EventoController@update');
+
