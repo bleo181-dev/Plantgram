@@ -20,7 +20,6 @@ class CreateCollaboraTable extends Migration
             $table->timestamps();
 
             $table->foreign('codice_serra')->references('codice_serra')->on('serra')->onDelete('cascade');
-            $table->foreign('codice_utente')->references('codice_utente')->on('users')->onDelete('cascade');
         });
     }
 

@@ -46,7 +46,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
 
                             <div class="col-md-6 ">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{ $email == null ? old('email') : $email }} " {{ $email == null ? 'required' : 'readonly' }}>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{old('email')}} " required>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

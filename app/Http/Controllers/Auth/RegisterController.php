@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Collabora;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -67,14 +68,14 @@ class RegisterController extends Controller
     {
 
         $dataFile = file_get_contents($_FILES['foto']['tmp_name']);
-
-
-        return User::create([
-            'nickname'  => $data['nickname'],
-            'email'     => $data['email'],
-            'password'  => Hash::make($data['password']),
-            'foto'      => $dataFile,
-            'admin'     => false
-        ]);
+        
+            return User::create([
+                'nickname'  => $data['nickname'],
+                'email'     => $data['email'],
+                'password'  => Hash::make($data['password']),
+                'foto'      => $dataFile,
+                'admin'     => false
+            ]);
+        
     }
 }

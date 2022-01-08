@@ -44,7 +44,7 @@ class SerraController extends Controller
                 $collaboratori = DB::table('users')
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
                         ->pluck('nickname');
-                
+
                 $codice_utente = auth()->id();
                 $serre_condivise = DB::table('collabora')
                         ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
@@ -136,7 +136,6 @@ class SerraController extends Controller
             'longitudine'   => $validateData['longitudine'],
             'capienza'      => $validateData['capienza'],
         ]);
-
         $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
         $piante = Pianta::where('codice_serra', $serra)->get();
         $cod_pianta = Pianta::where('codice_serra', $serra)->pluck('codice_pianta');
@@ -149,7 +148,7 @@ class SerraController extends Controller
         $collaboratori = DB::table('users')
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
                         ->pluck('nickname');
-                
+
         $codice_utente = auth()->id();
         $serre_condivise = DB::table('collabora')
                         ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
@@ -179,20 +178,21 @@ class SerraController extends Controller
         $client = new \GuzzleHttp\Client();
         $res = $client->get($url);
         if ($res->getStatusCode() == 200) {
-          $j = $res->getBody();
-          $obj = json_decode($j);
-          $forecast = $obj->current->weather ;
-          $forecast_data = $obj->current;
+        $j = $res->getBody();
+        $obj = json_decode($j);
+        $forecast = $obj->current->weather ;
+        $forecast_data = $obj->current;
         }
 
         if( Auth::check() )
         {
             return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data', 'nome_serra', 'nickname_utente', 'serra', 'num_collaborazioni', 'collaboratori', 'serre_condivise'));
 
-        } else {
+        }else {
             return view('/auth/login');
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -293,6 +293,12 @@ class SerraController extends Controller
             if (Invito::where('email', $request->input('email'))->exists()) {
                 $validator->errors()->add('email', 'è stato già inviato un invito a questo indirizzo!');
             }
+            $email = $request->input('email');
+            $cod_collaboratore = User::where('email', $email)->pluck('codice_utente')->first();
+            if($cod_collaboratore == null){
+                $validator->errors()->add('email', 'non è presente sulla nostra piattaforma');
+                return redirect()->route('serra.index');
+            }
         });
         if ($validator->fails()) {
             return redirect(route('invito_view'))
@@ -304,16 +310,13 @@ class SerraController extends Controller
         } while (Invito::where('token', $token)->first());
 
         $email = $request->input('email');
-        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
         $cod_collaboratore = User::where('email', $email)->pluck('codice_utente')->first();
-        if($cod_collaboratore == null){
-            $cod_collaboratore = 0;
-        }
+        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
 
-        Collabora::create([
-            'codice_utente'  => $cod_collaboratore,
-            'codice_serra'   => $serra
-        ]);
+            Collabora::create([
+                'codice_utente'  => $cod_collaboratore,
+                'codice_serra'   => $serra
+            ]);
 
         Invito::create([
             'token' => $token,
@@ -322,10 +325,10 @@ class SerraController extends Controller
             'codice_utente' => $cod_collaboratore
         ]);
         $url = URL::temporarySignedRoute(
-     
+
             'handle_collab', now()->addMinutes(3600), ['token' => $token]
         );
-       
+
         Notification::route('mail', $request->input('email'))->notify(new InvitoNotification($url));
 
         return  redirect()->route('serra.index');
@@ -339,14 +342,14 @@ class SerraController extends Controller
             if($cod_collaboratore == 0){
                 $invito = Invito::where('token', $token)->first();
                 $invito->delete();
-                return view('auth.register', compact('email'));
+                return view('auth.register', compact('email', 'cod_collaboratore'));
             }else{
                     $invito = Invito::where('token', $token)->first();
                     $invito->delete();
                     return view('/auth/login');
             }
     }
-    
+
     public function indexserrashare($id)
     {
         $serra=$id;
@@ -365,7 +368,7 @@ class SerraController extends Controller
                 $collaboratori = DB::table('users')
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
                         ->pluck('nickname');
-                
+
                 $codice_utente = Serra::where('codice_serra', $serra)->pluck('codice_utente')->first();
                 $serre_condivise = DB::table('collabora')
                         ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
@@ -406,7 +409,7 @@ class SerraController extends Controller
             return view('/auth/login');
         }
     }
-    
-    
+
+
 }
 
