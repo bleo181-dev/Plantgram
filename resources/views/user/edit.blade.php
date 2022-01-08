@@ -47,7 +47,7 @@
                                 <?php
                                     echo '<img id="blah" class="imagePreviewPianta" src="data:image/jpeg;base64,'.base64_encode($user->foto).'"/>';
                                 ?>
-    
+
                             </div>
                         </div>
 
@@ -100,4 +100,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/previewEdit.js') }}"></script>
 @endsection
