@@ -41,9 +41,10 @@ class SerraController extends Controller
                 $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
                 $num_collaborazioni = Collabora::where('codice_serra', $serra)->count();
-                $collaboratori = DB::table('users')
-                        ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
-                        ->pluck('nickname');
+                $collaboratori = DB::table('collabora')
+                                ->join('users', 'collabora.codice_utente', '=', 'users.codice_utente')
+                                ->where('collabora.codice_serra', $serra)
+                                ->get();
 
                 $lat_serra = Serra::where('codice_utente', auth()->id())->pluck('latitudine')->first();
                 $long_serra = Serra::where('codice_utente', auth()->id())->pluck('longitudine')->first();

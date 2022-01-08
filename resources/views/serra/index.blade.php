@@ -12,7 +12,7 @@
         <a href="{{ URL::action('SerraController@collab') }}" class="btn btn-info" > Aggiungi collaboratore a questa serra </a>
         <p>Numero collaboratori attuali: {{$num_collaborazioni}}</p>
         @foreach($collaboratori as $c)
-            <p>Nickname: {{$c}}</p>
+            <p>Nickname: {{$c->nickname}}</p>
         @endforeach
 
         <p class="lead text-right" style="color: white" >
