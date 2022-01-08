@@ -145,6 +145,18 @@ class SerraController extends Controller
         $delta = strtotime($eventi);
         $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
+        $num_collaborazioni = Collabora::where('codice_serra', $serra)->count();
+        $collaboratori = DB::table('users')
+                        ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
+                        ->pluck('nickname');
+                
+        $codice_utente = auth()->id();
+        $serre_condivise = DB::table('collabora')
+                        ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
+                        ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')
+                        ->where('collabora.codice_utente', $codice_utente)
+                        ->get();
+
         $lat_serra = Serra::where('codice_utente', auth()->id())->pluck('latitudine')->first();
         $long_serra = Serra::where('codice_utente', auth()->id())->pluck('longitudine')->first();
         $nome_serra = Serra::where('codice_utente', auth()->id())->pluck('nome')->first();
@@ -175,7 +187,7 @@ class SerraController extends Controller
 
         if( Auth::check() )
         {
-            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data', 'nome_serra', 'nickname_utente', 'serre_condivise'));
+            return view('serra.index', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data', 'nome_serra', 'nickname_utente', 'serra', 'num_collaborazioni', 'collaboratori', 'serre_condivise'));
 
         } else {
             return view('/auth/login');
