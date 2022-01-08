@@ -19,6 +19,7 @@ class CollaboraController extends Controller
         $serre_condivise = DB::table('collabora')
                 ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
                 ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')
+                ->where('collabora.codice_utente', $codice_utente)
                 ->get();
         return view('collabora.index', compact('serre_condivise'));
     }
