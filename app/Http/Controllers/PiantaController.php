@@ -9,6 +9,7 @@ use App\Serra;
 use App\Diario;
 use App\Evento;
 use App\Bisogno;
+use App\Collabora;
 use Auth;
 
 
@@ -92,6 +93,8 @@ class PiantaController extends Controller
      */
     public function show($id)
     {
+        $pianta=Pianta::find($id);
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->get();
         if(Auth::user()){
 
             if(Auth::user()->admin){
@@ -126,10 +129,16 @@ class PiantaController extends Controller
                     return view('pianta.show', compact('pianta','diario','eventi'));
                 }
 
-                }
+            }else if(Auth::user() && $codici_collab->has(auth()->id())){
+                $pianta = Pianta::find($id);
+                $diario = Diario::where('codice_pianta',$id)->get();
+                $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                                ->where('evento.codice_pianta', $id)->get();
 
-        }else{
-            return view('/auth/login');
+                return view('pianta.show', compact('pianta','diario','eventi'));
+            }else{
+                return view('/auth/login');
+            }
         }
     }
 
