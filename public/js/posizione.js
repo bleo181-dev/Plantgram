@@ -1,4 +1,5 @@
 let map, infoWindow;;
+document.getElementById('invio').style.visibility = 'hidden';
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 41.87242987532504, lng: 14.579792463656322 }, // Cerenza sul Trigno
@@ -19,7 +20,10 @@ function initMap() {
 
     locationButton.textContent = "Trova la tua posizione";
     locationButton.setAttribute('type', 'button');
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+    locationButton.setAttribute('class', 'btn btn-secondary btn-lg btn-block');
+    //map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+    //document.body.appendChild(locationButton);
+    document.getElementById("pos").appendChild(locationButton);
     locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -31,7 +35,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent("Posizione trovata: clicca su crea serra per proseguire!");
+            infoWindow.setContent("Posizione trovata: clicca su '+' per proseguire!");
             infoWindow.open(map);
             map.setCenter(pos);
             console.log("latitudine: "+pos.lat);
@@ -54,6 +58,8 @@ function initMap() {
         let lng = marker.position.lng()
         $('#lat').val(lat)
         $('#lng').val(lng)
+        document.getElementById('lbl').style.visibility = 'hidden';
+        document.getElementById('invio').style.visibility = 'visible' //mostra pulsante submit se è stata trovata la posizione
     })
 
     google.maps.event.addListener(map,'click',
