@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="jumbotron jumbotron-fluid" style="background-color: #1e90ff; margin-bottom: 0rem;">
+<div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
 
     <div class="container">
         <h1 style="color: white" class="display-4">
@@ -18,9 +18,9 @@
                 <a class="dropdown-item" type="button" href="{{URL::action('SerraController@indexserrashare', $serra->codice_serra)  }}">{{$serra->nome}}</a>
             @endforeach
         </div>
-        
-        
-        
+
+
+
         <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a>
         <a href="{{ URL::action('SerraController@collab') }}" class="btn btn-info" > Aggiungi collaboratore a questa serra </a>
         <p>Numero collaboratori attuali: {{$num_collaborazioni}}</p>

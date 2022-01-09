@@ -4,8 +4,8 @@
 
 <form action="{{ URL::action('SerraController@store') }}" method="POST" >
 
-    <div class="jumbotron jumbotron-fluid" style="height: 385px; background-color: #1e90ff; margin-bottom: 0rem;">
-
+    <div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+        <br>
         <div id="cont" class="container">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -46,6 +46,7 @@
             border: none;
             margin-right:auto;
             margin-left:auto;" value=""/>
+            <br>
 
             @csrf
         </div>
