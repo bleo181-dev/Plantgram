@@ -4,7 +4,7 @@
 
 <form action="{{ URL::action('SerraController@store') }}" method="POST" >
 
-    <div class="jumbotron jumbotron-fluid" style="background-color: #1e90ff; margin-bottom: 0rem;">
+    <div class="jumbotron jumbotron-fluid" style="height: 385px; background-color: #1e90ff; margin-bottom: 0rem;">
 
         <div id="cont" class="container">
             @if ($errors->any())
@@ -37,7 +37,6 @@
             <input type="hidden" name="capienza" value="20">
             <p id="lbl"> Per creare il tuo green-space indica la sua posizione nella mappa o clicca su [trova la tua posizione]</p>
             <div id="pos">
-
             </div>
             <br>
 
@@ -53,7 +52,7 @@
     </div>
 
 
-    <div id="map" style="height:450px; width: fill;" class="my-3"></div>
+    <div id="map" style="height:400px; width: fill;" ></div>
 
         <script src="{{ asset('js/posizione.js') }}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap" type="text/javascript"></script>
