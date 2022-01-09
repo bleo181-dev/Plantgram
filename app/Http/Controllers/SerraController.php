@@ -43,6 +43,7 @@ class SerraController extends Controller
                 $num_collaborazioni = Collabora::where('codice_serra', $serra)->count();
                 $collaboratori = DB::table('users')
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
+                        ->where('codice_serra', $serra)
                         ->pluck('nickname');
 
                 $codice_utente = auth()->id();

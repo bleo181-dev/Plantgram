@@ -12,6 +12,7 @@
         <h5 class="card-title">{{$pianta->nome}}</h5>
         <p>Luogo: {{$pianta->luogo}}</p>
         <p>
+            <!-- bisogni arrettrati -->
             @foreach($bisogni as $b)
                 @if($b['codice_pianta'] == $pianta->codice_pianta)
                     @foreach($eventi as $d)
@@ -23,6 +24,7 @@
                     @endforeach
                 @endif
             @endforeach
+            <!-- fine bisogni arrettrati -->
         </p>
         <p class="card-text">
 

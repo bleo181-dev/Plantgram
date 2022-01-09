@@ -10,17 +10,17 @@ use App\Diario;
 
 class EventoController extends Controller
 {
-    public function index($id)
+    public function index($codice_pianta)
     {
         $eventi = Bisogno::
                 Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
-                ->where('evento.codice_pianta', $id)
+                ->where('evento.codice_pianta', $codice_pianta)
                 ->where('evento.codice_utente', '=', auth()->id())
                 ->get();
 
+        $pianta = Pianta::find($codice_pianta);
 
-
-        return view('evento.index', compact('eventi'));
+        return view('evento.index', compact('eventi', 'pianta'));
     }
 
     public function update(Request $request, $id)

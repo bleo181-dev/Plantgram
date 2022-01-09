@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Eventi') }}</div>
+                <div class="card-header">Eventi di {{ $pianta->nome }}</div>
                     <div class="card-body">
                         @foreach($eventi as $evento)
                             @include('evento.eventopost')
