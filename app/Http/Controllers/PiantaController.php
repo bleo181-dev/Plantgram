@@ -94,7 +94,7 @@ class PiantaController extends Controller
     public function show($id)
     {
         $pianta=Pianta::find($id);
-        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->get();
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('codice_utente')->toArray();
         if(Auth::user()){
 
             if(Auth::user()->admin){
@@ -107,6 +107,13 @@ class PiantaController extends Controller
 
                 return view('pianta.show', compact('pianta','diario','eventi'));
 
+            }else if(in_array(auth()->id(), $codici_collab)){
+                $pianta = Pianta::find($id);
+                $diario = Diario::where('codice_pianta',$id)->get();
+                $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                                ->where('evento.codice_pianta', $id)->get();
+
+                return view('pianta.show', compact('pianta','diario','eventi'));
             }else if(Auth::user()){
 
                 $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
@@ -129,13 +136,6 @@ class PiantaController extends Controller
                     return view('pianta.show', compact('pianta','diario','eventi'));
                 }
 
-            }else if(Auth::user() && $codici_collab->has(auth()->id())){
-                $pianta = Pianta::find($id);
-                $diario = Diario::where('codice_pianta',$id)->get();
-                $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
-                                ->where('evento.codice_pianta', $id)->get();
-
-                return view('pianta.show', compact('pianta','diario','eventi'));
             }else{
                 return view('/auth/login');
             }

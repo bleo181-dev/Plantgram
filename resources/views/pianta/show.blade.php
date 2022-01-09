@@ -7,6 +7,15 @@
             <div class="card">
                 <div class="card-header">info</div>
                 <div class="card-body">
+                    
+                        <div style="padding:10px">
+                            <a href="{{ URL::action('SerraController@index') }}" class="btn btn-secondary">Indietro alla mia serra</a>
+                        </div>
+                    
+                        <div style="padding:10px">
+                            <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}" class="btn btn-secondary">Indietro alla serra condivisa</a>
+                        </div>
+                    
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <?php

@@ -44,7 +44,7 @@ class EventoController extends Controller
         $eventi = Bisogno::
                 Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                 ->where('evento.codice_pianta', $evento->codice_pianta)
-                ->where('evento.codice_utente', auth()->id())
+                ->where('evento.codice_utente', $evento->codice_utente)
                 ->get();
 
         return view('pianta.show', compact('pianta','diario','eventi'));
