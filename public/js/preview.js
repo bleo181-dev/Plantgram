@@ -7,7 +7,7 @@ imgInp.onchange = evt => {
     }
   }
 
-  function mostra() {
+  function mostra(comp) {
     document.getElementById("blah").style.display="block";
     }
 

@@ -1,4 +1,4 @@
-
+document.getElementById("mostraSimile").style.display="none";
 function isEmpty(str) {
     return (!str || str.length === 0 );
 }
@@ -49,7 +49,7 @@ document.querySelector('#cerca').onclick = function sendIdentification() {
         console.log('Success:', data); //stampa tutti i dati possibili e immaginabili abilitare solo per poi estrarre quello che serve
 
         if(data.suggestions != null){
-
+            document.getElementById("mostraSimile").style.display="block";
             var nome, descrizione, linkFoto;
             if(data.suggestions[0].plant_details.common_names == null){
                 var nome = data.suggestions[0].plant_details.name_authority;
@@ -75,6 +75,8 @@ document.querySelector('#cerca').onclick = function sendIdentification() {
 
             document.getElementById("namePlant").value = nome;
             document.getElementById("description").innerHTML = descrizione;
+            document.getElementById("titlePrew").innerHTML = nome;
+
 
         }else{
             document.getElementById("description").innerHTML = "Nessun risultato trovato! Prova a fare una foto migliore!";
