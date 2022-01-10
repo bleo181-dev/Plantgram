@@ -48,34 +48,39 @@ document.querySelector('#cerca').onclick = function sendIdentification() {
       .then(data => {
         console.log('Success:', data); //stampa tutti i dati possibili e immaginabili abilitare solo per poi estrarre quello che serve
 
-        var nome, descrizione, linkFoto;
-        if(data.suggestions[0].plant_details.common_names == null){
-            var nome = data.suggestions[0].plant_details.name_authority;
-            console.log('Nome comune della pianta: ', nome);
+        if(data.suggestions != null){
+
+            var nome, descrizione, linkFoto;
+            if(data.suggestions[0].plant_details.common_names == null){
+                var nome = data.suggestions[0].plant_details.name_authority;
+                console.log('Nome comune della pianta: ', nome);
+            }else{
+                var nome = data.suggestions[0].plant_details.common_names[0];
+                console.log('Nome comune della pianta: ', nome);
+            }
+
+            if(data.suggestions[0].plant_details.wiki_description == null){
+                var descrizione = "Nessuna descrizione trovata";
+                console.log('Descrizione della pianta: ', descrizione);
+            }else{
+                var descrizione = data.suggestions[0].plant_details.wiki_description.value;
+                console.log('Descrizione della pianta: ', descrizione);
+            }
+
+            if(data.suggestions[0].similar_images != null){
+                var linkFoto = data.suggestions[0].similar_images[0].url;
+                console.log('Foto simile: ', linkFoto);
+                document.getElementById("similarIm").src = linkFoto;
+            }
+
+            document.getElementById("namePlant").value = nome;
+            document.getElementById("description").innerHTML = descrizione;
+
         }else{
-            var nome = data.suggestions[0].plant_details.common_names[0];
-            console.log('Nome comune della pianta: ', nome);
+            document.getElementById("description").innerHTML = "Nessun risultato trovato! Prova a fare una foto migliore!";
         }
 
 
-        if(data.suggestions[0].plant_details.wiki_description == null){
-            var descrizione = "Nessuna descrizione trovata";
-            console.log('Descrizione della pianta: ', descrizione);
-        }else{
-            var descrizione = data.suggestions[0].plant_details.wiki_description.value;
-            console.log('Descrizione della pianta: ', descrizione);
-        }
-
-        if(data.suggestions[0].similar_images[0].url != null){
-            var linkFoto = data.suggestions[0].similar_images[0].url;
-            console.log('Foto simile: ', linkFoto);
-            document.getElementById("similarIm").src = linkFoto;
-        }
-
-
-
-        document.getElementById("namePlant").value = nome;
-        document.getElementById("description").innerHTML = descrizione;
 
 
 
