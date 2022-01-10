@@ -29,21 +29,21 @@ class SerraController extends Controller
     public function index()
     {
         if(Auth::user()){
-            $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+            $serra = Serra::where('codice_utente', auth()->id())->first();
             if($serra == null){
                 return view('serra.create');
             }else{
-                $piante = Pianta::where('codice_serra', $serra)->get();
-                $cod_pianta = Pianta::where('codice_serra', $serra)->pluck('codice_pianta');
+                $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
+                $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
                 $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
                 $dataoggi = strtotime(date('Y-m-d H:i:s'));
                 $delta = strtotime($eventi);
                 $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
-                $num_collaborazioni = Collabora::where('codice_serra', $serra)->count();
+                $num_collaborazioni = Collabora::where('codice_serra', $serra->codice_serra)->count();
                 $collaboratori = DB::table('users')
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
-                        ->where('codice_serra', $serra)
+                        ->where('codice_serra', $serra->codice_serra)
                         ->pluck('nickname');
 
                 $codice_utente = auth()->id();
@@ -137,15 +137,15 @@ class SerraController extends Controller
             'longitudine'   => $validateData['longitudine'],
             'capienza'      => $validateData['capienza'],
         ]);
-        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
-        $piante = Pianta::where('codice_serra', $serra)->get();
-        $cod_pianta = Pianta::where('codice_serra', $serra)->pluck('codice_pianta');
+        $serra = Serra::where('codice_utente', auth()->id())->first();
+        $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
+        $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
         $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
         $dataoggi = strtotime(date('Y-m-d H:i:s'));
         $delta = strtotime($eventi);
         $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
-        $num_collaborazioni = Collabora::where('codice_serra', $serra)->count();
+        $num_collaborazioni = Collabora::where('codice_serra', $serra->serra)->count();
         $collaboratori = DB::table('users')
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
                         ->pluck('nickname');
@@ -312,11 +312,11 @@ class SerraController extends Controller
 
         $email = $request->input('email');
         $cod_collaboratore = User::where('email', $email)->pluck('codice_utente')->first();
-        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+        $serra = Serra::where('codice_utente', auth()->id())->first();
 
             Collabora::create([
                 'codice_utente'  => $cod_collaboratore,
-                'codice_serra'   => $serra
+                'codice_serra'   => $serra->codice_serra
             ]);
 
         Invito::create([
@@ -353,13 +353,13 @@ class SerraController extends Controller
 
     public function indexserrashare($id)
     {
-        $serra=$id;
+        $serra=Serra::where('codice_serra',$id)->first();
         if(Auth::user()){
             if($serra == null){
                 return view('serra.create');
             }else{
-                $piante = Pianta::where('codice_serra', $serra)->get();
-                $cod_pianta = Pianta::where('codice_serra', $serra)->pluck('codice_pianta');
+                $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
+                $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
                 $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
                 $dataoggi = strtotime(date('Y-m-d H:i:s'));
                 $delta = strtotime($eventi);
@@ -370,7 +370,7 @@ class SerraController extends Controller
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
                         ->pluck('nickname');
 
-                $codice_utente = Serra::where('codice_serra', $serra)->pluck('codice_utente')->first();
+                $codice_utente = Serra::where('codice_serra', $serra->codice_serra)->pluck('codice_utente')->first();
                 $serre_condivise = DB::table('collabora')
                         ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
                         ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')

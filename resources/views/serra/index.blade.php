@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+<div style="width: fill; background-color: #1e90ff; margin-bottom: 1rem;">
 
     <div class="container">
         <br>
@@ -9,25 +9,27 @@
             {{$nome_serra}}
         </h1>
 
-        <!--bottone dropdown-->
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Serre condivise
-        </button>
-        <!--dropdown menu-->
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            @foreach($serre_condivise as $serra)
-                <a class="dropdown-item" type="button" href="{{URL::action('SerraController@indexserrashare', $serra->codice_serra)  }}">{{$serra->nome}}</a>
+        @if(auth()->id() == $serra->codice_utente)
+            <!--bottone dropdown-->
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Serre condivise
+            </button>
+            <!--dropdown menu-->
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                @foreach($serre_condivise as $serra)
+                    <a class="dropdown-item" type="button" href="{{URL::action('SerraController@indexserrashare', $serra->codice_serra)  }}">{{$serra->nome}}</a>
+                @endforeach
+            </div>
+
+
+        
+            <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a>
+            <a href="{{ URL::action('SerraController@collab') }}" class="btn btn-info" > Aggiungi collaboratore a questa serra </a>
+            <p>Numero collaboratori attuali: {{$num_collaborazioni}}</p>
+            @foreach($collaboratori as $c)
+                <p>Nickname:{{$c}}</p>
             @endforeach
-        </div>
-
-
-
-        <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a>
-        <a href="{{ URL::action('SerraController@collab') }}" class="btn btn-info" > Aggiungi collaboratore a questa serra </a>
-        <p>Numero collaboratori attuali: {{$num_collaborazioni}}</p>
-        @foreach($collaboratori as $c)
-            <p>Nickname:{{$c}}</p>
-        @endforeach
+        @endif
 
         <p class="lead text-right" style="color: white" >
             @foreach($forecast as $f)
@@ -56,6 +58,8 @@
             @foreach($piante as $pianta)
                 @include('piantapost')
             @endforeach
+
+            @if(auth()->id() == $serra->codice_utente)
             <div class="col mb-4">
                 <div class="col mb-4">
                     <div class="card">
@@ -63,6 +67,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>
