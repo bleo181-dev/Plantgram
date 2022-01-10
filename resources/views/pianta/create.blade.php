@@ -37,9 +37,11 @@
                         @include('foto') <!-- Serve per includere il capo foto e la sua preview -->
                         <br>
                         <br>
-                        <h10 id="description"> Assomiglia a: </h1>
+                        <h10> Usa AI per riconoscere la pianta </h1> <br>
 
-                        <img id="similar" src="" class="imagePreviewPianta">
+                        <img id = "similarIm" src = "" class="imagePreviewPianta">
+                        <br>
+
 
                         <button id="cerca" type="button"><img src="{{ asset('immagini/occhio.png') }}" class="card-img-top" /></button><br>
 
@@ -52,6 +54,12 @@
                         <br>
 
                         <input type="submit" value="Aggiungi pianta" />
+
+                        <br>
+
+                        <h10 id="description">  </h1> <br>
+
+
                     </form>
                 </div>
             </div>
