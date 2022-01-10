@@ -58,15 +58,14 @@
             @foreach($piante as $pianta)
                 @include('piantapost')
             @endforeach
-
-            @if(auth()->id() == $serra->codice_utente)
-            <div class="col mb-4">
+            @if(1)
                 <div class="col mb-4">
-                    <div class="card">
-                        <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> <img src="{{ asset('immagini/add.png') }}" class="card-img-top" /></a>
+                    <div class="col mb-4">
+                        <div class="card">
+                            <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> <img src="{{ asset('immagini/add.png') }}" class="card-img-top" /></a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>

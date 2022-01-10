@@ -6,18 +6,48 @@ use Illuminate\Http\Request;
 use App\Diario;
 use App\Pianta;
 use App\Serra;
+use App\Collabora;
+use Auth;
+
 
 class DiarioController extends Controller
 {
     public function index($id)
     {
-        $diario = Diario::where('codice_pianta', $id)
-                ->where('codice_utente', auth()->id())
-                ->get();
+        $pianta=Pianta::find($id);
+        $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('codice_utente')->first();
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('codice_utente')->toArray();
+        if(Auth::user()){
 
-        $pianta = Pianta::find($id);
+            if(Auth::user()->admin){
+                $diario = Diario::where('codice_pianta', $id)
+                    ->get();
 
-        return view('diario.index', compact('diario', 'pianta', 'id'));
+                $pianta = Pianta::find($id);
+
+                return view('diario.index', compact('diario', 'pianta', 'id'));
+            }else if(in_array(auth()->id(), $codici_collab)){
+                $diario = Diario::where('codice_pianta', $id)
+                    ->get();
+
+                $pianta = Pianta::find($id);
+
+                return view('diario.index', compact('diario', 'pianta', 'id'));
+            }else if(auth()->id() == $cod_utente)
+            {
+                $diario = Diario::where('codice_pianta', $id)
+                    ->get();
+
+                $pianta = Pianta::find($id);
+
+                return view('diario.index', compact('diario', 'pianta', 'id'));
+            }else{
+                return view('landingpage');
+            }
+        }else{
+            return view('/auth/login');
+        }
+
     }
 
     public function create($id)
@@ -54,7 +84,28 @@ class DiarioController extends Controller
     public function edit($id)
     {
         $diario=Diario::find($id);
-        return view('diario.edit', compact('diario'));
+        $pianta=Pianta::find($diario->codice_pianta);
+        $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('codice_utente')->first();
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('codice_utente')->toArray();
+        if(Auth::user()){
+            
+            if(Auth::user()->admin){
+                $diario=Diario::find($id);
+                return view('diario.edit', compact('diario'));
+
+            }else if(in_array(auth()->id(), $codici_collab)){
+                $diario=Diario::find($id);
+                return view('diario.edit', compact('diario'));
+
+            }else if(auth()->id() == $cod_utente){
+                $diario=Diario::find($id);
+                return view('diario.edit', compact('diario'));
+            }else{
+                return view('landingpage');
+            }
+        }else{
+            return view('/auth/login');
+        }
     }
 
     public function update(Request $request, $codice_diario)
