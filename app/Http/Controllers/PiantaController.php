@@ -94,32 +94,36 @@ class PiantaController extends Controller
     public function show($id)
     {
         $pianta=Pianta::find($id);
+        $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('codice_utente')->toArray();
         if(Auth::user()){
 
             if(Auth::user()->admin){
 
                 $pianta = Pianta::find($id);
-                //$userId = Serra::where('codice_serra', $pianta->codice_serra)->pluck('codice_utente')->first();
+                $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
                 $diario = Diario::where('codice_pianta',$id)->get();
                 $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                                 ->where('evento.codice_pianta', $id)->get();
 
-                return view('pianta.show', compact('pianta','diario','eventi'));
+                return view('pianta.show', compact('pianta','diario','eventi','serra'));
 
             }else if(in_array(auth()->id(), $codici_collab)){
                 $pianta = Pianta::find($id);
+                $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
                 $diario = Diario::where('codice_pianta',$id)->get();
                 $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                                 ->where('evento.codice_pianta', $id)->get();
 
-                return view('pianta.show', compact('pianta','diario','eventi'));
+                return view('pianta.show', compact('pianta','diario','eventi','serra'));
             }else if(Auth::user()){
 
-                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $cod_serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
                 $pianta = Pianta::where('codice_pianta', '=', $id)
-                            ->where('codice_serra', '=', $serra)
+                            ->where('codice_serra', '=', $cod_serra)
                             ->get()->first();
+
+                $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
 
                 $diario = Diario::where('codice_pianta',$id)
                                 //->where('codice_utente','=', auth()->id())
@@ -133,7 +137,7 @@ class PiantaController extends Controller
                 if($pianta == null){
                     return redirect()->route('home');
                 }else{
-                    return view('pianta.show', compact('pianta','diario','eventi'));
+                    return view('pianta.show', compact('pianta','diario','eventi','serra'));
                 }
 
             }else{

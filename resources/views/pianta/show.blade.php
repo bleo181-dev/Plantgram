@@ -8,14 +8,15 @@
                 <div class="card-header">info</div>
                 <div class="card-body">
                     
+                        @if(auth()->id() == $serra->codice_utente)
                         <div style="padding:10px">
-                            <a href="{{ URL::action('SerraController@index') }}" class="btn btn-secondary">Indietro alla mia serra</a>
+                            <a href="{{ URL::action('SerraController@index') }}" class="btn btn-secondary">Indietro</a>
                         </div>
-                    
+                        @else
                         <div style="padding:10px">
-                            <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}" class="btn btn-secondary">Indietro alla serra condivisa</a>
+                            <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}" class="btn btn-secondary">Indietro</a>
                         </div>
-                    
+                        @endif
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <?php
