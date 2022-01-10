@@ -4,6 +4,7 @@
 <div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
 
     <div class="container">
+        <br>
         <h1 style="color: white" class="display-4">
             {{$nome_serra}}
         </h1>
@@ -47,6 +48,7 @@
             @endif
         </p>
     </div>
+    <br>
 </div>
 <div class="container">
     <div class="card-body">

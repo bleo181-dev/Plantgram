@@ -2,12 +2,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Creazione pianta') }}</div>
-                <div class="card-body">
+<div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+    <br>
+    <div id="cont" class="container">
 
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -61,9 +58,6 @@
 
 
                     </form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
