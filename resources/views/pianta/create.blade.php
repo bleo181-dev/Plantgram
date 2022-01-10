@@ -41,7 +41,7 @@
 
                         <img id="similar" src="" class="imagePreviewPianta">
 
-                        <button id="cerca" type="button"><img src="/immagini/occhio.png" class="card-img-top" /></button><br>
+                        <button id="cerca" type="button"><img src="{{ asset('immagini/occhio.png') }}" class="card-img-top" /></button><br>
 
                         Visibilità
                         <br>

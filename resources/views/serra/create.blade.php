@@ -40,7 +40,7 @@
             </div>
             <br>
 
-            <input id="invio" type="submit" style="background: url(/immagini/addSerra.png);display: block;
+            <input id="invio" type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
             height: 80px;
             width:80px;
             border: none;

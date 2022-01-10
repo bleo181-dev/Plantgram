@@ -5,21 +5,21 @@
     <div class="carousel-inner">
       <div class="carousel-item active" data-interval="6000">
 
-            <img src="/immagini/1.jpg" class="card-img">
+            <img src="{{ asset('immagini/1.jpg') }}" class="card-img">
             <div class="card-img-overlay text-center">
-              <a class="btn btn-primary btn-lg" href="/register" role="button">Registrati ora</a>
+              <a class="btn btn-primary btn-lg" href="{{ asset('register') }}" role="button">Registrati ora</a>
           </div>
       </div>
       <div class="carousel-item" data-interval="4000">
-        <img src="/immagini/2.jpg" class="d-block w-100">
+        <img src="{{ asset('immagini/2.jpg') }}" class="d-block w-100">
         <div class="card-img-overlay text-center">
-            <a class="btn btn-primary btn-lg" href="/register" role="button">Registrati ora</a>
+            <a class="btn btn-primary btn-lg" href="{{ asset('register') }}" role="button">Registrati ora</a>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/immagini/3.jpg" class="d-block w-100">
+        <img src="{{ asset('immagini/3.jpg') }}" class="d-block w-100">
         <div class="card-img-overlay text-center">
-            <a class="btn btn-primary btn-lg" href="/register" role="button">Registrati ora</a>
+            <a class="btn btn-primary btn-lg" href="{{ asset('register') }}" role="button">Registrati ora</a>
         </div>
       </div>
     </div>
@@ -37,20 +37,20 @@
       <h1 class="display-4">Prenditi cura delle tue piante con semplicità</h1>
       <p class="lead">Crea la tua serra virtuale, aggiungi le tue piante ed il gioco è fatto!</p>
       <p>Non lasciare mai più sola la tua pianta...</p>
-      <a class="btn btn-primary btn-lg" href="/register" role="button">Registrati ora</a>
+      <a class="btn btn-primary btn-lg" href="{{ asset('register') }}" role="button">Registrati ora</a>
     </div>
   </div>
 
   <div class="container">
     <div class="media">
-        <img src="/immagini/mini.jpg" class="mr-3" alt="...">
+        <img src="{{ asset('immagini/mini.jpg') }}" class="mr-3" alt="...">
         <div class="media-body">
           <h5 class="mt-0">Media heading</h5>
           Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
 
           <div class="media mt-3">
             <a class="mr-3">
-              <img src="/immagini/mini.jpg" class="mr-3" alt="...">
+              <img src="{{ asset('immagini/mini.jpg') }}" class="mr-3" alt="...">
             </a>
             <div class="media-body">
               <h5 class="mt-0">Media heading</h5>

@@ -57,7 +57,7 @@
             <div class="col mb-4">
                 <div class="col mb-4">
                     <div class="card">
-                        <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> <img src="/immagini/add.png" class="card-img-top" /></a>
+                        <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> <img src="{{ asset('immagini/add.png') }}" class="card-img-top" /></a>
                     </div>
                 </div>
             </div>
