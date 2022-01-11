@@ -16,11 +16,10 @@
             </button>
             <!--dropdown menu-->
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                @foreach($serre_condivise as $serra)
-                    <a class="dropdown-item" type="button" href="{{URL::action('SerraController@indexserrashare', $serra->codice_serra)  }}">{{$serra->nome}}</a>
+                @foreach($serre_condivise as $s)
+                    <a class="dropdown-item" type="button" href="{{URL::action('SerraController@indexserrashare', $s->codice_serra)  }}">{{$s->nome}}</a>
                 @endforeach
             </div>
-
 
         
             <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a>
@@ -58,7 +57,7 @@
             @foreach($piante as $pianta)
                 @include('piantapost')
             @endforeach
-            @if(1)
+            @if(auth()->id() == $serra->codice_utente)
                 <div class="col mb-4">
                     <div class="col mb-4">
                         <div class="card">
