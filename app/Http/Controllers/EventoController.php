@@ -7,15 +7,16 @@ use App\Evento;
 use App\Bisogno;
 use App\Pianta;
 use App\Diario;
+use App\Serra;
 
 class EventoController extends Controller
 {
     public function index($codice_pianta)
     {
         $eventi = Bisogno::
-                Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                 ->where('evento.codice_pianta', $codice_pianta)
-                ->where('evento.codice_utente', '=', auth()->id())
+                //->where('evento.codice_utente', '=', auth()->id())
                 ->get();
 
         $pianta = Pianta::find($codice_pianta);
@@ -39,14 +40,16 @@ class EventoController extends Controller
 
         $pianta = Pianta::find($evento->codice_pianta);
 
+        $serra = Serra::where('codice_serra', $pianta->codice_serra)->first();
+
         $diario = Diario::where('codice_pianta',$evento->codice_pianta)->get();
 
         $eventi = Bisogno::
-                Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
                 ->where('evento.codice_pianta', $evento->codice_pianta)
-                ->where('evento.codice_utente', $evento->codice_utente)
+                //->where('evento.codice_utente', $evento->codice_utente)
                 ->get();
 
-        return view('pianta.show', compact('pianta','diario','eventi'));
+        return view('pianta.show', compact('pianta','diario','eventi','serra'));
     }
 }
