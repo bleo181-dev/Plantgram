@@ -122,9 +122,16 @@ class PiantaController extends Controller
             }else if(Auth::user()){
 
                 $cod_serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+
+                //-------------Si verifica se la pianta è posseduta realmente dall'utente-------------
                 $pianta = Pianta::where('codice_pianta', '=', $id)
                             ->where('codice_serra', '=', $cod_serra)
                             ->get()->first();
+
+                if($pianta == null){
+                    return redirect()->route('home');
+                }
+                //------------------------------------------------------------------------------------
 
                 $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
 
@@ -138,11 +145,9 @@ class PiantaController extends Controller
                                 ->get()
                                 ->unique('nome');
 
-                if($pianta == null){
-                    return redirect()->route('home');
-                }else{
-                    return view('pianta.show', compact('pianta','diario','eventi','serra'));
-                }
+                
+                return view('pianta.show', compact('pianta','diario','eventi','serra'));
+                
 
             }else{
                 return view('/auth/login');
