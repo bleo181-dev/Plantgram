@@ -48,5 +48,5 @@ Route::get('/diario/{id}/edit', 'DiarioController@edit');
 Route::put('/diario/{id}/update', 'DiarioController@update');
 
 Route::get('/evento/{id}', 'EventoController@index');
-Route::put('/evento/{id}/update', 'EventoController@update');
+Route::put('/evento/{id}/store', 'EventoController@store');
 

@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                <form action="{{ URL::action('EventoController@update', $evento->codice_evento) }}" method="POST" class="col-md-2">
+                                                <form action="{{ URL::action('EventoController@store', $evento->codice_evento) }}" method="POST" class="col-md-2">
                                                     {{ csrf_field() }}
                                                     @method('PUT')
                                                     <input type="hidden" name="nome" value="{{$evento->nome}}">

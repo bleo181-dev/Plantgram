@@ -35,7 +35,19 @@ class SerraController extends Controller
             }else{
                 $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
                 $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
-                $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
+                $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                ->where('evento.codice_pianta', $cod_pianta)
+                ->orderBy('data', 'desc')
+                ->get()
+                ->unique('nome');
+                foreach($cod_pianta as $c){
+                    $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                                ->where('evento.codice_pianta', $c)
+                                ->orderBy('data', 'desc')
+                                ->get()
+                                ->unique('nome');
+                }
+                
                 $dataoggi = strtotime(date('Y-m-d H:i:s'));
                 $delta = strtotime($eventi);
                 $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
