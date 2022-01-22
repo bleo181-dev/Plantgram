@@ -23,15 +23,17 @@
         <p>
             <!-- bisogni arrettrati -->
             @foreach($bisogni as $b)
-                @if($b['codice_pianta'] == $pianta->codice_pianta)
-                    @foreach($eventi as $d)
-                        @if($d['nome'] == $b['nome'])
-                            @if($dataoggi - strtotime($d['data']) > $b['cadenza'])
-                                <p style="color:rgb(145, 0, 0)">{{ $b['nome'] }}</p>
+                @foreach($eventi as $d)
+                    @if($b['codice_pianta'] == $pianta->codice_pianta)
+                        @if($d['codice_pianta'] == $pianta->codice_pianta)
+                            @if($d['nome'] == $b['nome'])
+                                @if($dataoggi - strtotime($d['data']) > $b['cadenza'])
+                                    <p style="color:rgb(145, 0, 0)">{{ $b['nome'] }}</p>
+                                @endif
                             @endif
                         @endif
-                    @endforeach
-                @endif
+                    @endif
+                @endforeach   
             @endforeach
             <!-- fine bisogni arrettrati -->
         </p>
