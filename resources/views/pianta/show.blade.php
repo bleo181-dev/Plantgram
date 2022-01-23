@@ -34,6 +34,21 @@
                     <br>
                     <hr>
                     <br>
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                    <div class="progress" style="background:none; height:10px">
+                        <div class="progress-bar bg-dark" role="progressbar" style="width: 45%; " aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    
                     @foreach($eventi as $evento)
                         <div class="row justify-content-center">
                             <div class="progress w-75">
