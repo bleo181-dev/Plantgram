@@ -1,23 +1,24 @@
 <div class="col mb-4">
 
-    <div class="card">
-
-
+    <div style="width: 200px; display: block;
+    margin-left: auto;
+    margin-right: auto;">
         <a href="{{ URL::action('PiantaController@show', $pianta->codice_pianta) }}" >
+        <?php
 
-            <?php
-                echo '<img src="data:image/jpeg;base64,'.base64_encode($pianta->foto).'" class="card-img-top" style="height: 250px;"/>';
-            ?>
+        echo '<img src="data:image/jpeg;base64,'.base64_encode($pianta->foto).'" class="card-img-top" style=" width: 120px; height: 120px; display: block;
+        margin-left: auto;
+        margin-right: auto;"/>';
 
+        ?>
+        <img class="card-img-top" src="{{ asset('immagini/vaso.png') }}" border="0" class="icone">
         </a>
 
+    </div>
+    <br>
+    <div class="card">
       <div class="card-body">
-        <div class="row">
-            <div class="col-10 text-truncate">
-                <h5 class="card-title">{{$pianta->nome}}</h5>
-            </div>
-          </div>
-
+        <h5 class="card-title">{{$pianta->nome}}</h5>
         <p>Luogo: {{$pianta->luogo}}</p>
         <p>
             <!-- bisogni arrettrati -->
@@ -32,7 +33,7 @@
                             @endif
                         @endif
                     @endif
-                @endforeach
+                @endforeach   
             @endforeach
             <!-- fine bisogni arrettrati -->
         </p>

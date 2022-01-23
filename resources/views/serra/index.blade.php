@@ -9,7 +9,7 @@
             {{$nome_serra}}
         </h1>
 
-        
+
 
         <p class="lead text-right" style="color: white" >
             @foreach($forecast as $f)
@@ -43,7 +43,7 @@
                 @else
                     La serra con cui collabori
                 @endif
-            
+
             </a>
             </li>
             @if(auth()->id() == $serra->codice_utente)
@@ -56,9 +56,10 @@
                 </li>
             @endif
         </ul>
+        <hr style="background-color: white">
+        <br>
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
-                <br>
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row row-cols-1 row-cols-md-4">
                     @foreach($piante as $pianta)
                         @include('piantapost')
@@ -76,7 +77,7 @@
 
             </div>
             <div class="tab-pane fade" id="pills-home-p" role="tabpanel" aria-labelledby="pills-home-piante">
-                
+
                 <h1 style="color: white">Tutte le piante condivise</h1>
 
             </div>
@@ -86,6 +87,7 @@
                     @if(auth()->id() == $serra->codice_utente)
 
                         <!-- <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a> -->
+
                         <a href="{{ URL::action('SerraController@collab') }}" class="btn btn-info" > Aggiungi collaboratore a questa serra </a>
                         <p style="color: white">Numero collaboratori attuali: {{$num_collaborazioni}}</p>
                         @foreach($collaboratori as $c)
@@ -97,7 +99,7 @@
                         @foreach($serre_condivise as $s)
                             <a class="btn btn-secondary btn-lg btn-block" type="button" href="{{URL::action('SerraController@indexserrashare', $s->codice_serra)  }}">{{$s->nome}}</a>
                         @endforeach
-                        
+
                     @endif
 
 

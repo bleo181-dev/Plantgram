@@ -9,7 +9,12 @@
         ?>
         </a>
       <div class="card-body">
-        <h5 class="card-title">{{$pianta->nome}}</h5>
+        <div class="row">
+            <div class="col-10 text-truncate">
+                {{$pianta->nome}}
+            </div>
+          </div>
+
         <p>Luogo: {{$pianta->luogo}}</p>
         <p>
             <!-- bisogni arrettrati -->
