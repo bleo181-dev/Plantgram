@@ -36,7 +36,7 @@
     <div class="card-body">
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
                 @if(auth()->id() == $serra->codice_utente)
                     Il mio green-space
@@ -47,8 +47,12 @@
             </a>
             </li>
             @if(auth()->id() == $serra->codice_utente)
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                     <a class="nav-link" id="pills-serra-share" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Serre condivise</a>
+                </li>
+
+                <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
+                    <a class="nav-link" id="pills-home-piante" data-toggle="pill" href="#pills-home-p" role="tab" aria-controls="pills-home-p" aria-selected="false">Home</a>
                 </li>
             @endif
         </ul>
@@ -69,6 +73,11 @@
                         </div>
                     @endif
                 </div>
+
+            </div>
+            <div class="tab-pane fade" id="pills-home-p" role="tabpanel" aria-labelledby="pills-home-piante">
+                
+                <h1 style="color: white">Tutte le piante condivise</h1>
 
             </div>
             @if(auth()->id() == $serra->codice_utente)
