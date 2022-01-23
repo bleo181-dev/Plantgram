@@ -23,6 +23,7 @@
                             Icona: <img width=100px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">
                         @endforeach
 
+                        
                         <div class="row">
                             @foreach($piante as $pianta)
                                 @include('piantapost')
