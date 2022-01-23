@@ -36,6 +36,29 @@
 
     <div class="container">
 
+        <h10 style="color: white">
+            Non sai come si chiama la tua pianta? Carica la sua foto clicca sull&#8217occhio e ci penso io!
+        </h10>
+        <br>
+
+        <div class="custom-file">
+            <input type="file" name="foto" class="custom-file-input" id="imgInp">
+            <label class="custom-file-label" for="inputGroupFile01">Carica una foto</label>
+
+
+            <button  style="background: none; border: none; display: block; height: 80px; width:80px; border: none; margin-right:auto; margin-left:auto;" id="cerca" type="button"><img style="width: 50px;"src="{{ asset('immagini/find.png') }}"/></button>
+
+
+        </div>
+
+        <br>
+        <br>
+
+        <img class="imagePreviewPianta rounded mx-auto" id="blah" src="#"/>
+
+        <br>
+        <br>
+
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -49,37 +72,6 @@
                     <input id="namePlant" type="text" name="luogo" value="{{ old('luogo') }}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default2">
                 </div>
             </div>
-            <h10 style="color: white">
-                Non sai come si chiama la tua pianta? Carica la sua foto clicca sull&#8217occhio e ci penso io!
-            </h1>
-            <br>
-
-            <div class="custom-file">
-                <input type="file" name="foto" class="custom-file-input" id="imgInp">
-                <label class="custom-file-label" for="inputGroupFile01">Carica una foto</label>
-
-
-                <button  style="background: none; border: none;
-                display: block;
-                height: 80px;
-                width:80px;
-                border: none;
-                margin-right:auto;
-                margin-left:auto;" id="cerca" type="button"><img style="width: 50px;"src="{{ asset('immagini/find.png') }}"/></button>
-
-
-            </div>
-            <br>
-            <br>
-            <img class="imagePreviewPianta rounded mx-auto" id="blah" src="#"/>
-            <br>
-
-            <br>
-
-
-
-
-
 
 
             <!-- pianta simile -->

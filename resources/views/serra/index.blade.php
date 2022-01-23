@@ -58,7 +58,7 @@
         </ul>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
-
+                <br>
                 <div class="row row-cols-1 row-cols-md-4">
                     @foreach($piante as $pianta)
                         @include('piantapost')
