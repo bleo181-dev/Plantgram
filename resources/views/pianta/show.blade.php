@@ -34,26 +34,20 @@
                     <br>
                     <hr>
                     <br>
-                    <div class="progress">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-
-                    <div class="progress" style="background:none; height:10px">
-                        <div class="progress-bar bg-dark" role="progressbar" style="width: 45%; " aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    
+                
                     @foreach($eventi as $evento)
                         <div class="row justify-content-center">
+                            
+                            <!-- vecchia progressbar
                             <div class="progress w-75">
                                 <div class="progress-bar" role="progressbar" style="width: {{((strtotime('now')-strtotime($evento->data))*100)/$evento->cadenza }}%" aria-valuenow="{{strtotime(date('Y-m-d H:i:s'))-strtotime($evento->data) }}" aria-valuemin="0" aria-valuemax="{{$evento->cadenza}}">{{$evento->nome}}</div>
                             </div>
+                            vecchia progressbar -->
+
+                            <div class="progress w-75">
+                                <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, black 10%, red 0%, red 20%, yellow 20%, yellow 40%, green 40%, green 60%, yellow 60%, yellow 80%, red 80%, red 100%);" ></div>
+                            </div>
+
                             <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
 
                                 <!-- Modal -->
