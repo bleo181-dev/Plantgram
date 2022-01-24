@@ -85,7 +85,7 @@
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{$evento->nome}}" aria-expanded="true" aria-controls="collapseOne{{$evento->nome}}">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{$evento->nome}}" aria-expanded="false" aria-controls="collapseOne{{$evento->nome}}">
                                             visualizza grafico
                                             </button>
                                         </h2>
