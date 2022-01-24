@@ -58,9 +58,25 @@
         </ul>
         <hr style="background-color: white">
         <br>
+
+        <!-- div opzioni la mia serra, serre condivise ecc ... -->
+
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <div class="row row-cols-1 row-cols-md-4">
+                @if(auth()->id() == $serra->codice_utente)
+                    <!-- Aggiungi collaboratore -->
+                    <a href="{{ URL::action('SerraController@collab') }}" > <img src="{{ asset('immagini/share.png') }}" border="0"> </a>
+                    <p style="color: white">Numero collaboratori attuali: {{$num_collaborazioni}}</p>
+                    @foreach($collaboratori as $c)
+                        <p>Nickname:{{$c}}</p>
+                    @endforeach
+
+                    <br>
+                @endif
+                <!-- _________________________________ -->
+
+                <!-- pianta post -->
+                <div class="row row-cols-1 row-cols-md-3">
                     @foreach($piante as $pianta)
                         @include('piantapost')
                     @endforeach
@@ -74,6 +90,7 @@
                         </div>
                     @endif
                 </div>
+                <!-- __________________________________________ -->
 
             </div>
             <div class="tab-pane fade" id="pills-home-p" role="tabpanel" aria-labelledby="pills-home-piante">
@@ -87,14 +104,6 @@
                     @if(auth()->id() == $serra->codice_utente)
 
                         <!-- <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a> -->
-
-                        <a href="{{ URL::action('SerraController@collab') }}" class="btn btn-info" > Aggiungi collaboratore a questa serra </a>
-                        <p style="color: white">Numero collaboratori attuali: {{$num_collaborazioni}}</p>
-                        @foreach($collaboratori as $c)
-                            <p>Nickname:{{$c}}</p>
-                        @endforeach
-
-                        <br>
 
                         @foreach($serre_condivise as $s)
                             <a class="btn btn-secondary btn-lg btn-block" type="button" href="{{URL::action('SerraController@indexserrashare', $s->codice_serra)  }}">{{$s->nome}}</a>
