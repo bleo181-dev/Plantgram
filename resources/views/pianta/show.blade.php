@@ -38,17 +38,18 @@
                     @foreach($eventi as $evento)
                     <div class="row justify-content-center">
                             
-                            <!-- vecchia progressbar
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: {{((strtotime('now')-strtotime($evento->data))*100)/$evento->cadenza }}%" aria-valuenow="{{strtotime(date('Y-m-d H:i:s'))-strtotime($evento->data) }}" aria-valuemin="0" aria-valuemax="{{$evento->cadenza}}">{{$evento->nome}}</div>
-                            </div>
-                            vecchia progressbar -->
-
-                            <div class="progress w-75">
-                                <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, black 10%, red 0%, red 20%, yellow 20%, yellow 40%, green 40%, green 60%, yellow 60%, yellow 80%, red 80%, red 100%);" ></div>
-                            </div>
-
-                            <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
+                        @foreach($bisogni as $bisogno)
+                            @if($evento->codice_bisogno == $bisogno->codice_bisogno)
+                                <div class="progress w-75">
+                                    <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, #111111 {{(((strtotime('now')-strtotime($evento->data))/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 0% {{(($bisogno->cadenza/86400)*80)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*95)/(($bisogno->cadenza/86400)*1.5)}}%, #2ECC40 {{(($bisogno->cadenza/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*130)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 {{(($bisogno->cadenza/86400)*150)/(($bisogno->cadenza/86400)*1.5)}}%);" ></div>
+                                </div>
+                                <div class="w-75">
+                                    <p>Ultima volta: {{$evento->data}}</p>
+                                    <p>Prossima volta prevista: {{ date("Y-m-d H:i:s",(strtotime('now')+ $bisogno->cadenza)) }}</p>
+                                    <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
+                                </div>
+                            @endif
+                        @endforeach
 
                             <!-- Modal -->
                             <div class="modal fade" id="staticBackdrop{{$evento->codice_evento}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

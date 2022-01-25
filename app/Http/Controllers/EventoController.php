@@ -42,19 +42,6 @@ class EventoController extends Controller
             'data'             => date('Y-m-d H:i:s'),
         ]);
 
-        $pianta = Pianta::find($evento_scorso->codice_pianta);
-
-        $serra = Serra::where('codice_serra', $pianta->codice_serra)->first();
-
-        $diario = Diario::where('codice_pianta',$evento_scorso->codice_pianta)->get();
-
-        $eventi = Bisogno::
-                join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
-                ->where('evento.codice_pianta', $evento_scorso->codice_pianta)
-                ->orderBy('data', 'desc')
-                ->get()
-                ->unique('nome');
-
-        return view('pianta.show', compact('pianta','diario','eventi','serra'));
+        return back();
     }
 }

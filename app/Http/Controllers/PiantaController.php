@@ -145,8 +145,9 @@ class PiantaController extends Controller
                                 ->get()
                                 ->unique('nome');
 
+                $bisogni = Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
                 
-                return view('pianta.show', compact('pianta','diario','eventi','serra'));
+                return view('pianta.show', compact('pianta','diario','eventi','serra', 'bisogni'));
                 
 
             }else{
