@@ -34,6 +34,14 @@
                     <br>
                     <hr>
                     <br>
+                    @foreach($bis as $y)
+                        {{$y}}
+                    @endforeach
+                    
+                    @foreach($ev as $e)
+                        {{$e->volte}}
+                        {{$e->month}}
+                    @endforeach
                 
                     @foreach($eventi as $evento)
                     <div class="row justify-content-center">
@@ -95,7 +103,7 @@
                                     <div id="{{$evento->nome}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample{{$evento->nome}}">
                                         <div class="card-body">
                                             <!-- plot -->
-                                            <div id="myPlot" style="width:100%;max-width:700px"></div>
+                                            <div id="myPlot{{$evento->codice_bisogno}}" style="width:100%;max-width:700px"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -104,6 +112,7 @@
                         </div>  
                         <br>
                     @endforeach
+                        
                     @foreach($diario as $i)
                         @include('diario.diariopost')
                     @endforeach
@@ -112,9 +121,18 @@
         </div>
     </div>
 </div>
+
+@foreach($bis as $y)
 <script>
-    var xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yArray = [55, 49, 44, 24, 15];
+
+    var xArray = [];
+    var yArray = [];
+    @foreach($ev as $e)
+        @if($y->codice_bisogno==$e->codice_bisogno) 
+            xArray.push({{$e->month}});
+            yArray.push({{$e->volte}});
+        @endif
+    @endforeach
 
     var data = [{
     x:xArray,
@@ -122,10 +140,11 @@
     type:"bar"
     }];
 
-    var layout = {title:"World Wide Wine Production"};
+    var layout = {title:"azioni per mese"};
 
-    Plotly.newPlot("myPlot", data, layout);
+    Plotly.newPlot("myPlot{{$y->codice_bisogno}}", data, layout);
 </script>
+@endforeach
 
 <script>
 new Chart("myChart", {
