@@ -81,18 +81,18 @@
                             <br>
 
                             <!-- explode -->
-                            <div class="w-75 accordion" id="accordionExample{{$evento->nome}}">
+                            <div class="col-md-12 accordion" id="accordionExample{{$evento->nome}}">
                             <br>
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{$evento->nome}}" aria-expanded="false" aria-controls="collapseOne{{$evento->nome}}">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{$evento->nome}}" aria-expanded="false" aria-controls="{{$evento->nome}}">
                                             visualizza grafico
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="{{$evento->nome}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample{{$evento->nome}}">
+                                    <div id="{{$evento->nome}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample{{$evento->nome}}">
                                         <div class="card-body">
                                             <!-- plot -->
                                             <div id="myPlot" style="width:100%;max-width:700px"></div>
