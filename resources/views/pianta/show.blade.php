@@ -8,7 +8,7 @@
                 <div class="card-header">info</div>
                 <div class="card-body">
                     
-                    @if(auth()->id() == $serra->codice_utente)
+                    @if(auth()->id() == $serra->id)
                     <div style="padding:10px">
                         <a href="{{ URL::action('SerraController@index') }}" class="btn btn-secondary">Indietro</a>
                     </div>

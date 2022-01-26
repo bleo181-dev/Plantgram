@@ -8,5 +8,5 @@ class Invito extends Model
 {
     protected $primaryKey = 'codice_invito';
     protected $table = 'invito';
-    protected $fillable = ['email', 'token', 'codice_serra', 'codice_utente'];
+    protected $fillable = ['email', 'token', 'codice_serra', 'id'];
 }

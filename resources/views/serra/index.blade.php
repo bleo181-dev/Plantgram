@@ -30,7 +30,7 @@
             @endif
 
             <div class="display-4 lead text-right">
-                @if(auth()->id() == $serra->codice_utente)
+                @if(auth()->id() == $serra->id)
                         <!-- Aggiungi collaboratore -->
                         <a href="{{ URL::action('SerraController@collab') }}" > <img src="{{ asset('immagini/share.png') }}"> </a>
                         <button name="num_collab" type="button" class="btn btn-primary" onclick="fetch_data()"> agg.collaboratori </button>
@@ -63,7 +63,7 @@
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
-                @if(auth()->id() == $serra->codice_utente)
+                @if(auth()->id() == $serra->id)
                     Il mio green-space
                 @else
                     La serra con cui collabori
@@ -71,7 +71,7 @@
 
             </a>
             </li>
-            @if(auth()->id() == $serra->codice_utente)
+            @if(auth()->id() == $serra->id)
                 <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                     <a class="nav-link" id="pills-serra-share" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Serre condivise</a>
                 </li>
@@ -96,7 +96,7 @@
                     @foreach($piante as $pianta)
                         @include('piantapost')
                     @endforeach
-                    @if(auth()->id() == $serra->codice_utente)
+                    @if(auth()->id() == $serra->id)
                         <div class="col mb-4">
                             <div class="col mb-4">
                                 <div class="card">
@@ -114,10 +114,10 @@
                 <h1 style="color: white">Tutte le piante condivise</h1>
 
             </div>
-            @if(auth()->id() == $serra->codice_utente)
+            @if(auth()->id() == $serra->id)
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-serra-share">
 
-                    @if(auth()->id() == $serra->codice_utente)
+                    @if(auth()->id() == $serra->id)
 
                         <!-- <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a> -->
 

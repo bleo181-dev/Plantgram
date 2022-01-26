@@ -27,6 +27,7 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '17d016dc52a631c1e74d2eb8fdd57342' => __DIR__ . '/..' . '/laravel/helpers/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -127,6 +128,7 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'GrahamCampbell\\Markdown\\' => 24,
         ),
         'F' => 
         array (
@@ -144,6 +146,7 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
             'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Dnsimmons\\OpenWeather\\' => 22,
+            'DevDojo\\Chatter\\' => 16,
             'DeepCopy\\' => 9,
         ),
         'C' => 
@@ -385,6 +388,10 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'GrahamCampbell\\Markdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/graham-campbell/markdown/src',
+        ),
         'Fideloper\\Proxy\\' => 
         array (
             0 => __DIR__ . '/..' . '/fideloper/proxy/src',
@@ -416,6 +423,10 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         'Dnsimmons\\OpenWeather\\' => 
         array (
             0 => __DIR__ . '/..' . '/dnsimmons/openweather/src',
+        ),
+        'DevDojo\\Chatter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/devdojo/chatter/src',
         ),
         'DeepCopy\\' => 
         array (
@@ -458,6 +469,7 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\BisognoController' => __DIR__ . '/../..' . '/app/Http/Controllers/BisognoController.php',
+        'App\\Http\\Controllers\\CollaboraController' => __DIR__ . '/../..' . '/app/Http/Controllers/CollaboraController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DiarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/DiarioController.php',
         'App\\Http\\Controllers\\EventoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventoController.php',
@@ -475,6 +487,7 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Invito' => __DIR__ . '/../..' . '/app/Invito.php',
+        'App\\Notifications\\InvitoNotification' => __DIR__ . '/../..' . '/app/Notifications/InvitoNotification.php',
         'App\\Pianta' => __DIR__ . '/../..' . '/app/Pianta.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -561,6 +574,7 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
+        'ChatterTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ChatterTableSeeder.php',
         'CollaboraTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CollaboraTableSeeder.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
@@ -597,6 +611,21 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
+        'DevDojo\\Chatter\\ChatterServiceProvider' => __DIR__ . '/..' . '/devdojo/chatter/src/ChatterServiceProvider.php',
+        'DevDojo\\Chatter\\Controllers\\ChatterAtomController' => __DIR__ . '/..' . '/devdojo/chatter/src/Controllers/ChatterAtomController.php',
+        'DevDojo\\Chatter\\Controllers\\ChatterController' => __DIR__ . '/..' . '/devdojo/chatter/src/Controllers/ChatterController.php',
+        'DevDojo\\Chatter\\Controllers\\ChatterDiscussionController' => __DIR__ . '/..' . '/devdojo/chatter/src/Controllers/ChatterDiscussionController.php',
+        'DevDojo\\Chatter\\Controllers\\ChatterPostController' => __DIR__ . '/..' . '/devdojo/chatter/src/Controllers/ChatterPostController.php',
+        'DevDojo\\Chatter\\Events\\ChatterAfterNewDiscussion' => __DIR__ . '/..' . '/devdojo/chatter/src/Events/ChatterAfterNewDiscussion.php',
+        'DevDojo\\Chatter\\Events\\ChatterAfterNewResponse' => __DIR__ . '/..' . '/devdojo/chatter/src/Events/ChatterAfterNewResponse.php',
+        'DevDojo\\Chatter\\Events\\ChatterBeforeNewDiscussion' => __DIR__ . '/..' . '/devdojo/chatter/src/Events/ChatterBeforeNewDiscussion.php',
+        'DevDojo\\Chatter\\Events\\ChatterBeforeNewResponse' => __DIR__ . '/..' . '/devdojo/chatter/src/Events/ChatterBeforeNewResponse.php',
+        'DevDojo\\Chatter\\Helpers\\ChatterHelper' => __DIR__ . '/..' . '/devdojo/chatter/src/Helpers/ChatterHelper.php',
+        'DevDojo\\Chatter\\Mail\\ChatterDiscussionUpdated' => __DIR__ . '/..' . '/devdojo/chatter/src/Mail/ChatterDiscussionUpdated.php',
+        'DevDojo\\Chatter\\Models\\Category' => __DIR__ . '/..' . '/devdojo/chatter/src/Models/Category.php',
+        'DevDojo\\Chatter\\Models\\Discussion' => __DIR__ . '/..' . '/devdojo/chatter/src/Models/Discussion.php',
+        'DevDojo\\Chatter\\Models\\Models' => __DIR__ . '/..' . '/devdojo/chatter/src/Models/Models.php',
+        'DevDojo\\Chatter\\Models\\Post' => __DIR__ . '/..' . '/devdojo/chatter/src/Models/Post.php',
         'DiarioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DiarioTableSeeder.php',
         'Dnsimmons\\OpenWeather\\OpenWeather' => __DIR__ . '/..' . '/dnsimmons/openweather/src/OpenWeather.php',
         'Dnsimmons\\OpenWeather\\OpenWeatherServiceProvider' => __DIR__ . '/..' . '/dnsimmons/openweather/src/OpenWeatherServiceProvider.php',
@@ -1191,6 +1220,13 @@ class ComposerStaticInita98e0f0dd67df5309ddfcf24532d882a
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
         'Fideloper\\Proxy\\TrustProxies' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustProxies.php',
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
+        'GrahamCampbell\\Markdown\\Facades\\Markdown' => __DIR__ . '/..' . '/graham-campbell/markdown/src/Facades/Markdown.php',
+        'GrahamCampbell\\Markdown\\MarkdownServiceProvider' => __DIR__ . '/..' . '/graham-campbell/markdown/src/MarkdownServiceProvider.php',
+        'GrahamCampbell\\Markdown\\View\\Compiler\\MarkdownCompiler' => __DIR__ . '/..' . '/graham-campbell/markdown/src/View/Compiler/MarkdownCompiler.php',
+        'GrahamCampbell\\Markdown\\View\\Directive\\MarkdownDirective' => __DIR__ . '/..' . '/graham-campbell/markdown/src/View/Directive/MarkdownDirective.php',
+        'GrahamCampbell\\Markdown\\View\\Engine\\BladeMarkdownEngine' => __DIR__ . '/..' . '/graham-campbell/markdown/src/View/Engine/BladeMarkdownEngine.php',
+        'GrahamCampbell\\Markdown\\View\\Engine\\PathEvaluationTrait' => __DIR__ . '/..' . '/graham-campbell/markdown/src/View/Engine/PathEvaluationTrait.php',
+        'GrahamCampbell\\Markdown\\View\\Engine\\PhpMarkdownEngine' => __DIR__ . '/..' . '/graham-campbell/markdown/src/View/Engine/PhpMarkdownEngine.php',
         'GuzzleHttp\\BodySummarizer' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/BodySummarizer.php',
         'GuzzleHttp\\BodySummarizerInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/BodySummarizerInterface.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',

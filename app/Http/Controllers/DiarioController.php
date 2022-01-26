@@ -15,8 +15,8 @@ class DiarioController extends Controller
     public function index($id)
     {
         $pianta=Pianta::find($id);
-        $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('codice_utente')->first();
-        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('codice_utente')->toArray();
+        $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('id')->first();
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
 
             if(Auth::user()->admin){
@@ -65,7 +65,7 @@ class DiarioController extends Controller
         $data = file_get_contents($_FILES['foto']['tmp_name']);
 
         Diario::create([
-            'codice_utente' => auth()->id(),
+            'id' => auth()->id(),
             'codice_pianta' => $id,
             'testo'    => $validateData['testo'],
             'foto'   => $data,
@@ -73,7 +73,7 @@ class DiarioController extends Controller
         ]);
 
         $diario = Diario::where('codice_pianta', $id)
-                ->where('codice_utente', auth()->id())
+                ->where('id', auth()->id())
                 ->get();
 
         $pianta = Pianta::find($id);
@@ -85,8 +85,8 @@ class DiarioController extends Controller
     {
         $diario=Diario::find($id);
         $pianta=Pianta::find($diario->codice_pianta);
-        $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('codice_utente')->first();
-        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('codice_utente')->toArray();
+        $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('id')->first();
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
             
             if(Auth::user()->admin){
@@ -133,7 +133,7 @@ class DiarioController extends Controller
         $id=$d->codice_pianta;
 
         $diario = Diario::where('codice_pianta', $id)
-                ->where('codice_utente', auth()->id())
+                ->where('id', auth()->id())
                 ->get();
         $pianta = Pianta::find($id);
 
@@ -147,7 +147,7 @@ class DiarioController extends Controller
         $d->delete();
 
         $diario = Diario::where('codice_pianta', $id)
-        ->where('codice_utente', auth()->id())
+        ->where('id', auth()->id())
         ->get();
         $pianta = Pianta::find($id);
 

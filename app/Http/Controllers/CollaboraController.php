@@ -19,11 +19,11 @@ class CollaboraController extends Controller
      */
     public function index()
     {
-        $codice_utente = auth()->id();
+        $id = auth()->id();
         $serre_condivise = DB::table('collabora')
                 ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
-                ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')
-                ->where('collabora.codice_utente', $codice_utente)
+                ->join('users', 'serra.id', '=', 'users.id')
+                ->where('collabora.id', $id)
                 ->get();
         return view('collabora.index', compact('serre_condivise'));
     }
@@ -33,9 +33,9 @@ class CollaboraController extends Controller
         if($request->ajax())
         {
             //$data = Collabora::all();
-            $serra = Serra::where('codice_utente', auth()->id())->first();
+            $serra = Serra::where('id', auth()->id())->first();
             $data = DB::table('users')
-                        ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
+                        ->join('collabora', 'users.id', '=', 'collabora.id')
                         ->where('codice_serra', $serra->codice_serra)
                         ->select('codice_collaborazione', 'nickname')
                         ->get();
@@ -122,8 +122,8 @@ class CollaboraController extends Controller
                 ]);
             }else{
                 $serra_proprietario = DB::table('users')
-                                        ->join('serra', 'users.codice_utente', '=', 'serra.codice_utente')
-                                        ->where('users.codice_utente', auth()->id())
+                                        ->join('serra', 'users.id', '=', 'serra.id')
+                                        ->where('users.id', auth()->id())
                                         ->pluck('codice_serra');
                 $collaborazione = Collabora::where('codice_collaborazione', $id)->pluck('codice_serra');
                 Collabora::where('codice_collaborazione', '=', $id)

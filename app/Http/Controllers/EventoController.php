@@ -35,7 +35,7 @@ class EventoController extends Controller
         $evento_scorso = Evento::find($id);
 
         Evento::create([
-            'codice_utente'    => auth()->id(),
+            'id'    => auth()->id(),
             'codice_bisogno'   => $evento_scorso->codice_bisogno,
             'codice_pianta'    => $evento_scorso->codice_pianta,
             'nome'             => $validateData['nome'],

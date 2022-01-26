@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BisognoTableSeeder::class);
         $this->call(EventiTableSeeder::class);
         $this->call(DiarioTableSeeder::class);
+        $this->call(ChatterTableSeeder::class);
     }
 }

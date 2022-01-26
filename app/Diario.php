@@ -8,6 +8,6 @@ class Diario extends Model
 {
     protected $primaryKey = 'codice_diario';
     protected $table = 'diario';
-    protected $fillable = ['codice_pianta', 'codice_utente', 'data','foto', 'testo'];
+    protected $fillable = ['codice_pianta', 'id', 'data','foto', 'testo'];
 }
 

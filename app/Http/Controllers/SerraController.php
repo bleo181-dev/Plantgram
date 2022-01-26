@@ -29,7 +29,7 @@ class SerraController extends Controller
     public function index()
     {
         if(Auth::user()){
-            $serra = Serra::where('codice_utente', auth()->id())->first();
+            $serra = Serra::where('id', auth()->id())->first();
             if($serra == null){
                 return view('serra.create');
             }else{
@@ -51,21 +51,21 @@ class SerraController extends Controller
 
                 $num_collaborazioni = Collabora::where('codice_serra', $serra->codice_serra)->count();
                 $collaboratori = DB::table('users')
-                        ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
+                        ->join('collabora', 'users.id', '=', 'collabora.id')
                         ->where('codice_serra', $serra->codice_serra)
                         ->get();
 
-                $codice_utente = auth()->id();
+                $id = auth()->id();
                 $serre_condivise = DB::table('collabora')
                         ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
-                        ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')
-                        ->where('collabora.codice_utente', $codice_utente)
+                        ->join('users', 'serra.id', '=', 'users.id')
+                        ->where('collabora.id', $id)
                         ->get();
 
-                $lat_serra = Serra::where('codice_utente', auth()->id())->pluck('latitudine')->first();
-                $long_serra = Serra::where('codice_utente', auth()->id())->pluck('longitudine')->first();
-                $nome_serra = Serra::where('codice_utente', auth()->id())->pluck('nome')->first();
-                $nickname_utente = User::where('codice_utente', auth()->id())->pluck('nickname')->first();
+                $lat_serra = Serra::where('id', auth()->id())->pluck('latitudine')->first();
+                $long_serra = Serra::where('id', auth()->id())->pluck('longitudine')->first();
+                $nome_serra = Serra::where('id', auth()->id())->pluck('nome')->first();
+                $nickname_utente = User::where('id', auth()->id())->pluck('nickname')->first();
 
                 Log::info("Not from cache");
                 $APIkey = "d2c909932430658a343ead2d18b1191f";
@@ -111,7 +111,7 @@ class SerraController extends Controller
         if(Auth::user()){
 
 
-            $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+            $serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
 
             if($serra == null){
                 return view('serra.create');
@@ -140,13 +140,13 @@ class SerraController extends Controller
         ]);
 
         Serra::create([
-            'codice_utente' => auth()->id(),
+            'id' => auth()->id(),
             'nome'          => $validateData['nome'],
             'latitudine'    => $validateData['latitudine'],
             'longitudine'   => $validateData['longitudine'],
             'capienza'      => $validateData['capienza'],
         ]);
-        $serra = Serra::where('codice_utente', auth()->id())->first();
+        $serra = Serra::where('id', auth()->id())->first();
         $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
         $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
         $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
@@ -156,26 +156,26 @@ class SerraController extends Controller
 
         $num_collaborazioni = Collabora::where('codice_serra', $serra->serra)->count();
         $collaboratori = DB::table('users')
-                        ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
+                        ->join('collabora', 'users.id', '=', 'collabora.id')
                         ->pluck('nickname');
 
-        $codice_utente = auth()->id();
+        $id = auth()->id();
         $serre_condivise = DB::table('collabora')
                         ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
-                        ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')
-                        ->where('collabora.codice_utente', $codice_utente)
+                        ->join('users', 'serra.id', '=', 'users.id')
+                        ->where('collabora.id', $id)
                         ->get();
 
-        $lat_serra = Serra::where('codice_utente', auth()->id())->pluck('latitudine')->first();
-        $long_serra = Serra::where('codice_utente', auth()->id())->pluck('longitudine')->first();
-        $nome_serra = Serra::where('codice_utente', auth()->id())->pluck('nome')->first();
-        $nickname_utente = User::where('codice_utente', auth()->id())->pluck('nickname')->first();
+        $lat_serra = Serra::where('id', auth()->id())->pluck('latitudine')->first();
+        $long_serra = Serra::where('id', auth()->id())->pluck('longitudine')->first();
+        $nome_serra = Serra::where('id', auth()->id())->pluck('nome')->first();
+        $nickname_utente = User::where('id', auth()->id())->pluck('nickname')->first();
 
-        $codice_utente = auth()->id();
+        $id = auth()->id();
         $serre_condivise = DB::table('collabora')
                 ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
-                ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')
-                ->where('collabora.codice_utente', $codice_utente)
+                ->join('users', 'serra.id', '=', 'users.id')
+                ->where('collabora.id', $id)
                 ->get();
 
 
@@ -304,7 +304,7 @@ class SerraController extends Controller
                 $validator->errors()->add('email', 'è stato già inviato un invito a questo indirizzo!');
             }
             $email = $request->input('email');
-            $cod_collaboratore = User::where('email', $email)->pluck('codice_utente')->first();
+            $cod_collaboratore = User::where('email', $email)->pluck('id')->first();
             if($cod_collaboratore == null){
                 $validator->errors()->add('email', 'non è presente sulla nostra piattaforma');
                 return redirect()->route('serra.index');
@@ -320,11 +320,11 @@ class SerraController extends Controller
         } while (Invito::where('token', $token)->first());
 
         $email = $request->input('email');
-        $cod_collaboratore = User::where('email', $email)->pluck('codice_utente')->first();
-        $serra = Serra::where('codice_utente', auth()->id())->first();
+        $cod_collaboratore = User::where('email', $email)->pluck('id')->first();
+        $serra = Serra::where('id', auth()->id())->first();
 
             Collabora::create([
-                'codice_utente'  => $cod_collaboratore,
+                'id'  => $cod_collaboratore,
                 'codice_serra'   => $serra->codice_serra
             ]);
 
@@ -332,7 +332,7 @@ class SerraController extends Controller
             'token' => $token,
             'email' => $request->input('email'),
             'codice_serra' => $serra,
-            'codice_utente' => $cod_collaboratore
+            'id' => $cod_collaboratore
         ]);
         $url = URL::temporarySignedRoute(
 
@@ -348,7 +348,7 @@ class SerraController extends Controller
     {
             $codice_serra = Invito::where('token', $token)->pluck('codice_serra')->first();
             $email = Invito::where('token', $token)->pluck('email')->first();
-            $cod_collaboratore = Invito::where('token', $token)->pluck('codice_utente')->first();
+            $cod_collaboratore = Invito::where('token', $token)->pluck('id')->first();
             if($cod_collaboratore == 0){
                 $invito = Invito::where('token', $token)->first();
                 $invito->delete();
@@ -383,20 +383,20 @@ class SerraController extends Controller
 
                 $num_collaborazioni = Collabora::where('codice_serra', $serra)->count();
                 $collaboratori = DB::table('users')
-                        ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
+                        ->join('collabora', 'users.id', '=', 'collabora.id')
                         ->pluck('nickname');
 
-                $codice_utente = Serra::where('codice_serra', $serra->codice_serra)->pluck('codice_utente')->first();
+                $id = Serra::where('codice_serra', $serra->codice_serra)->pluck('id')->first();
                 $serre_condivise = DB::table('collabora')
                         ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
-                        ->join('users', 'serra.codice_utente', '=', 'users.codice_utente')
-                        ->where('collabora.codice_utente', $codice_utente)
+                        ->join('users', 'serra.id', '=', 'users.id')
+                        ->where('collabora.id', $id)
                         ->get();
 
-                $lat_serra = Serra::where('codice_utente', $codice_utente)->pluck('latitudine')->first();
-                $long_serra = Serra::where('codice_utente', $codice_utente)->pluck('longitudine')->first();
-                $nome_serra = Serra::where('codice_utente', $codice_utente)->pluck('nome')->first();
-                $nickname_utente = User::where('codice_utente', Auth()->id())->pluck('nickname')->first();
+                $lat_serra = Serra::where('id', $id)->pluck('latitudine')->first();
+                $long_serra = Serra::where('id', $id)->pluck('longitudine')->first();
+                $nome_serra = Serra::where('id', $id)->pluck('nome')->first();
+                $nickname_utente = User::where('id', Auth()->id())->pluck('nickname')->first();
 
                 Log::info("Not from cache");
                 $APIkey = "d2c909932430658a343ead2d18b1191f";

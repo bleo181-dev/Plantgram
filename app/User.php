@@ -19,7 +19,7 @@ class User extends Authenticatable
         'nickname', 'email', 'password', 'foto', 'admin'
     ];
 
-    protected $primaryKey = 'codice_utente';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that should be hidden for arrays.

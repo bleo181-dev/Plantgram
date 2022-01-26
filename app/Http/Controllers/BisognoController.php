@@ -55,7 +55,7 @@ class BisognoController extends Controller
         ]);
 
         Evento::create([
-            'codice_utente'    => auth()->id(),
+            'id'    => auth()->id(),
             'codice_bisogno'   => $var->codice_bisogno,
             'codice_pianta'    => $request->codice_pianta,
             'nome'             => $validateData['nome'],

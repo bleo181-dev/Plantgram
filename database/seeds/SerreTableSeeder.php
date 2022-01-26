@@ -13,7 +13,7 @@ class SerreTableSeeder extends Seeder
     public function run()
     {
         Serra::create([
-            'codice_utente' => '1', 
+            'id' => '1', 
             'nome'          => 'Bamba', 
             'capienza'      => '15', 
             'latitudine'    => '0.0', 

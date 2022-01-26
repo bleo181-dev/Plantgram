@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => '50001ef07983678f90c85287887ba5876325a3a6',
+    'reference' => '804caf1b00098cb529cbb7a42a8c1405d5b2f8f2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -48,6 +48,15 @@ class InstalledVersions
       array (
         0 => '*',
       ),
+    ),
+    'devdojo/chatter' => 
+    array (
+      'pretty_version' => '0.2.7',
+      'version' => '0.2.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ca1b4d6e76dacbd77867d046f9bdcca0b6a75f61',
     ),
     'dnoegel/php-xdg-base-dir' => 
     array (
@@ -138,6 +147,15 @@ class InstalledVersions
       array (
       ),
       'reference' => '848d8125239d7dbf8ab25cb7f054f1a630e68c2e',
+    ),
+    'graham-campbell/markdown' => 
+    array (
+      'pretty_version' => 'v13.1.2',
+      'version' => '13.1.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '275f96e5b1a2f86f3239eb2c2c5262790725f4ba',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -410,6 +428,15 @@ class InstalledVersions
       ),
       'reference' => '103df9fafbeeac620305874d54a01288c6f1586b',
     ),
+    'laravel/helpers' => 
+    array (
+      'pretty_version' => 'v1.5.0',
+      'version' => '1.5.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c28b0ccd799d58564c41a62395ac9511a1e72931',
+    ),
     'laravel/laravel' => 
     array (
       'pretty_version' => 'dev-main',
@@ -417,7 +444,7 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => '50001ef07983678f90c85287887ba5876325a3a6',
+      'reference' => '804caf1b00098cb529cbb7a42a8c1405d5b2f8f2',
     ),
     'laravel/tinker' => 
     array (

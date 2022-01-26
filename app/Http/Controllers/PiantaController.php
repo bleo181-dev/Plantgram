@@ -61,7 +61,7 @@ class PiantaController extends Controller
             'stato'        => 'required'
         ]);
 
-        $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+        $serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
 
         /* Ottengo le informazioni sull'immagine originale
         list($width, $height, $type, $attr) = getimagesize($_SERVER['DOCUMENT_ROOT'].'/foto/mydog.jpg');
@@ -96,7 +96,7 @@ class PiantaController extends Controller
     {
         $pianta=Pianta::find($id);
         $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
-        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('codice_utente')->toArray();
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
 
             if(Auth::user()->admin){
@@ -172,7 +172,7 @@ class PiantaController extends Controller
                 return view('pianta.show', compact('pianta','diario','eventi','serra','ev','bis','year', 'bisogni'));
             }else if(Auth::user()){
 
-                $cod_serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $cod_serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
 
                 //-------------Si verifica se la pianta è posseduta realmente dall'utente-------------
                 $pianta = Pianta::where('codice_pianta', '=', $id)
@@ -187,7 +187,7 @@ class PiantaController extends Controller
                 $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
 
                 $diario = Diario::where('codice_pianta',$id)
-                                //->where('codice_utente','=', auth()->id())
+                                //->where('id','=', auth()->id())
                                 ->get();
 
                 $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
@@ -245,7 +245,7 @@ class PiantaController extends Controller
 
             }elseif(Auth::user()){
 
-                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
                 $pianta = Pianta::where('codice_pianta', '=', $id)
                                 ->where('codice_serra', '=', $serra)
                                 ->get()->first();
@@ -285,7 +285,7 @@ class PiantaController extends Controller
             if(Auth::user()->admin){
                 $pianta = Pianta::find($id);
             }else{
-                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
                     $pianta = Pianta::where('codice_pianta', '=', $id)
                                     ->where('codice_serra', '=', $serra)
                                     ->get()->first();
@@ -320,7 +320,7 @@ class PiantaController extends Controller
                             ->delete();
                 return redirect()->route('pianta.index');
             }else{
-                $serra = Serra::where('codice_utente', auth()->id())->pluck('codice_serra')->first();
+                $serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
                 $pianta = Pianta::where('codice_pianta', '=', $id)
                                 ->where('codice_serra', '=', $serra)
                                 ->delete();

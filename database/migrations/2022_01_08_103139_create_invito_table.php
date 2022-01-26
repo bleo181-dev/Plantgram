@@ -18,7 +18,7 @@ class CreateInvitoTable extends Migration
             $table->string('email')->unique();
             $table->string('token', 20)->unique();
             $table->unsignedBigInteger('codice_serra');
-            $table->unsignedBigInteger('codice_utente');
+            $table->unsignedBigInteger('id');
             $table->timestamps();
         });
     }

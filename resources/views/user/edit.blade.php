@@ -20,7 +20,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ URL::action('UserController@update', $user->codice_utente) }}"  enctype="multipart/form-data">
+                    <form method="POST" action="{{ URL::action('UserController@update', $user->id) }}"  enctype="multipart/form-data">
                         {{ csrf_field() }}
                         @method('PATCH')
 

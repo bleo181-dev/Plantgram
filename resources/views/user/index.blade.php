@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach($users as $i)
                                 <tr>
-                                    <td>{{ $i->codice_utente }}</td>
+                                    <td>{{ $i->id }}</td>
                                     <td>{{ $i->nickname }}</td>
                                     <td>{{ $i->email }}</td>
                                     <td>
@@ -42,10 +42,10 @@
                                     </td>
                                     <td>{{ $i->admin }}</td>
                                     <td>
-                                        <a href="{{ URL::action('UserController@edit', $i->codice_utente) }}" class="btn btn-primary" > Modifica </a>
-                                        <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->codice_utente}}').submit();" class="btn btn-danger"> Elimina </a>
+                                        <a href="{{ URL::action('UserController@edit', $i->id) }}" class="btn btn-primary" > Modifica </a>
+                                        <a href="{{ route('pianta.index') }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$i->id}}').submit();" class="btn btn-danger"> Elimina </a>
                                     </td>
-                                    <form id="delete-form-{{$i->codice_utente}}" action="{{ URL::action('UserController@destroy', $i->codice_utente) }}" method="POST">
+                                    <form id="delete-form-{{$i->id}}" action="{{ URL::action('UserController@destroy', $i->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         @method('DELETE')
                                     </form>

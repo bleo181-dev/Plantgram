@@ -8,5 +8,5 @@ class Collabora extends Model
 {
     protected $primaryKey = 'codice_collaborazione';
     protected $table = 'collabora';
-    protected $fillable = ['codice_utente', 'codice_serra'];
+    protected $fillable = ['id', 'codice_serra'];
 }

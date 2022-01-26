@@ -15,7 +15,7 @@ class CreateCollaboraTable extends Migration
     {
         Schema::create('collabora', function (Blueprint $table) {
             $table->bigIncrements('codice_collaborazione');
-            $table->unsignedBigInteger('codice_utente');
+            $table->unsignedBigInteger('id');
             $table->unsignedBigInteger('codice_serra');
             $table->timestamps();
 
