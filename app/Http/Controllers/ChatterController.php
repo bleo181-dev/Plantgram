@@ -1,6 +1,5 @@
 <?php
 
-namespace DevDojo\Chatter\Controllers;
 namespace App\Http\Controllers;
 
 

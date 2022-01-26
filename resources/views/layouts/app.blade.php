@@ -63,6 +63,10 @@
                                 <a class="nav-link" href="{{ URL::action('SerraController@index')}}">{{ __('Serra') }}</a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::action('ChatterController@index')}}">{{ __('Forum del vicinato') }}</a>
+                            </li>
+
                         @endif
 
                     </ul>

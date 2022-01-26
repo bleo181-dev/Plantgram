@@ -1,4 +1,4 @@
-@extends('layouts.app_lending')
+@extends('layouts.app_landing')
 
 @section('content')
 <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
