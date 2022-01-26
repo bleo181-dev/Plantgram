@@ -33,7 +33,6 @@
                 @if(auth()->id() == $serra->id)
                         <!-- Aggiungi collaboratore -->
                         <a href="{{ URL::action('SerraController@collab') }}" > <img src="{{ asset('immagini/share.png') }}"> </a>
-                        <button name="num_collab" type="button" class="btn btn-primary" onclick="fetch_data()"> agg.collaboratori </button>
 
                         <!-- collaboratori -->
 
@@ -137,23 +136,29 @@
 </div>
 
 <script>
+    var oldLength = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
 
 function fetch_data(){
+
             $.ajax({
                 url:"/collabora/fetch_data",
                 dataType:"json",
                 success:function(data){
                     var html = '';
 
-
                     for(var count=0; count < data.length; count++){
                             html += '<p class="dropdown-item" style="pointer-events: none;">'+data[count].nickname;
                             html += '<button id="'+count+'" name="btn_a"type = "submit" style="background: none; border: none; width: 10px;"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
                             html += '<input type="hidden" name="cod_coll" id="cod_coll" value="'+data[count].codice_collaborazione+'"></p>';
                     }
-                    document.getElementById("collab").innerHTML = html;
-                    document.getElementById("num_collab").innerHTML = data.length;
-                    console.log("funzionaaa   "+ html);
+                    if(oldLength != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
+                        document.getElementById("collab").innerHTML = html;
+                        document.getElementById("num_collab").innerHTML = data.length;
+                        console.log('Aggiorno: Elementi variati');
+                        oldLength = data.length;
+
+                    }
+
                 }
             });
         }
@@ -161,10 +166,9 @@ function fetch_data(){
     $(document).ready(function(){
 
         fetch_data();
-
-
-
-
+        setInterval(fetch_data, (4 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
+        console.log('Intervallo di aggiornamento settato!');
     });
+
 </script>
 @endsection
