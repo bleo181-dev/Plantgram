@@ -44,7 +44,7 @@ class SerraController extends Controller
                                 ->unique('nome');
                     $eventi = $eventi->merge($evento);
                 }
-                
+
                 $dataoggi = strtotime(date('Y-m-d H:i:s'));
                 $delta = strtotime($eventi);
                 $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
@@ -53,7 +53,7 @@ class SerraController extends Controller
                 $collaboratori = DB::table('users')
                         ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
                         ->where('codice_serra', $serra->codice_serra)
-                        ->pluck('nickname');
+                        ->get();
 
                 $codice_utente = auth()->id();
                 $serre_condivise = DB::table('collabora')

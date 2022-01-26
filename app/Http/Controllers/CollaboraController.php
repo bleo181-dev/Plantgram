@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Collabora;
+use App\Serra;
+use Collator;
 
 class CollaboraController extends Controller
 {
@@ -22,6 +26,26 @@ class CollaboraController extends Controller
                 ->where('collabora.codice_utente', $codice_utente)
                 ->get();
         return view('collabora.index', compact('serre_condivise'));
+    }
+
+    public function fetch_data(Request $request){
+
+        if($request->ajax())
+        {
+            //$data = Collabora::all();
+            $serra = Serra::where('codice_utente', auth()->id())->first();
+            $data = DB::table('users')
+                        ->join('collabora', 'users.codice_utente', '=', 'collabora.codice_utente')
+                        ->where('codice_serra', $serra->codice_serra)
+                        ->select('codice_collaborazione', 'nickname')
+                        ->get();
+            return json_encode($data);
+        }
+
+
+
+
+
     }
 
     /**
@@ -79,6 +103,8 @@ class CollaboraController extends Controller
         //
     }
 
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -87,6 +113,29 @@ class CollaboraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Auth::user()){
+            if(Auth::user()->admin){
+                $collaborazione = Collabora::where('codice_collaborazione', $id)
+                                            ->delete();
+                return response()->json([
+                    'success' => 'Record has been deleted successfully!'
+                ]);
+            }else{
+                $serra_proprietario = DB::table('users')
+                                        ->join('serra', 'users.codice_utente', '=', 'serra.codice_utente')
+                                        ->where('users.codice_utente', auth()->id())
+                                        ->pluck('codice_serra');
+                $collaborazione = Collabora::where('codice_collaborazione', $id)->pluck('codice_serra');
+                Collabora::where('codice_collaborazione', '=', $id)
+                            ->where($serra_proprietario , '=', $collaborazione)
+                            ->delete();
+                return response()->json([
+                    'success' => 'Record has been deleted successfully!'
+                ]);
+            }
+
+        }
+
+
     }
 }

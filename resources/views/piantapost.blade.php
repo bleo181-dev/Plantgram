@@ -46,21 +46,21 @@
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
 
-                        <button type = "submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}" border="0" class="icone"></button>
-                        <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}" border="0" class="icone"></a>
+                        <button type = "submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                        <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
 
 
                     <br>
                     <br>
                 </form>
 
-            <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/diario.png') }}" border="0" class="icone"></a>
+            <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/diario.png') }}" class="icone"></a>
 
-            <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/bisogni.png') }}" border="0" class="icone"> </a>
+            <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/bisogni.png') }}" class="icone"> </a>
 
-            <a href="{{ URL::action('EventoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/eventi.png') }}" border="0" class="icone"> </a>
+            <a href="{{ URL::action('EventoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/eventi.png') }}" class="icone"> </a>
 
-            <a href="{{ URL::action('PiantaController@show', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/visualizza.png') }}" border="0" class="icone"> </a>
+            <a href="{{ URL::action('PiantaController@show', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/visualizza.png') }}" class="icone"> </a>
       </div>
     </div>
 </div>

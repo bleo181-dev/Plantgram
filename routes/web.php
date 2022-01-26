@@ -31,7 +31,9 @@ Route::resource('serra', 'SerraController');
 
 Route::resource('user', 'UserController');
 
+Route::get('/collabora/fetch_data', 'CollaboraController@fetch_data');
 Route::resource('collabora', 'CollaboraController');
+
 
 Route::get('/bisogno/{codice_pianta}', 'BisognoController@index')->name('bisogno.index');
 Route::get('/bisogno/{codice_pianta}/create', 'BisognoController@create');
@@ -49,4 +51,7 @@ Route::put('/diario/{id}/update', 'DiarioController@update');
 
 Route::get('/evento/{id}', 'EventoController@index');
 Route::put('/evento/{id}/store', 'EventoController@store');
+
+
+
 
