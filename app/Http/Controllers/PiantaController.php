@@ -105,7 +105,10 @@ class PiantaController extends Controller
                 $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
                 $diario = Diario::where('codice_pianta',$id)->get();
                 $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
-                                ->where('evento.codice_pianta', $id)->get();
+                                ->where('evento.codice_pianta', $id)
+                                ->orderBy('data', 'desc')
+                                ->get()
+                                ->unique('nome');
 
                 $bisogni = Bisogno::where('codice_pianta', $id)->get();
 
