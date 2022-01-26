@@ -33,26 +33,20 @@
                 @if(auth()->id() == $serra->codice_utente)
                         <!-- Aggiungi collaboratore -->
                         <a href="{{ URL::action('SerraController@collab') }}" > <img src="{{ asset('immagini/share.png') }}"> </a>
+                        <button name="num_collab" type="button" class="btn btn-primary" onclick="fetch_data()"> agg.collaboratori </button>
 
                         <!-- collaboratori -->
 
                         <div class="btn-group">
                             <button name="num_collab" type="button" class="btn btn-primary" style="pointer-events: none;">
-                                Collaboratori <span class="badge badge-light">{{$num_collaborazioni}}</span>
+                                Collaboratori <span id="num_collab" class="badge badge-light"><!-- num collaboratori tramite ajax --></span>
                             </button>
                             <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
-                            <div name="collab" class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <div id="collab" class="dropdown-menu" aria-labelledby="dropdownMenuReference">
                                 <!-- <a class="dropdown-item" href="#">Action</a> -->
-                                <?php $i=0; ?>
-                                @foreach($collaboratori as $c)
-                                    <p class="dropdown-item" style="pointer-events: none;">{{$c->nickname}}
-                                        <button id="{{$i}}" name="btn_{{$i}}"type = "submit" style="background: none; border: none; width: 10px;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
-                                        <input type="hidden" name="cod_coll" id="cod_coll" value="{{$c->codice_collaborazione}}">
-                                    </p>
-                                    <?php $i ++;; ?>
-                                @endforeach
+                                <!-- qui verranno aggiunti i collaboratori tramite ajax -->
                             </div>
                         </div>
                         <!-- _________________ -->
@@ -144,32 +138,33 @@
 
 <script>
 
-    $(document).ready(function(){
-
-        fetch_data();
-
-        function fetch_data(){
+function fetch_data(){
             $.ajax({
                 url:"/collabora/fetch_data",
                 dataType:"json",
                 success:function(data){
-                   /* var html = '';
-                    html += '<tr>';
-                    html += '<td contenteditable id="first_name"></td>';
-                    html += '<td contenteditable id="last_name"></td>';
-                    html += '<td><button type="button" class="btn btn-success btn-xs" id="add">Add</button></td></tr>';
+                    var html = '';
+
+
                     for(var count=0; count < data.length; count++){
-                            html +='<tr>';
-                            html +='<td contenteditable class="column_name" data-column_name="first_name" data-id="'+data[count].id+'">'+data[count].first_name+'</td>';
-                            html += '<td contenteditable class="column_name" data-column_name="last_name" data-id="'+data[count].id+'">'+data[count].last_name+'</td>';
-                            html += '<td><button type="button" class="btn btn-danger btn-xs delete" id="'+data[count].id+'">Delete</button></td></tr>';
+                            html += '<p class="dropdown-item" style="pointer-events: none;">'+data[count].nickname;
+                            html += '<button id="'+count+'" name="btn_a"type = "submit" style="background: none; border: none; width: 10px;"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
+                            html += '<input type="hidden" name="cod_coll" id="cod_coll" value="'+data[count].codice_collaborazione+'"></p>';
                     }
-                    */
-                    //document.getElementById("collab").innerHTML = "html";
-                    console.log("funzionaaa   "+ data[0].nickname);
+                    document.getElementById("collab").innerHTML = html;
+                    document.getElementById("num_collab").innerHTML = data.length;
+                    console.log("funzionaaa   "+ html);
                 }
             });
         }
+
+    $(document).ready(function(){
+
+        fetch_data();
+
+
+
+
     });
 </script>
 @endsection
