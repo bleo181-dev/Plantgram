@@ -23,6 +23,7 @@ Route::get('/', 'LandingpageController@index')->name('index');
 
 Route::resource('pianta', 'PiantaController');
 
+Route::get('/serra/fetch_data_serre', 'SerraController@fetch_data_serre');
 Route::get('serra/share/{codice_serra}', 'SerraController@indexserrashare');
 Route::get('serra/collab', 'SerraController@collab')->name('invito_view');
 Route::post('serra/process_collab', 'SerraController@process_collab');

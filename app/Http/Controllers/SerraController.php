@@ -18,6 +18,7 @@ use App\Pianta;
 use App\User;
 use App\Invito;
 use App\Collabora;
+use Collator;
 
 class SerraController extends Controller
 {
@@ -93,6 +94,22 @@ class SerraController extends Controller
 
         }else {
             return view('/auth/login');
+        }
+    }
+
+
+    public function fetch_data_serre(Request $request){
+
+        if($request->ajax())
+        {
+            $id = auth()->id();
+            $data = Collabora::join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
+                        ->join('users', 'serra.id', '=', 'users.id')
+                        ->where('collabora.id', $id)
+                        ->select('serra.codice_serra','serra.nome', 'collabora.codice_collaborazione')
+                        ->get();
+            //$data=Collabora::all();
+            return json_encode($data);
         }
     }
 
@@ -300,9 +317,9 @@ class SerraController extends Controller
             'email' => 'required|email'
         ]);
         $validator->after(function ($validator) use ($request) {
-            if (Invito::where('email', $request->input('email'))->exists()) {
+            /*if (Invito::where('email', $request->input('email'))->exists()) {
                 $validator->errors()->add('email', 'è stato già inviato un invito a questo indirizzo!');
-            }
+            }*/
             $email = $request->input('email');
             $cod_collaboratore = User::where('email', $email)->pluck('id')->first();
             if($cod_collaboratore == null){

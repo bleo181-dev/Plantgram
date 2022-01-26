@@ -15,7 +15,7 @@ class CreateInvitoTable extends Migration
     {
         Schema::create('invito', function (Blueprint $table) {
             $table->bigIncrements('codice_invito');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('token', 20)->unique();
             $table->unsignedBigInteger('codice_serra');
             $table->unsignedBigInteger('id');

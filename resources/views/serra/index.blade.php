@@ -116,15 +116,7 @@
             @if(auth()->id() == $serra->id)
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-serra-share">
 
-                    @if(auth()->id() == $serra->id)
-
-                        <!-- <a href="{{ URL::action('CollaboraController@index') }}" class="btn btn-info" > Mostra serre a cui stai collaborando </a> -->
-
-                        @foreach($serre_condivise as $s)
-                            <a class="btn btn-secondary btn-lg btn-block" type="button" href="{{URL::action('SerraController@indexserrashare', $s->codice_serra)  }}">{{$s->nome}}</a>
-                        @endforeach
-
-                    @endif
+                    <!-- serre condivise con ajax -->
 
 
                 </div>
@@ -134,41 +126,71 @@
         {{ csrf_field() }}
     </div>
 </div>
+@if(auth()->id() == $serra->id)
+    <script>
+        var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
 
-<script>
-    var oldLength = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
+    function fetch_data_collab(){
 
-function fetch_data(){
+                $.ajax({
+                    url:"{{ asset("/collabora/fetch_data") }}",
+                    dataType:"json",
+                    success:function(data){
+                        var html = '';
 
-            $.ajax({
-                url:"/collabora/fetch_data",
-                dataType:"json",
-                success:function(data){
-                    var html = '';
+                        for(var count=0; count < data.length; count++){
+                                html += '<p class="dropdown-item" style="pointer-events: none;">'+data[count].nickname;
+                                html += '<button id="'+count+'" name="btn_a"type = "submit" style="background: none; border: none; width: 10px;"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
+                                html += '<input type="hidden" name="cod_coll" id="cod_coll" value="'+data[count].codice_collaborazione+'"></p>';
+                        }
+                        if(oldLength_collab != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
+                            document.getElementById("collab").innerHTML = html;
+                            document.getElementById("num_collab").innerHTML = data.length;
+                            console.log('Aggiorno: Elementi variati collaboratori');
+                            oldLength_collab = data.length;
 
-                    for(var count=0; count < data.length; count++){
-                            html += '<p class="dropdown-item" style="pointer-events: none;">'+data[count].nickname;
-                            html += '<button id="'+count+'" name="btn_a"type = "submit" style="background: none; border: none; width: 10px;"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
-                            html += '<input type="hidden" name="cod_coll" id="cod_coll" value="'+data[count].codice_collaborazione+'"></p>';
+                        }
+
                     }
-                    if(oldLength != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
-                        document.getElementById("collab").innerHTML = html;
-                        document.getElementById("num_collab").innerHTML = data.length;
-                        console.log('Aggiorno: Elementi variati');
-                        oldLength = data.length;
+                });
+            }
+
+            var oldLength_serre = -1;
+            function fetch_data_serre(){
+
+                $.ajax({
+                    url:"{{ asset("/serra/fetch_data_serre") }}",
+                    dataType:"json",
+                    success:function(data){
+
+                        var html_serre = '';
+
+                        for(var count=0; count < data.length; count++){
+                                html_serre += '<a class="btn btn-secondary btn-lg btn-block" type="button" href="{{ asset("serra/share/") }}/'+data[count].codice_serra+'">'+data[count].nome+'</a>';
+                        }
+
+                        if(oldLength_serre != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
+                            document.getElementById("pills-profile").innerHTML = html_serre;
+                            //document.getElementById("num_collab").innerHTML = data.length;
+                            console.log('Aggiorno: Elementi variati serre');
+                            oldLength_serre = data.length;
+
+                        }
 
                     }
+                });
+            }
 
-                }
-            });
-        }
+        $(document).ready(function(){
 
-    $(document).ready(function(){
+            fetch_data_collab();
+            fetch_data_serre();
+            setInterval(fetch_data_collab, (4 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
+            setInterval(fetch_data_serre, (4 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
+            console.log('Intervallo di aggiornamento settato!');
 
-        fetch_data();
-        setInterval(fetch_data, (4 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
-        console.log('Intervallo di aggiornamento settato!');
-    });
+        });
 
-</script>
+    </script>
+@endif
 @endsection
