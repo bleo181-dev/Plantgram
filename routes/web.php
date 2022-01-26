@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use App\Http\Controllers\CollaboraController;
 use App\Http\Controllers\PiantaController;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +50,12 @@ Route::put('/diario/{id}/update', 'DiarioController@update');
 
 Route::get('/evento/{id}', 'EventoController@index');
 Route::put('/evento/{id}/store', 'EventoController@store');
+
+Route::get('/forums', 'ChatterController@index');
+
+Route::delete('/forums/{id}', 'ChatterDiscussionController@destroy');
+Route::get('/forums/{id}', 'ChatterDiscussionController@index');
+
 
 
 

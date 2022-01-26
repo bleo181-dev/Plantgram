@@ -55,15 +55,16 @@
 		                			@if(!Auth::guest() && (Auth::user()->id == $post->user->id))
 		                				<div id="delete_warning_{{ $post->id }}" class="chatter_warning_delete">
 		                					<i class="chatter-warning"></i>Vuoi veramente cancellare il post?
-		                					<button class="btn btn-sm btn-danger pull-right delete_response">Si cancella</button>
-		                					<button class="btn btn-sm btn-default pull-right">No grazie</button>
+											<button class="btn btn-sm btn-default pull-right">No grazie</button>
+											<a href="{{ URL::action('ChatterDiscussionController@index', $post->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{$post->id}}').submit();" class="btn btn-sm btn-danger pull-right"> Elimina </a>
+		                					<form id="delete-form-{{$post->id}}" action="{{ URL::action('ChatterDiscussionController@destroy', $post->id) }}" method="POST">
+												{{ csrf_field() }}
+												@method('DELETE')
+											</form>
 		                				</div>
 			                			<div class="chatter_post_actions">
 			                				<p class="chatter_delete_btn">
 			                					<i class="chatter-delete"></i> Cancella
-			                				</p>
-			                				<p class="chatter_edit_btn">
-			                					<i class="chatter-edit"></i> Modifica
 			                				</p>
 			                			</div>
 			                		@endif
