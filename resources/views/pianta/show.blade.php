@@ -34,18 +34,9 @@
                     <br>
                     <hr>
                     <br>
-                    @foreach($bis as $y)
-                        {{$y}}
-                    @endforeach
-                    
-                    @foreach($ev as $e)
-                        {{$e->volte}}
-                        {{$e->month}}
-                    @endforeach
                 
                     @foreach($eventi as $evento)
                     <div class="row justify-content-center">
-                            
                         @foreach($bisogni as $bisogno)
                             @if($evento->codice_bisogno == $bisogno->codice_bisogno)
                                 <div class="progress w-75">
