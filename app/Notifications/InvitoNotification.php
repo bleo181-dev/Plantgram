@@ -39,10 +39,12 @@ class InvitoNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Salve!')
-            ->line('Questo è un invito per collaborare ad una serra su ' . config('app.name'))
-            ->action('Notification Action',$this->notification_url)
-            ->line('Grazie per aver usato la nostra piattaforma!');
+            ->from('progtecweb@gmail.com', 'Plantgram')
+            ->subject('Invito')
+            ->greeting('Congratulazioni!')
+            ->line('Ora sei un collaboratore di una serra su ' . config('app.name'))
+            ->action('Accedi per vedere',$this->notification_url)
+            ->line('Grazie per usare la nostra piattaforma!');
     }
     /**
      * Get the array representation of the notification.

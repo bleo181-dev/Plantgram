@@ -323,6 +323,9 @@ class SerraController extends Controller
             if (Collabora::where('codice_serra', $codice_serra)->where('id', $codice_collaboratore)->exists()) {
                 $validator->errors()->add('Collaboratore', 'Utente già collaboratore nella tua serra');
             }
+            if(User::where('id', auth()->id())->pluck('email')->first() == $email){
+                $validator->errors()->add('email', 'Non puoi essere collaboratore della tua stessa serra');
+            }
             if($codice_collaboratore == null){
                 $validator->errors()->add('email', 'non è presente sulla nostra piattaforma');
                 return redirect()->route('serra.index');
