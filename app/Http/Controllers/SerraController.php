@@ -317,12 +317,13 @@ class SerraController extends Controller
             'email' => 'required|email'
         ]);
         $validator->after(function ($validator) use ($request) {
-            /*if (Invito::where('email', $request->input('email'))->exists()) {
-                $validator->errors()->add('email', 'è stato già inviato un invito a questo indirizzo!');
-            }*/
+            $codice_serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
             $email = $request->input('email');
-            $cod_collaboratore = User::where('email', $email)->pluck('id')->first();
-            if($cod_collaboratore == null){
+            $codice_collaboratore = User::where('email', $email)->pluck('id')->first();
+            if (Collabora::where('codice_serra', $codice_serra)->where('id', $codice_collaboratore)->exists()) {
+                $validator->errors()->add('Collaboratore', 'Utente già collaboratore nella tua serra');
+            }
+            if($codice_collaboratore == null){
                 $validator->errors()->add('email', 'non è presente sulla nostra piattaforma');
                 return redirect()->route('serra.index');
             }
