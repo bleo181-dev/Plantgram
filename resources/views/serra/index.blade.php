@@ -121,16 +121,17 @@
 
                 </div>
             @endif
-
         </div>
         {{ csrf_field() }}
     </div>
 </div>
+
+
 @if(auth()->id() == $serra->id)
     <script>
-        var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
+            var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
 
-    function fetch_data_collab(){
+            function fetch_data_collab(){
 
                 $.ajax({
                     url:"{{ asset("/collabora/fetch_data") }}",
@@ -167,6 +168,13 @@
 
                         for(var count=0; count < data.length; count++){
                                 html_serre += '<a class="btn btn-secondary btn-lg btn-block" type="button" href="{{ asset("serra/share/") }}/'+data[count].codice_serra+'">'+data[count].nome+'</a>';
+                                html_serre += '<a class="btn btn-secondary btn-lg btn-block" type="button" href="{{ asset("serra/share/") }}/'+data[count].codice_serra+'">'+data[count].nome+'</a>';
+                                                <div class="btn-group w-100">
+                                                <button type="button" class="btn btn-secondary btn-lg btn-block">Reference</button>
+                                                <button type="button" class="btn btn-secondary">
+                                                <img src="{{ asset("immagini/delete.png") }}" class="icone">
+                                                </button>
+                                                </div>
                         }
 
                         if(oldLength_serre != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
