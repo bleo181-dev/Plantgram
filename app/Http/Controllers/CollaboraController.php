@@ -111,31 +111,16 @@ class CollaboraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function elimina(Request $request)
     {
-        if(Auth::user()){
-            if(Auth::user()->admin){
-                $collaborazione = Collabora::where('codice_collaborazione', $id)
-                                            ->delete();
-                return response()->json([
-                    'success' => 'Record has been deleted successfully!'
-                ]);
-            }else{
-                $serra_proprietario = DB::table('users')
-                                        ->join('serra', 'users.id', '=', 'serra.id')
-                                        ->where('users.id', auth()->id())
-                                        ->pluck('codice_serra');
-                $collaborazione = Collabora::where('codice_collaborazione', $id)->pluck('codice_serra');
-                Collabora::where('codice_collaborazione', '=', $id)
-                            ->where($serra_proprietario , '=', $collaborazione)
-                            ->delete();
-                return response()->json([
-                    'success' => 'Record has been deleted successfully!'
-                ]);
-            }
+        $input = $request->all();
+        $id = $input['id'];
+        Collabora::find($id)->delete();
+        return response()->json(['success' => 'OK', 'id-eliminato' => $id]);
 
-        }
+    }
 
-
+    public function destroy($id){
+        //destroy
     }
 }
