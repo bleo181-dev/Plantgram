@@ -122,9 +122,20 @@
                 </div>
             @endif
         </div>
-        {{ csrf_field() }}
+
+        <input type="hidden" name="_token" id="_token" value="{{ csrf_token()}}">
     </div>
 </div>
+
+<!-- Modal -->
+<div id="modal">
+
+</div>
+
+<div id="modal2">
+
+</div>
+<!--endmodal-->
 
 
 @if(auth()->id() == $serra->id)
@@ -138,15 +149,33 @@
                     dataType:"json",
                     success:function(data){
                         var html = '';
+                        var modal = '';
 
                         for(var count=0; count < data.length; count++){
                                 html += '<p class="dropdown-item" style="pointer-events: none;">'+data[count].nickname;
-                                html += '<button id="'+count+'" name="btn_a"type = "submit" style="background: none; border: none; width: 10px;"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
-                                html += '<input type="hidden" name="cod_coll" id="cod_coll" value="'+data[count].codice_collaborazione+'"></p>';
+                                html += '<button id="'+count+'" name="btn_a"type = "submit" style="pointer-events: fill; background: none; border: none; width: 10px;" data-toggle="modal" data-target="#staticBackdrop'+data[count].codice_collaborazione+'"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
+
+                                modal += '<div class="modal fade" id="staticBackdrop'+data[count].codice_collaborazione+'" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
+                                modal += '<div class="modal-dialog">';
+                                modal += '<div class="modal-content">';
+                                modal += '<div class="modal-header">';
+                                modal += '<h5 class="modal-title" id="staticBackdropLabel"></h5>';
+                                modal += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+                                modal += '<span aria-hidden="true">&times;</span></button>';
+                                modal += '</div>';
+                                modal += '<div class="modal-body">';
+                                modal += 'Sei sicuro di voler eliminare il collaboratore '+data[count].nickname+'?</div>';
+                                modal += '<div class="modal-footer">';
+                                modal += '<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>';
+                                modal += '<form action="" method="POST" class="col-md-2">';
+                                modal += '<input type="hidden" name="nome" value="">';
+                                modal += '<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="destroy_collaboratore('+data[count].codice_collaborazione+')">Si</button></form></div></div></div></div>';
+
                         }
                         if(oldLength_collab != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
                             document.getElementById("collab").innerHTML = html;
                             document.getElementById("num_collab").innerHTML = data.length;
+                            document.getElementById("modal2").innerHTML = modal;
                             console.log('Aggiorno: Elementi variati collaboratori');
                             oldLength_collab = data.length;
 
@@ -165,21 +194,34 @@
                     success:function(data){
 
                         var html_serre = '';
+                        var modal = '';
 
                         for(var count=0; count < data.length; count++){
-                                html_serre += '<a class="btn btn-secondary btn-lg btn-block" type="button" href="{{ asset("serra/share/") }}/'+data[count].codice_serra+'">'+data[count].nome+'</a>';
-                                html_serre += '<a class="btn btn-secondary btn-lg btn-block" type="button" href="{{ asset("serra/share/") }}/'+data[count].codice_serra+'">'+data[count].nome+'</a>';
-                                                <div class="btn-group w-100">
-                                                <button type="button" class="btn btn-secondary btn-lg btn-block">Reference</button>
-                                                <button type="button" class="btn btn-secondary">
-                                                <img src="{{ asset("immagini/delete.png") }}" class="icone">
-                                                </button>
-                                                </div>
+                                html_serre += '<div class="btn-group w-100">';
+                                html_serre += '<a class="btn btn-primary btn-lg btn-block" type="button" href="{{ asset("serra/share/") }}/'+data[count].codice_serra+'">'+data[count].nome+'</a>';
+                                html_serre += '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop'+data[count].codice_collaborazione+'">';
+                                html_serre += '<img src="{{ asset("immagini/delete.png") }}" class="icone"></button></div><br><br>';
+
+                                modal += '<div class="modal fade" id="staticBackdrop'+data[count].codice_collaborazione+'" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
+                                modal += '<div class="modal-dialog">';
+                                modal += '<div class="modal-content">';
+                                modal += '<div class="modal-header">';
+                                modal += '<h5 class="modal-title" id="staticBackdropLabel"></h5>';
+                                modal += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+                                modal += '<span aria-hidden="true">&times;</span></button>';
+                                modal += '</div>';
+                                modal += '<div class="modal-body">';
+                                modal += 'Sei sicuro di voler più collaborare con la serra '+data[count].nome+'?</div>';
+                                modal += '<div class="modal-footer">';
+                                modal += '<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>';
+                                modal += '<form action="" method="POST" class="col-md-2">';
+                                modal += '<input type="hidden" name="nome" value="">';
+                                modal += '<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="destroy_collaboratore('+data[count].codice_collaborazione+')">Si</button></form></div></div></div></div>';
                         }
 
                         if(oldLength_serre != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
                             document.getElementById("pills-profile").innerHTML = html_serre;
-                            //document.getElementById("num_collab").innerHTML = data.length;
+                            document.getElementById("modal").innerHTML = modal;
                             console.log('Aggiorno: Elementi variati serre');
                             oldLength_serre = data.length;
 
@@ -189,6 +231,38 @@
                 });
             }
 
+            function destroy_collaboratore(id){
+                console.log('Elimino: Codice_collab-'+id);
+                var _token = $('#_token').val();
+                console.log('token: '+_token);
+                if(id != null){
+                    $.ajax({
+                        url: "{{ asset("/collabora/elimina") }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {'id' : id, '_token' : _token},
+                        success: function(data){
+                            console.log(data);
+                            if(data.success === 'OK'){
+                                fetch_data_collab();
+                                fetch_data_serre();
+                                console.log("aggiorno dopo elimina");
+                            }
+
+
+                        },
+                        error: function(response, stato){
+                            console.log(stato);
+                        }
+                    });
+                }
+
+            }
+
+            function destroy_collaborazione(){
+
+
+            }
         $(document).ready(function(){
 
             fetch_data_collab();
