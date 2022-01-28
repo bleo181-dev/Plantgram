@@ -42,15 +42,24 @@ class BisognoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $id)
-    {
-        $validateData = $request->validate([ 
-            'nome'           => 'required|max:100', 
-            'cadenza'        => 'required'
-        ]);                     
+    {   
+        if($request->custom == null){
+            $validateData = $request->validate([ 
+                'tipologia'      => 'required|max:100',
+                'cadenza'        => 'required'
+            ]);  
+            $nome = $validateData['tipologia'];
+        }else{
+            $validateData = $request->validate([ 
+                'custom'          => 'required|max:100',
+                'cadenza'        => 'required'
+            ]);  
+            $nome = $validateData['custom'];
+        }
 
         $var = Bisogno::create([
             'codice_pianta'   => $request->codice_pianta,
-            'nome'            => $validateData['nome'],
+            'nome'            => $nome,
             'cadenza'         => ($validateData['cadenza'])*86400,
         ]);
 
@@ -58,7 +67,7 @@ class BisognoController extends Controller
             'id'    => auth()->id(),
             'codice_bisogno'   => $var->codice_bisogno,
             'codice_pianta'    => $request->codice_pianta,
-            'nome'             => $validateData['nome'],
+            'nome'             => $nome,
             'data'             => $var->created_at,
         ]);
 
@@ -97,15 +106,24 @@ class BisognoController extends Controller
      */
     public function update(Request $request, $codice_bisogno)
     {
-        $validateData = $request->validate([
-            'nome'           => 'required|max:100', 
-            'cadenza'        => 'required'
-        ]);
+        if($request->custom == null){
+            $validateData = $request->validate([ 
+                'nome'      => 'required|max:100',
+                'cadenza'        => 'required'
+            ]);  
+            $nome = $validateData['nome'];
+        }else{
+            $validateData = $request->validate([ 
+                'custom'          => 'required|max:100',
+                'cadenza'        => 'required'
+            ]);  
+            $nome = $validateData['custom'];
+        }
 
         $bisogno = Bisogno::find($codice_bisogno); 
 
         $bisogno->codice_pianta = $request->codice_pianta;
-        $bisogno->nome = $request->nome; 
+        $bisogno->nome = $nome; 
         $bisogno->cadenza = ($request->cadenza)*86400;
 
         $bisogno->save();

@@ -28,7 +28,7 @@ class EventoController extends Controller
     public function store(Request $request, $id)
     {
         $validateData = $request->validate([
-            'nome'          => 'required|max:100'
+            'nome'          => 'max:100'
         ]);
 
         $input = $request->all();

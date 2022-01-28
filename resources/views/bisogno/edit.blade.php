@@ -44,6 +44,11 @@
                             <label class="btn btn-custom-potatura {{ $bisogno->nome == 'potatura' ? '' : 'disabled'}}">
                                 <input type="radio" name="nome" id="s5" autocomplete="off" value="potatura" {{ $bisogno->nome == 'potatura' ? 'checked' : 'disabled'}}> Potatura
                             </label>
+                            <label class="btn btn-custom-custom {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? '' : 'disabled'}}" >
+                                <input type="radio"  id="s6" autocomplete="off" {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? 'checked' : ''}}> Custom
+                            </label>
+                            <input type="text" name="custom" value="{{ $bisogno->nome }}" placeholder="Inserisci tipologia qui" id="popup" class="{{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? '' : 'hide'}}" 
+                            {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? 'readonly' : ''}} >
                         </div>
                         
                         <br>
@@ -59,4 +64,11 @@
         </div>
     </div>
 </div>
+<script>
+    function clickMe() {
+    var text = document.getElementById("popup");
+    text.classList.toggle("hide");
+    text.classList.toggle("show");
+    }
+</script>
 @endsection

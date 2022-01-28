@@ -11213,6 +11213,63 @@ a.text-dark:focus {
   background-color: #000;
 }
 
+.btn-custom-custom {
+  background-color: #fff ;
+  background-repeat: repeat-x;
+  border-color: hsl(126, 41%, 42%);
+  color: hsl(126, 36%, 36%) ;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-custom-custom.disabled,
+.btn-custom-custom:disabled {
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
+.btn-custom-custom.disabled:hover,
+.btn-custom-custom:disabled:hover {
+  color: #ff0000;
+  background-color: #fff ;
+  border-color: #ff0000;
+}
+
+.btn-custom-custom:hover {
+  color: #fff;
+  background-color: #3F7970 ;
+  border-color: hsl(126, 36%, 36%) ;
+}
+
+.btn-custom-custom:focus,
+.btn-custom-custom.focus {
+  color: #000;
+  border-color:  hsl(126, 41%, 42%);
+  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+}
+
+.btn-custom-custom:not(:disabled):not(.disabled):active,
+.btn-custom-custom:not(:disabled):not(.disabled).active,
+.show > .btn-custom-custom.dropdown-toggle {
+  color: #fff;
+  background-color:  #3F7970 ;
+}
+
+.btn-custom-custom:not(:disabled):not(.disabled):active:focus,
+.btn-custom-custom:not(:disabled):not(.disabled).active:focus,
+.show > .btn-custom-raccolto.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+  background-color: #000;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 .imageHomePianta
 {
     max-width: 100%
