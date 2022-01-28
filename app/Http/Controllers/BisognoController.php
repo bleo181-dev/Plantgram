@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Bisogno;
 use App\Evento;
 use App\Pianta;
@@ -46,16 +47,20 @@ class BisognoController extends Controller
         if($request->custom == null){
             $validateData = $request->validate([ 
                 'tipologia'      => 'required|max:100',
-                'cadenza'        => 'required'
+                'cadenza'  => 'required'
             ]);  
             $nome = $validateData['tipologia'];
         }else{
             $validateData = $request->validate([ 
                 'custom'          => 'required|max:100',
-                'cadenza'        => 'required'
+                'cadenza'  => 'required'
             ]);  
             $nome = $validateData['custom'];
         }
+
+            if (Bisogno::where('codice_pianta', $request->codice_pianta)->where('nome', $nome)->exists()) {
+                return back()->withErrors(['msg'=>'Hai già un bisogno di questa tipologia per questa pianta']);
+            }
 
         $var = Bisogno::create([
             'codice_pianta'   => $request->codice_pianta,
