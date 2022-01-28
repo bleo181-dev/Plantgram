@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="{{ asset('css/style_bisogni.css') }}" rel="stylesheet"> <!-- css per pulsante custom -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -22,7 +23,7 @@
                     <form action="{{ URL::action('BisognoController@store', $codice_pianta) }}" method="POST" >
                         {{ csrf_field() }}
                         <h1> Inserisci i dati del bisogno </h1>
-                        
+
                         <input type="hidden" name="codice_pianta" value="{{ $codice_pianta }}"/>
                         <br>
 
@@ -49,15 +50,15 @@
                             <input type="text" name="custom" placeholder="Inserisci tipologia qui" id="popup" class="hide">
 
                         </div>
-                        
+
                         <br>
                         <br>
                         <input type="number" name="cadenza" placeholder="" value="{{ old('cadenza') }}" /> <label> Ogni quanti giorni? </label>
 
                         <br>
-                        <br>    
+                        <br>
                         <input type="submit" class="btn btn-primary" value="Crea bisogno"/>
-                    </form>   
+                    </form>
                 </div>
             </div>
         </div>
