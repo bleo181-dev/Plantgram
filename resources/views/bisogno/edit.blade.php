@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="{{ asset('css/style_bisogni.css') }}" rel="stylesheet"> <!-- css per pulsante custom -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
