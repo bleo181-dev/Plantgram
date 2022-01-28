@@ -14,7 +14,7 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
 
                         for(var count=0; count < data.length; count++){
                                 html += '<p class="dropdown-item" style="pointer-events: none;">'+data[count].nickname;
-                                html += '<button id="'+count+'" name="btn_a"type = "submit" style="pointer-events: fill; background: none; border: none; width: 10px;" data-toggle="modal" data-target="#staticBackdrop'+data[count].codice_collaborazione+'"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
+                                html += '<button id="'+count+'" name="btn_a"type = "submit" style="float: right; pointer-events: fill; background: none; border: none; width: 10px;" data-toggle="modal" data-target="#staticBackdrop'+data[count].codice_collaborazione+'"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
 
                                 modal += '<div class="modal fade" id="staticBackdrop'+data[count].codice_collaborazione+'" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
                                 modal += '<div class="modal-dialog">';
@@ -64,7 +64,7 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                                 html_serre += '<div class="btn-group w-100">';
                                 html_serre += '<a class="btn btn-primary btn-lg btn-block" type="button" href="{{ asset("serra/share/") }}/'+data[count].codice_serra+'">'+data[count].nome+'</a>';
                                 html_serre += '<button type="button" class="btn btn-info" data-toggle="modal" data-target="#staticBackdrop'+data[count].codice_collaborazione+'">';
-                                html_serre += '<img src="{{ asset("immagini/delete.png") }}" class="icone"></button></div><br><br>';
+                                html_serre += '<img src="{{ asset("immagini/delete.png") }}" class="iconeSerraCestino"></button></div><br><br>';
 
                                 modal += '<div class="modal fade" id="staticBackdrop'+data[count].codice_collaborazione+'" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
                                 modal += '<div class="modal-dialog">';

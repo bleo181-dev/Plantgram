@@ -11239,6 +11239,12 @@ a.text-dark:focus {
 
 .icone
 {
+    width: 20px;
+    height: 20px;
+}
+
+.iconeSerraCestino
+{
     width: 25px;
     height: 25px;
 }
