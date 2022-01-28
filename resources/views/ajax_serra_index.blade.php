@@ -1,3 +1,6 @@
+
+<script>
+    
 var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
 
             function fetch_data_collab(){
@@ -130,3 +133,5 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
             console.log('Intervallo di aggiornamento settato!');
 
         });
+
+</script>

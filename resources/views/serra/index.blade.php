@@ -139,6 +139,6 @@
 
 
 @if(auth()->id() == $serra->id)
-    <script src="{{ asset('js/ajax_serra_index.js') }}"></script>
+    @include('ajax_serra_index')
 @endif
 @endsection
