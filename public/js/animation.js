@@ -43,7 +43,7 @@
         var newMO = 0;
             if(oldM != newMO){
                 if(scrollY < 300){
-                    setTimeout(fadeOutFunc("container"), 900);
+                    setTimeout(fadeOutFunc("container", 1), 900);
                     oldM = newMO;
                 }
             }
