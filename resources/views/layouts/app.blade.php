@@ -57,6 +57,10 @@
                                     <a class="nav-link" href="{{ URL::action('PiantaController@index')}}">{{ __('Piante') }}</a>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::action('PubblicitaController@index')}}">{{ __('Pubblicita') }}</a>
+                                </li>
+
                             @endif
                             <!-- Se sei user normale -->
                             <li class="nav-item">

@@ -8,7 +8,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __('Modifica utente') }}</div>
+                        <div class="card-header">{{ __('Crea utente') }}</div>
 
                         <div class="card-body">
 
@@ -41,8 +41,13 @@
 
                                 <div class="form-group row">
                                     <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
+                                    
+                                    <div class="col-md-6">
+                                        <input type="file" name="foto" class="custom-file-input" id="imgInp" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Carica una foto</label>
+                                    </div>
+                                    <img class="imagePreviewPianta rounded mx-auto" id="blah" src="#"/>
 
-                                    @include('foto')
                                 </div>
                 
 

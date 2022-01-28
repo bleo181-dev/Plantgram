@@ -58,6 +58,8 @@ Route::get('/forums', 'ChatterController@index');
 Route::delete('/forums/{id}', 'ChatterDiscussionController@destroy');
 Route::get('/forums/{id}', 'ChatterDiscussionController@index');
 
+Route::resource('/pubblicita', 'PubblicitaController');
+
 
 
 
