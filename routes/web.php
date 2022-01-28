@@ -32,7 +32,8 @@ Route::resource('serra', 'SerraController');
 Route::resource('user', 'UserController');
 
 Route::get('/collabora/fetch_data', 'CollaboraController@fetch_data');
-Route::post('/collabora/elimina', 'CollaboraController@elimina');
+Route::post('/collabora/eliminaCollaborazione', 'CollaboraController@eliminaCollaborazione');
+Route::post('/collabora/eliminaCollaboratore', 'CollaboraController@eliminaCollaboratore');
 Route::resource('collabora', 'CollaboraController');
 
 

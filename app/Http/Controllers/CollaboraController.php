@@ -111,12 +111,66 @@ class CollaboraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function elimina(Request $request)
+    public function eliminaCollaborazione(Request $request)
     {
-        $input = $request->all();
-        $id = $input['id'];
-        Collabora::find($id)->delete();
-        return response()->json(['success' => 'OK', 'id-eliminato' => $id]);
+        if(Auth::user()){
+            if(Auth::user()->admin){
+                if($request->ajax()){
+                    $input = $request->all();
+                    $codice_collab = $input['id'];
+                    Collabora::find($codice_collab)->delete();
+                    return response()->json(['success' => 'OK', 'id-eliminato' => $codice_collab]);
+                }
+            }else{
+
+                if($request->ajax()){
+                    $input = $request->all();
+                    $codice_collab = $input['id'];
+                    $id_collaboratore = Collabora::where('codice_collaborazione', $codice_collab)->pluck('id')->first();
+                    if($id_collaboratore != auth()->id()){
+                        return response()->json(['success' => 'NO', 'id-nonEliminato' => $codice_collab]);
+                    }else{
+                        Collabora::find($codice_collab)->delete();
+                        return response()->json(['success' => 'OK', 'id-eliminato' => $codice_collab]);
+                    }
+                }
+            }
+
+        }
+
+
+    }
+
+    public function eliminaCollaboratore(Request $request)
+    {
+        if(Auth::user()){
+            if(Auth::user()->admin){
+                if($request->ajax()){
+                    $input = $request->all();
+                    $codice_collab = $input['id'];
+                    Collabora::find($codice_collab)->delete();
+                    return response()->json(['success' => 'OK', 'id-eliminato' => $codice_collab]);
+                }
+            }else{
+
+                if($request->ajax()){
+
+                    $input = $request->all();
+                    $codice_collab = $input['id'];
+                    $codice_serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
+                    $serra_collaboratore = Collabora::where('codice_collaborazione', $codice_collab)->pluck('codice_serra')->first();
+
+                    if($codice_serra != $serra_collaboratore){
+                        return response()->json(['success' => 'NO', 'id-nonEliminato' => $codice_collab]);
+                    }else{
+                        Collabora::find($codice_collab)->delete();
+                        return response()->json(['success' => 'OK', 'id-eliminato' => $codice_collab]);
+                    }
+                }
+            }
+
+        }
+
 
     }
 

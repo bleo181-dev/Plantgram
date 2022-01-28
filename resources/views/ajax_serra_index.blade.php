@@ -1,6 +1,6 @@
 
 <script>
-    
+
 var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
 
             function fetch_data_collab(){
@@ -30,7 +30,7 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                                 modal += '<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>';
                                 modal += '<form action="" method="POST" class="col-md-2">';
                                 modal += '<input type="hidden" name="nome" value="">';
-                                modal += '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="destroy_collaboratore('+data[count].codice_collaborazione+')">Si</button></form></div></div></div></div>';
+                                modal += '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="destroy_collaboratore_a_serra('+data[count].codice_collaborazione+')">Si</button></form></div></div></div></div>';
 
                         }
                         if(oldLength_collab != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
@@ -42,7 +42,10 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
 
                         }
 
-                    }
+                    },
+                        error: function(response, stato){
+                            console.log(stato);
+                        }
                 });
             }
 
@@ -77,7 +80,7 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                                 modal += '<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>';
                                 modal += '<form action="" method="POST" class="col-md-2">';
                                 modal += '<input type="hidden" name="nome" value="">';
-                                modal += '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="destroy_collaboratore('+data[count].codice_collaborazione+')">Si</button></form></div></div></div></div>';
+                                modal += '<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="destroy_collaborazioneSerra('+data[count].codice_collaborazione+')">Si</button></form></div></div></div></div>';
                         }
 
                         if(oldLength_serre != data.length){ //serve per non refreshare sempre il contenutto, evitando sfarfallii
@@ -88,17 +91,20 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
 
                         }
 
-                    }
+                    },
+                        error: function(response, stato){
+                            console.log(stato);
+                        }
                 });
             }
 
-            function destroy_collaboratore(id){
+            function destroy_collaborazioneSerra(id){
                 console.log('Elimino: Codice_collab-'+id);
                 var _token = $('#_token').val();
                 console.log('token: '+_token);
                 if(id != null){
                     $.ajax({
-                        url: "/collabora/elimina",
+                        url: "/collabora/eliminaCollaborazione",
                         type: "POST",
                         dataType: "json",
                         data: {'id' : id, '_token' : _token},
@@ -108,6 +114,8 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                                 fetch_data_collab();
                                 fetch_data_serre();
                                 console.log("aggiorno dopo elimina");
+                            }else{
+                                console.log("Errore eliminazione collaborazione: "+id+" non sei il proprietario!");
                             }
 
 
@@ -120,10 +128,37 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
 
             }
 
-            function destroy_collaborazione(){
 
+            function destroy_collaboratore_a_serra(id){
+                console.log('Elimino: Codice_collab-'+id);
+                var _token = $('#_token').val();
+                console.log('token: '+_token);
+                if(id != null){
+                    $.ajax({
+                        url: "/collabora/eliminaCollaboratore",
+                        type: "POST",
+                        dataType: "json",
+                        data: {'id' : id, '_token' : _token},
+                        success: function(data){
+                            console.log(data);
+                            if(data.success === 'OK'){
+                                fetch_data_collab();
+                                fetch_data_serre();
+                                console.log("aggiorno dopo elimina");
+                            }else{
+                                console.log("Errore eliminazione collaborazione: "+id+" non sei il proprietario!");
+                            }
+
+
+                        },
+                        error: function(response, stato){
+                            console.log(stato);
+                        }
+                    });
+                }
 
             }
+
         $(document).ready(function(){
 
             fetch_data_collab();
