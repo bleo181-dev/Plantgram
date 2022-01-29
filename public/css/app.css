@@ -11007,3 +11007,20 @@ a.text-dark:focus {
     width: 25px;
     height: 25px;
 }
+
+.iconaBack
+{
+    width: 75px;
+    height: 57px;
+}
+
+
+.m_title {
+    display: inline-block; /* Thanks to Fanky (https://stackoverflow.com/users/2095642/fanky) */
+
+    text-transform: lowercase
+  }
+
+  .m_title:first-letter {
+    text-transform: uppercase
+  }

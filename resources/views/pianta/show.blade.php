@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">info</div>
                 <div class="card-body">
-                    
-                    @if(auth()->id() == $serra->id)
+                <!--back button -->
+                @if(auth()->id() == $serra->id)
                     <div style="padding:10px">
-                        <a href="{{ URL::action('SerraController@index') }}" class="btn btn-secondary">Indietro</a>
+                        <a href="{{ URL::action('SerraController@index') }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
                     </div>
-                    @else
+                @else
                     <div style="padding:10px">
-                        <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}" class="btn btn-secondary">Indietro</a>
+                        <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
                     </div>
-                    @endif
+                @endif
+                <!--back button end -->
+
+                <!-- Plant info -->
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <?php
@@ -25,30 +25,69 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{$pianta->nome}}</h5>
-                                <p class="card-text">{{$pianta->luogo}}</p>
+                                <h1 class="card-title m_title" style="color: white;">{{$pianta->nome}}</h1>
+                                <p class="card-text" style="text-transform:uppercase; color: white;">{{$pianta->luogo}}</p>
                                 <p class="card-text"><small class="text-muted"></small></p>
                             </div>
                         </div>
                     </div>
                     <br>
-                    <hr>
+                    <hr style="background-color: white;">
                     <br>
-                
+                    <!-- Plant info end-->
                     @foreach($eventi as $evento)
-                    <div class="row justify-content-center">
-                        @foreach($bisogni as $bisogno)
-                            @if($evento->codice_bisogno == $bisogno->codice_bisogno)
-                                <div class="progress w-75">
-                                    <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, #111111 {{(((strtotime('now')-strtotime($evento->data))/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 0% {{(($bisogno->cadenza/86400)*80)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*95)/(($bisogno->cadenza/86400)*1.5)}}%, #2ECC40 {{(($bisogno->cadenza/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*130)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 {{(($bisogno->cadenza/86400)*150)/(($bisogno->cadenza/86400)*1.5)}}%);" ></div>
-                                </div>
-                                <div class="w-75">
-                                    <p>Ultima volta: {{$evento->data}}</p>
-                                    <p>Prossima volta prevista: {{ date("Y-m-d H:i:s",(strtotime('now')+ $bisogno->cadenza)) }}</p>
-                                    <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
-                                </div>
-                            @endif
-                        @endforeach
+                        <div class="row justify-content-center">
+                            @foreach($bisogni as $bisogno)
+                                @if($evento->codice_bisogno == $bisogno->codice_bisogno)
+
+                                    <!-- jumbotron -->
+                                    <div style="width: 100%;" class="jumbotron jumbotron-fluid">
+                                        <div class="container">
+                                            <h1 class="display-4 m_title">{{$evento->nome}}</h1>
+                                            <div class="progress" style="width: 100%;">
+                                                <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, #111111 {{(((strtotime('now')-strtotime($evento->data))/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 0% {{(($bisogno->cadenza/86400)*80)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*95)/(($bisogno->cadenza/86400)*1.5)}}%, #2ECC40 {{(($bisogno->cadenza/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*130)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 {{(($bisogno->cadenza/86400)*150)/(($bisogno->cadenza/86400)*1.5)}}%);" ></div>
+                                            </div>
+                                            <div>
+                                                <p>Ultima volta: {{$evento->data}}</p>
+                                                <p>Prossima volta prevista: {{ date("Y-m-d H:i:s",(strtotime('now')+ $bisogno->cadenza)) }}</p>
+                                                <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
+
+                                                <br>
+
+                                                <!-- explode -->
+                                                <div id="accordionExample{{$evento->nome}}">
+                                                    <br>
+                                                    <div>
+                                                        <div id="headingOne">
+                                                            <h2 class="mb-0">
+                                                                <!--btn grafico -->
+                                                                <div style="display: flex; justify-content: center; align-items: center;">
+                                                                    <button style="background: none; border: none;" type="button" data-toggle="collapse" data-target="#{{$evento->nome}}" aria-expanded="false" aria-controls="{{$evento->nome}}">
+                                                                        <img src="{{ asset('immagini/grafico.png') }}" class="iconaBack" />
+                                                                    </button>
+                                                                </div>
+                                                                <!--btn grafico -->
+                                                            </h2>
+                                                        </div>
+
+                                                        <div id="{{$evento->nome}}" class="" style="overflow: hidden;" aria-labelledby="headingOne" data-parent="#accordionExample{{$evento->nome}}">
+
+                                                            <div>
+                                                                <!-- plot -->
+                                                                <div id="myPlot{{$evento->codice_bisogno}}" style="width:100%;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--endexplode-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- jumbotron end-->
+
+                                @endif
+                            @endforeach
 
                             <!-- Modal -->
                             <div class="modal fade" id="staticBackdrop{{$evento->codice_evento}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -76,41 +115,22 @@
                                 </div>
                             </div>
                             <!--endmodal-->
-                            
-                            <br>
-
-                            <!-- explode -->
-                            <div class="col-md-12 accordion" id="accordionExample{{$evento->nome}}">
-                            <br>
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{$evento->nome}}" aria-expanded="false" aria-controls="{{$evento->nome}}">
-                                            visualizza grafico
-                                            </button>
-                                        </h2>
-                                    </div>
-
-                                    <div id="{{$evento->nome}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample{{$evento->nome}}">
-                                        <div class="card-body">
-                                            <!-- plot -->
-                                            <div id="myPlot{{$evento->codice_bisogno}}" style="width:100%;max-width:700px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--endexplode-->                                  
-                        </div>  
+                        </div>
                         <br>
                     @endforeach
-                        
+
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <a href="{{ URL::action('BisognoController@create', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/addSerra.png') }}" style="height: 80px; width:80px;" /></a>
+                            </div>
+                        </div>
+                    </div>
+
                     @foreach($diario as $i)
                         @include('diario.diariopost')
                     @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 @foreach($bis as $y)
@@ -119,7 +139,7 @@
     var xArray = [];
     var yArray = [];
     @foreach($ev as $e)
-        @if($y->codice_bisogno==$e->codice_bisogno) 
+        @if($y->codice_bisogno==$e->codice_bisogno)
             xArray.push({{$e->month}});
             yArray.push({{$e->volte}});
         @endif
@@ -137,7 +157,14 @@
 </script>
 @endforeach
 
-<script>
+
+    <script>
+        @foreach($eventi as $evento)
+        document.getElementById("{{$evento->nome}}").className = "collapse";
+        @endforeach
+    </script>
+
+<!--<script>
 new Chart("myChart", {
   type: "scatter",
   data: {
@@ -155,5 +182,5 @@ new Chart("myChart", {
     }
   }
 });
-</script>
+</script>-->
 @endsection
