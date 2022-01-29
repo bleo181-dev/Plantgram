@@ -114,7 +114,7 @@ class CollaboraController extends Controller
     public function eliminaCollaborazione(Request $request)
     {
         if(Auth::user()){
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
                 if($request->ajax()){
                     $input = $request->all();
                     $codice_collab = $input['id'];
@@ -144,7 +144,7 @@ class CollaboraController extends Controller
     public function eliminaCollaboratore(Request $request)
     {
         if(Auth::user()){
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
                 if($request->ajax()){
                     $input = $request->all();
                     $codice_collab = $input['id'];

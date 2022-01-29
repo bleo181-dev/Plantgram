@@ -3,7 +3,7 @@
 
 @section('content')
     @if(Auth::user())
-        @if(Auth::user()->admin)
+        @if(Auth::user()->admin==='AD')
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -88,17 +88,22 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="admin" class="col-md-4 col-form-label text-md-right">{{ __('Is admin?') }}</label>
+                                    <label for="admin" class="col-md-4 col-form-label text-md-right">{{ __('tipo?') }}</label>
 
                                     <div class="col-md-6">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" value="0" name="admin">falso
+                                                <input type="radio" class="form-check-input" value="AD" name="admin">Admin
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" value="1" name="admin">vero
+                                                <input type="radio" class="form-check-input" value="USR" name="admin">User
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" value="USRPRO" name="admin">User pro
                                             </label>
                                         </div>
                                     </div>

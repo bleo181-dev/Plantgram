@@ -39,7 +39,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @if(Auth::user())
-                            @if(Auth::user()->admin)
+                            @if(Auth::user()->admin==='AD')
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ URL::action('UserController@index')}}">{{ __('Utenti') }}</a>
                                 </li>

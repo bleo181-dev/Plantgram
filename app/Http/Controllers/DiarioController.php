@@ -19,7 +19,7 @@ class DiarioController extends Controller
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
 
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
                 $diario = Diario::where('codice_pianta', $id)
                     ->get();
 
@@ -89,7 +89,7 @@ class DiarioController extends Controller
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
             
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
                 $diario=Diario::find($id);
                 return view('diario.edit', compact('diario'));
 
