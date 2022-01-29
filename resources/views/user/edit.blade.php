@@ -87,6 +87,28 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                                    <label for="admin" class="col-md-4 col-form-label text-md-right">{{ __('tipo?') }}</label>
+
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" value="AD" name="admin">Admin
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" value="USR" name="admin">User
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" value="USRPRO" name="admin">User pro
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

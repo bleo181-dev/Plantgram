@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        if(Auth::user()->admin){
+        if(Auth::user()->admin === 'AD'){
             return view('user.index', compact('users'));
         }else{
             return redirect()->route('home');
@@ -46,7 +46,7 @@ class UserController extends Controller
         $data = file_get_contents($_FILES['foto']['tmp_name']);
 
         User::create([
-            'nickname'         => $request['nickname'],
+            'nickname'          => $request['nickname'],
             'foto'              => $data,
             'email'             => $request['email'],
             'password'          => Hash::make($request['password']),
@@ -88,13 +88,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nickname'         => 'required', 'unique:users','string', 'max:100',
+            'nickname'     => 'required', 'unique:users','string', 'max:100',
             'foto'         => 'nullable',
             'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
-            'password'        => 'required', 'string', 'min:8', 'confirmed'
+            'password'     => 'required', 'string', 'min:8', 'confirmed',
+            'admin'         => 'required',
         ]);
 
-        if(Auth::user()->admin){
+        if(Auth::user()->admin === 'AD'){
             $user = User::find($id);
         }else if(Auth::user()){
             $user = Auth::user();
@@ -107,6 +108,7 @@ class UserController extends Controller
             $user->foto = $data;
         }
         $user->password = Hash::make($request['password']);
+        $user->admin = $request['admin'];
         $user->save();
         return redirect()->route('user.index');
     }
@@ -122,7 +124,7 @@ class UserController extends Controller
         $utente=User::find($id);
         $utente->delete();
 
-        if(Auth::user()->admin)
+        if(Auth::user()->admin === 'AD')
         {
             return redirect()->route('user.index');
         }else{

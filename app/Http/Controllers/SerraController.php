@@ -240,7 +240,7 @@ class SerraController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->admin){
+        if(Auth::user()->admin === 'AD'){
             $serra = Serra::find($id);
             return view('serra.edit', compact('serra'));
         }else{
@@ -257,7 +257,7 @@ class SerraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->admin){
+        if(Auth::user()->admin === 'AD'){
             $validateData = $request->validate([
                 'nome'          => 'required|max:100',
                 'latitudine'    => 'required',
@@ -288,7 +288,7 @@ class SerraController extends Controller
      */
     public function destroy($id)
     {
-        if(Auth::user()->admin){
+        if(Auth::user()->admin === 'AD'){
 
             $serra=Serra::find($id);
             $serra->delete();

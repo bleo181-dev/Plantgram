@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pubblicita extends Model
 {
-    protected $primaryKey = 'codice_pubblcita';
+    protected $primaryKey = 'codice_pubblicita';
     protected $table = 'pubblicita';
-    protected $fillable = ['produttore', 'body', 'priorita', 'foto'];
+    protected $fillable = ['produttore', 'url', 'priorita', 'foto'];
 }

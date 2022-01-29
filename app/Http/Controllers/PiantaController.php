@@ -23,7 +23,7 @@ class PiantaController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->admin){
+        if(Auth::user()->admin === 'AD'){
             $piante = Pianta::all();
             return view('pianta.index', compact('piante'));
         }else{
@@ -99,7 +99,7 @@ class PiantaController extends Controller
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
 
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
 
                 $pianta = Pianta::find($id);
                 $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
@@ -241,7 +241,7 @@ class PiantaController extends Controller
     {
         if(Auth::user()){
 
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
 
                 $pianta = Pianta::find($id);
                 return view('pianta.edit', compact('pianta'));
@@ -285,7 +285,7 @@ class PiantaController extends Controller
             ]);
 
             $input = $request->all();
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
                 $pianta = Pianta::find($id);
             }else{
                 $serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
@@ -318,7 +318,7 @@ class PiantaController extends Controller
     public function destroy($id)
     {
         if(Auth::user()){
-            if(Auth::user()->admin){
+            if(Auth::user()->admin === 'AD'){
                 $pianta = Pianta::where('codice_pianta', $id)
                             ->delete();
                 return redirect()->route('pianta.index');

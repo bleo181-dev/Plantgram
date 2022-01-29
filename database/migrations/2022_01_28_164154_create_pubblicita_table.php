@@ -18,7 +18,7 @@ class CreatePubblicitaTable extends Migration
             $table->timestamps();
 
             $table->string('produttore');
-            $table->string('body');
+            $table->string('url');
             $table->BigInteger('priorita');
         });
 
