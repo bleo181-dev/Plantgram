@@ -36,7 +36,24 @@ class PubblicitaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'url'       => 'required|max:1000',
+            'foto'      => 'required',
+            'produttore'=> 'required',
+            'priorita'=> 'required',
+        ]);
+
+        $data = file_get_contents($_FILES['foto']['tmp_name']);
+
+        Pubblicita::create([
+            'url'       => $validateData['url'],
+            'produttore'=> $validateData['produttore'],
+            'foto'      => $data,
+            'priorita'  => $validateData['priorita'],
+        ]);
+
+        $annunci=Pubblicita::all();
+        return view('pubblicita.index', compact('annunci'));
     }
 
     /**
@@ -58,7 +75,8 @@ class PubblicitaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pubblicita=Pubblicita::find($id);
+        return view('pubblicita.edit', compact('pubblicita'));
     }
 
     /**
@@ -70,7 +88,32 @@ class PubblicitaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'produttore'    => 'required|max:1000',
+            'foto'          => 'nullable',
+            'url'           => 'required',
+            'priorita'      => 'required',
+        ]);
+
+
+
+        $input = $request->all();
+        $pubblicita = Pubblicita::find($id);
+
+        $pubblicita->produttore = $input['produttore'];
+        $pubblicita->url = $input['url'];
+        $pubblicita->priorita = $input['priorita'];
+
+        if(!empty($input['foto'])){
+            $data = file_get_contents($_FILES['foto']['tmp_name']);
+            $$pubblicita->foto = $data;
+        }
+
+        $pubblicita->save();
+
+        $annunci=Pubblicita::all();
+        return view('pubblicita.index', compact('annunci'));
+
     }
 
     /**
@@ -81,6 +124,10 @@ class PubblicitaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pubblicita=Pubblicita::find($id);
+        $pubblicita->delete();
+
+        $annunci=Pubblicita::all();
+        return view('pubblicita.index', compact('annunci'));
     }
 }
