@@ -49,7 +49,7 @@
                                             </div>
                                             <div>
                                                 <p>Ultima volta: {{$evento->data}}</p>
-                                                <p>Prossima volta prevista: {{ date("Y-m-d H:i:s",(strtotime('now')+ $bisogno->cadenza)) }}</p>
+                                                <p>Prossima volta prevista: {{ date("Y-m-d H:i:s",(strtotime($evento->data)+ $bisogno->cadenza)) }}</p>
                                                 <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
 
                                                 <br>
