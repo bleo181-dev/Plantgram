@@ -23,8 +23,7 @@
                         {{ csrf_field() }}
                         @method('PUT')
                         <h1> Modifica i dati del ricordo </h1>
-
-                        <input type="text" name="testo" placeholder="testo" value="{{ $diario->testo }}"/> <label> Descrizione </label>
+                        <textarea name="testo" value="ciao" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $diario->testo }}</textarea>
                         <br>
                         <br>
 

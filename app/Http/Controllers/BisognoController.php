@@ -43,18 +43,18 @@ class BisognoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $id)
-    {   
+    {
         if($request->custom == null){
-            $validateData = $request->validate([ 
+            $validateData = $request->validate([
                 'tipologia'      => 'required|max:100',
                 'cadenza'  => 'required'
-            ]);  
+            ]);
             $nome = $validateData['tipologia'];
         }else{
-            $validateData = $request->validate([ 
+            $validateData = $request->validate([
                 'custom'          => 'required|max:100',
                 'cadenza'  => 'required'
-            ]);  
+            ]);
             $nome = $validateData['custom'];
         }
 
@@ -76,7 +76,7 @@ class BisognoController extends Controller
             'data'             => $var->created_at,
         ]);
 
-        return redirect()->route('bisogno.index', $request->codice_pianta);
+        return redirect()->action([PiantaController::class, 'show'], $request->codice_pianta);
     }
 
     /**
@@ -112,23 +112,23 @@ class BisognoController extends Controller
     public function update(Request $request, $codice_bisogno)
     {
         if($request->custom == null){
-            $validateData = $request->validate([ 
+            $validateData = $request->validate([
                 'nome'      => 'required|max:100',
                 'cadenza'        => 'required'
-            ]);  
+            ]);
             $nome = $validateData['nome'];
         }else{
-            $validateData = $request->validate([ 
+            $validateData = $request->validate([
                 'custom'          => 'required|max:100',
                 'cadenza'        => 'required'
-            ]);  
+            ]);
             $nome = $validateData['custom'];
         }
 
-        $bisogno = Bisogno::find($codice_bisogno); 
+        $bisogno = Bisogno::find($codice_bisogno);
 
         $bisogno->codice_pianta = $request->codice_pianta;
-        $bisogno->nome = $nome; 
+        $bisogno->nome = $nome;
         $bisogno->cadenza = ($request->cadenza)*86400;
 
         $bisogno->save();

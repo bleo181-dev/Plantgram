@@ -11024,3 +11024,10 @@ a.text-dark:focus {
   .m_title:first-letter {
     text-transform: uppercase
   }
+
+
+  div.cropper {
+    width: 200px;
+    height: 120px;
+    overflow: hidden;
+  }

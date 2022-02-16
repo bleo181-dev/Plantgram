@@ -1,5 +1,6 @@
 
 <script>
+    
 
 var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
 
@@ -39,6 +40,7 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                             document.getElementById("modal2").innerHTML = modal;
                             console.log('Aggiorno: Elementi variati collaboratori');
                             oldLength_collab = data.length;
+
 
                         }
 
@@ -88,6 +90,7 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                             document.getElementById("modal").innerHTML = modal;
                             console.log('Aggiorno: Elementi variati serre');
                             oldLength_serre = data.length;
+
 
                         }
 

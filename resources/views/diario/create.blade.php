@@ -21,9 +21,9 @@
 
                     <form action="{{ URL::action('DiarioController@store', $id) }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <h1> Inserisci i dati del ricordo </h1>
-
-                        <input type="text" name="testo" placeholder="testo" value="{{ old('testo') }}"/> <label> Descrizione </label>
+                        <h1> Scrivi un ricordo </h1>
+                        <textarea name="testo" value="ciao" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ old('testo') }}</textarea>
+                        
                         <br>
                         <br>
                         @include('foto') <!-- Serve per includere il capo foto e la sua preview -->

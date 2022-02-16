@@ -28,54 +28,69 @@
                                 <h1 class="card-title m_title" style="color: white;">{{$pianta->nome}}</h1>
                                 <p class="card-text" style="text-transform:uppercase; color: white;">{{$pianta->luogo}}</p>
                                 <p class="card-text"><small class="text-muted"></small></p>
+
                                 <!-- diario -->
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <?php $count=0; ?>
-                                        @foreach($diario as $i)
+                                <?php $count=0; ?>
+                                    @foreach($diario as $i)
+                                        <?php $count ++; ?>
+                                    @endforeach
 
-                                            @if ($count == 0)
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="{{$count}}" class="active"></li>
-                                            @endif
-                                            @if ($count != 0)
-                                                <li data-target="#carouselExampleIndicators" data-slide-to="{{$count}}"></li>
-                                            @endif
-                                            <?php $count ++; ?>
-                                        @endforeach
+                                @if ($count != 0)
 
-                                    </ol>
-                                    <div class="carousel-inner">
-                                        <?php $count=0; ?>
-                                        @foreach($diario as $i)
-                                            @if ($count == 0)
-                                                <div class="carousel-item active">
-                                                    @include('diario.diariopost')
-                                                </div>
-                                            @endif
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators" >
+                                            <?php $count=0; ?>
+                                            @foreach($diario as $i)
 
-                                            @if ($count != 0)
-                                                <div class="carousel-item">
-                                                    @include('diario.diariopost')
-                                                </div>
-                                            @endif
-                                            <?php $count ++; ?>
-                                        @endforeach
+                                                @if ($count == 0)
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$count}}" class="active"></li>
+                                                @endif
+                                                @if ($count != 0)
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$count}}"></li>
+                                                @endif
+                                                <?php $count ++; ?>
+                                            @endforeach
+
+                                        </ol>
+                                        <div class="carousel-inner" >
+                                            <?php $count=0; ?>
+                                            @foreach($diario as $i)
+                                                @if ($count == 0)
+                                                    <div class="carousel-item active">
+                                                        <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}" style="text-decoration: none; color: black;" >
+                                                            @include('diario.diariopostPianta')
+                                                        </a>
+                                                    </div>
+                                                @endif
+
+                                                @if ($count != 0)
+                                                    <div class="carousel-item">
+                                                        <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}" style="text-decoration: none; color: black;">
+                                                            @include('diario.diariopostPianta')
+                                                        </a>
+                                                    </div>
+
+                                                @endif
+                                                <?php $count ++; ?>
+                                            @endforeach
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-
-
-
+                                @endif
+                                @if ($count == 0)
+                                    <a href="{{ URL::action('DiarioController@create', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/diarioMAX.png') }}" class="col-md-3"></a>
+                                @endif
 
 
                                 <!-- fine diario -->
+
                             </div>
                         </div>
                     </div>
@@ -83,21 +98,44 @@
                     <hr style="background-color: white;">
                     <br>
                     <!-- Plant info end-->
+                    <h3  style="color: white;"> I bisogni della tua pianta </h3>
+                    <br>
                     @foreach($eventi as $evento)
                         <div class="row justify-content-center">
                             @foreach($bisogni as $bisogno)
                                 @if($evento->codice_bisogno == $bisogno->codice_bisogno)
 
                                     <!-- jumbotron -->
-                                    <div style="width: 100%;" class="jumbotron jumbotron-fluid">
+                                    <div style="width: 100%;
+                                        @if ($evento->nome == "acqua")
+                                            background-color: #54aedb;
+                                        @endif
+                                        @if ($evento->nome == "concime")
+                                            background-color: #ff892e;
+                                        @endif
+                                        @if ($evento->nome == "svasatura")
+                                            background-color: #8c5c38;
+                                        @endif
+                                        @if ($evento->nome == "raccolto")
+                                            background-color: #79d547;
+                                        @endif
+                                        @if ($evento->nome == "potatura")
+                                            background-color: #759b9d;
+                                        @endif
+                                        " class="jumbotron jumbotron-fluid">
+
                                         <div class="container">
                                             <h1 class="display-4 m_title">{{$evento->nome}}</h1>
                                             <div class="progress" style="width: 100%;">
                                                 <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, #111111 {{(((strtotime('now')-strtotime($evento->data))/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 0% {{(($bisogno->cadenza/86400)*80)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*95)/(($bisogno->cadenza/86400)*1.5)}}%, #2ECC40 {{(($bisogno->cadenza/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*130)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 {{(($bisogno->cadenza/86400)*150)/(($bisogno->cadenza/86400)*1.5)}}%);" ></div>
                                             </div>
                                             <div>
-                                                <p>Ultima volta: {{$evento->data}}</p>
-                                                <p>Prossima volta prevista: {{ date("Y-m-d H:i:s",(strtotime($evento->data)+ $bisogno->cadenza)) }}</p>
+                                                <div style="display: flex; justify-content: space-between;">
+                                                    <p>Ultima volta: {{$evento->data}}</p>
+                                                    <p>Prossima volta prevista: {{ date("Y-m-d H:i:s",(strtotime($evento->data)+ $bisogno->cadenza)) }}</p>
+                                                </div>
+
+
                                                 <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
 
                                                 <br>
@@ -174,10 +212,6 @@
                             </div>
                         </div>
                     </div>
-
-                    @foreach($diario as $i)
-                        @include('diario.diariopost')
-                    @endforeach
 
 </div>
 
