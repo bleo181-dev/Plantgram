@@ -229,7 +229,39 @@ class SerraController extends Controller
      */
     public function show($id)
     {
-        //
+        //if(!Auth::user()){
+                $serra = Serra::where('id', $id)->first();
+                $piante = Pianta::where('codice_serra', $serra->codice_serra)->where('stato', '1')->get(); //piante pubbliche
+                $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
+                $eventi = collect();
+                foreach($cod_pianta as $c){
+                    $evento = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                                ->where('evento.codice_pianta', $c)
+                                ->orderBy('data', 'desc')
+                                ->get()
+                                ->unique('nome');
+                    $eventi = $eventi->merge($evento);
+                }
+
+                $dataoggi = strtotime(date('Y-m-d H:i:s'));
+                $delta = strtotime($eventi);
+                $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
+
+                $nickname_utente = User::where('id', $id)->pluck('nickname')->first();
+                $nome_serra = Serra::where('id', $id)->pluck('nome')->first();
+
+                if( Auth::check() )
+                {
+                    return view('serra.show', compact('piante', 'bisogni', 'eventi', 'dataoggi', 'nickname_utente', 'serra', 'nome_serra'));
+
+                }else {
+                    return view('/auth/login');
+                }
+            
+
+        //}else {
+        //    return view('/auth/login');
+        //}
     }
 
     /**

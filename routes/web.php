@@ -20,6 +20,7 @@ Route::get('/home', 'SerraController@index')->name('home');
 
 Route::get('/', 'LandingpageController@index')->name('index');
 
+Route::get('/pianta/view/{codice_pianta}', 'PiantaController@view');
 Route::resource('pianta', 'PiantaController');
 
 Route::get('/serra/fetch_data_serre', 'SerraController@fetch_data_serre');

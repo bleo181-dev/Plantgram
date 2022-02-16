@@ -56,7 +56,7 @@ class PiantaController extends Controller
     {
         $validateData = $request->validate([
             'nome'         => 'required|max:100',
-            'foto'         => 'required', //discutibile, per ora lo metto per evitare di rompere l'intefaccia
+            'foto'         => 'required',
             'luogo'        => 'required|max:100',
             'stato'        => 'required'
         ]);
@@ -112,7 +112,7 @@ class PiantaController extends Controller
 
                 $bisogni = Bisogno::where('codice_pianta', $id)->get();
 
-                /*per grefici*/
+                /*per grafici*/
                 //bisogni
                 $bis = Bisogno::where('codice_pianta', $id)->get();
                 //eventi di un anno, raggruppati e contati per mese 
@@ -229,6 +229,53 @@ class PiantaController extends Controller
                 return view('/auth/login');
             }
         }
+    }
+
+    /**
+     * Mostra la pianta tralasciando alcuni dati, da usare in contesti 
+     * dove si deve far vedere la pianta ad utenti esterni la serra
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function view($id)
+    {
+        $pianta=Pianta::find($id);
+        $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
+        
+                $cod_serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
+                $diario = Diario::where('codice_pianta',$id)->get();
+
+                $eventi = Bisogno::Join('evento', 'evento.codice_bisogno', '=', 'bisogno.codice_bisogno')
+                                ->where('evento.codice_pianta', $id)
+                                ->orderBy('data', 'desc')
+                                ->get()
+                                ->unique('nome');
+
+                $bisogni = Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
+
+                /*per grafici*/
+                //bisogni
+                $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
+                //eventi di un anno, raggruppati e contati per mese 
+                $ev = collect();
+                $year = date("Y");
+                foreach($bis as $b)
+                {
+                    $evto=DB::table('evento')
+                                    ->where('codice_pianta', $id)
+                                    ->whereYear('created_at', $year)
+                                    ->where('codice_bisogno', $b->codice_bisogno)
+                                    ->select(DB::raw('codice_bisogno'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
+                                    ->groupby('month')
+                                    ->get();             
+                    
+                    $ev = $ev->merge($evto);
+                }
+                $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
+                /*fine roba per grafici*/
+                
+                return view('pianta.view', compact('pianta','diario','eventi','serra', 'bisogni', 'bis', 'ev', 'year'));
     }
 
     /**
