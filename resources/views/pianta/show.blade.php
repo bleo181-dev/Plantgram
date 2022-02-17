@@ -254,7 +254,7 @@
 
     var layout = {title:"azioni per mese",
         xaxis: {title: "mesi"},
-        yaxis: {title: "numero di azioni"}
+        yaxis: {title: "numero di azioni", dtick: 1,}
         };
 
     Plotly.newPlot("myPlot{{$y->codice_bisogno}}", data, layout);
