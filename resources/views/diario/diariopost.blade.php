@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="color: none;">
     <div class="row no-gutters">
 
         <div class="cropper">
@@ -25,7 +25,7 @@
 
                     <button type = "submit" class = "btn btn-danger">Elimina</button>
                 </form>
-              
+
 
             </div>
         </div>
