@@ -127,7 +127,6 @@ class PiantaController extends Controller
                                     ->select(DB::raw('codice_bisogno'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
                                     ->get();             
-                    
                     $ev = $ev->merge($evto);
                 }
                 $bis = Bisogno::where('codice_pianta', $id)->get();

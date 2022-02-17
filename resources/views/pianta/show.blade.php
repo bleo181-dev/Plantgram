@@ -15,7 +15,17 @@
                     </div>
                 @endif
                 <!--back button end -->
-
+                
+                @if($pianta->stato == 1)
+                    <div style="padding: 0 0 0 75%">
+                        <p class="btn btn-primary" style="pointer-events: none" >pubblica</p>                   
+                    </div>
+                @elseif($pianta->stato == 0)
+                    <div style="padding: 0 0 0 75%">
+                        <p class="btn btn-secondary" style="pointer-events: none" >privata</p>                   
+                    </div>
+                @endif
+                
                 <!-- Plant info -->
                     <div class="row no-gutters">
                         <div class="col-md-4">
@@ -228,9 +238,9 @@
     @endforeach
 
     var data = [{
-    x:xArray,
-    y:yArray,
-    type:"bar"
+        x:xArray,
+        y:yArray,
+        type:"bar"
     }];
 
     var layout = {title:"azioni per mese"};
