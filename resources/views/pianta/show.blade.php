@@ -4,29 +4,32 @@
 
 <div class="container">
                 <div class="card-body">
-                <!--back button -->
-                @if(auth()->id() == $serra->id)
-                    <div style="padding:10px">
-                        <a href="{{ URL::action('SerraController@index') }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
+                    
+                    <div style="display: flex; justify-content: space-between;">
+                        <!--back button -->
+                        @if(auth()->id() == $serra->id)
+                            <div style="padding:10px">
+                                <a href="{{ URL::action('SerraController@index') }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
+                            </div>
+                        @else
+                            <div style="padding:10px">
+                                <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
+                            </div>
+                        @endif
+                        <!--back button end -->
+
+                        @if($pianta->stato == 1)
+                            <div>
+                                <p class="btn btn-primary" style="pointer-events: none" >pubblica</p>
+                            </div>
+                        @elseif($pianta->stato == 0)
+                            <div>
+                                <p class="btn btn-secondary" style="pointer-events: none" >privata</p>
+                            </div>
+                        @endif
                     </div>
-                @else
-                    <div style="padding:10px">
-                        <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
-                    </div>
-                @endif
-                <!--back button end -->
-                
-                @if($pianta->stato == 1)
-                    <div style="padding: 0 0 0 75%">
-                        <p class="btn btn-primary" style="pointer-events: none" >pubblica</p>                   
-                    </div>
-                @elseif($pianta->stato == 0)
-                    <div style="padding: 0 0 0 75%">
-                        <p class="btn btn-secondary" style="pointer-events: none" >privata</p>                   
-                    </div>
-                @endif
-                
-                <!-- Plant info -->
+
+                    <!-- Plant info -->
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <?php
