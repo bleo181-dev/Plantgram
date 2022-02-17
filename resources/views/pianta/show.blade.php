@@ -233,9 +233,12 @@
 
     var xArray = [];
     var yArray = [];
+    var mesi = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+    var num;
     @foreach($ev as $e)
         @if($y->codice_bisogno==$e->codice_bisogno)
-            xArray.push({{$e->month}});
+            num={{$e->month - 1}};
+            xArray.push(mesi[num]);
             yArray.push({{$e->volte}});
         @endif
     @endforeach
@@ -246,7 +249,10 @@
         type:"bar"
     }];
 
-    var layout = {title:"azioni per mese"};
+    var layout = {title:"azioni per mese",
+        xaxis: {title: "mesi"},
+        yaxis: {title: "numero di azioni"}
+        };
 
     Plotly.newPlot("myPlot{{$y->codice_bisogno}}", data, layout);
 </script>
