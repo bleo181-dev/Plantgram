@@ -6,7 +6,7 @@
                 <div class="card-body">
                 <!--back button -->
                     <div style="padding:10px">
-                        <a href="{{URL::action('ChatterController@index', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
+                        <a href="{{URL::action('SerraController@show', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
                     </div>
                 <!--back button end -->
 

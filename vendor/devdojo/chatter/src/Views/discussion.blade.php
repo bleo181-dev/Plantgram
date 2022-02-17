@@ -81,9 +81,11 @@
 					        				@endif
 
 					        			@else
-					        				<?php
-												echo '<img class="thumb" src="data:image/jpeg;base64,'.base64_encode($post->user->foto).'" class="card-img-top"/>';
-											?>
+											<a href="{{ URL::action('SerraController@show', $post->user->id)}}" >
+												<?php
+													echo '<img src="data:image/jpeg;base64,'.base64_encode($post->user->foto).'" />';
+												?>
+											</a>
 					        			@endif
 					        		</div>
 

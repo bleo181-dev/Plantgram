@@ -7,8 +7,9 @@ use App\Diario;
 use App\Pianta;
 use App\Serra;
 use App\Collabora;
+use App\User;
 use Auth;
-
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class DiarioController extends Controller
 {
@@ -18,29 +19,22 @@ class DiarioController extends Controller
         $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('id')->first();
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
-
             if(Auth::user()->admin === 'AD'){
-                $diario = Diario::where('codice_pianta', $id)
-                    ->get();
-
+                $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
-
                 return view('diario.index', compact('diario', 'pianta', 'id'));
             }else if(in_array(auth()->id(), $codici_collab)){
-                $diario = Diario::where('codice_pianta', $id)
-                    ->get();
-
+                $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
-
                 return view('diario.index', compact('diario', 'pianta', 'id'));
-            }else if(auth()->id() == $cod_utente)
-            {
-                $diario = Diario::where('codice_pianta', $id)
-                    ->get();
-
+            }else if(auth()->id() == $cod_utente){
+                $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
-
                 return view('diario.index', compact('diario', 'pianta', 'id'));
+            }else if($pianta->stato == 1){ // se è pubblica
+                $diario = Diario::where('codice_pianta', $id)->get();
+                $pianta = Pianta::find($id);
+                return view('diario.view', compact('diario', 'pianta', 'id')); // diario.view è una versione di index senza pulsanti
             }else{
                 return view('landingpage');
             }
@@ -153,5 +147,4 @@ class DiarioController extends Controller
 
         return view('diario.index', compact('diario','pianta', 'id'));
     }
-
 }
