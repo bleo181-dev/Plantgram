@@ -124,7 +124,7 @@ class PiantaController extends Controller
                                     ->where('codice_pianta', $pianta->codice_pianta)
                                     ->whereYear('created_at', $year)
                                     ->where('codice_bisogno', $b->codice_bisogno)
-                                    ->select(DB::raw('codice_bisogno'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
+                                    ->select(DB::raw('codice_bisogno'),DB::raw('created_at'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
                                     ->get();             
                     $ev = $ev->merge($evto);
@@ -159,7 +159,7 @@ class PiantaController extends Controller
                                     ->where('codice_pianta', $pianta->codice_pianta)
                                     ->whereYear('created_at', $year)
                                     ->where('codice_bisogno', $b->codice_bisogno)
-                                    ->select(DB::raw('codice_bisogno'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
+                                    ->select(DB::raw('codice_bisogno'),DB::raw('created_at'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
                                     ->get();             
                     
@@ -212,7 +212,7 @@ class PiantaController extends Controller
                                     ->where('codice_pianta', $id)
                                     ->whereYear('created_at', $year)
                                     ->where('codice_bisogno', $b->codice_bisogno)
-                                    ->select(DB::raw('codice_bisogno'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
+                                    ->select(DB::raw('codice_bisogno'), DB::raw('created_at'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
                                     ->get();             
                     

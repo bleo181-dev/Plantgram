@@ -222,7 +222,6 @@
                             </div>
                         </div>
                     </div>
-
 </div>
 
 @foreach($bis as $y)
@@ -233,10 +232,14 @@
     var mesi = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
     var num;
     @foreach($ev as $e)
-        @if($y->codice_bisogno==$e->codice_bisogno)
+        @if($y->codice_bisogno == $e->codice_bisogno)
             num={{$e->month - 1}};
             xArray.push(mesi[num]);
-            yArray.push({{$e->volte}});
+            @if((strtotime($y->created_at) - strtotime($e->created_at)) == 0)
+                yArray.push({{$e->volte -1}});
+            @else
+                yArray.push({{$e->volte}});
+            @endif
         @endif
     @endforeach
 
