@@ -11031,3 +11031,9 @@ a.text-dark:focus {
     height: 120px;
     overflow: hidden;
   }
+
+  div.plant {
+    width: auto;
+    height: 230px;
+    overflow: hidden;
+  }
