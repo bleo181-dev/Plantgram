@@ -4,50 +4,69 @@
 
 <div class="container">
                 <div class="card-body">
-  
+
                     <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #e3f2fd" >
                         <div class="container">
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                                <span class="navbar-toggler-icon"></span>
+                                <a class="navbar-brand" >
+                                    Opzioni
+                                </a>
+                            </button>
+                            <br>
+                            <br>
+                            <div class="collapse navbar-collapse" id="navbar" >
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav mr-auto">
                                     <!--back button -->
-                                    <li class="nav-item">
-                                        @if(auth()->id() == $serra->id)
-                                            <a href="{{ URL::action('SerraController@index') }}"><button class="btn btn-primary">Torna indietro</button></a>
-                                        @else
-                                            <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><button class="btn btn-primary">Torna indietro</button></a>
-                                        @endif
+                                    <li class="nav-item" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="margin-right: 20px;">
+                                            @if(auth()->id() == $serra->id)
+                                                <a href="{{ URL::action('SerraController@index') }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack"></a>
+                                            @else
+                                                <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack"></a>
+                                            @endif
+                                        </div>
+
+                                        <form  action = "{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method = "POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                                <button type = "submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                                                <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
+                                                <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/diario.png') }}" class="icone"></a>
+                                               <!-- <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/bisogni.png') }}" class="icone"> </a> -->
+
+                                        </form>
+
                                     </li>
+                                    <br>
                                     <!--back button end -->
+
+
+
+
                                 </ul>
-            
+
                                 <!-- Right Side Of Navbar -->
-                                <ul class="navbar-nav ml-auto mb-auto">
+                                <ul class="navbar-nav ml-auto">
+
                                     <!-- inizio stato -->
-                                    <li class="nav-item">
+                                    <li class="nav-item" style="display: flex; justify-content: space-between; align-items: center;">
                                         @if($pianta->stato == 1)
-                                            <p class="btn btn-light" style="pointer-events: none" >pubblica</p>
+                                            <button class="btn btn-light" style="pointer-events: none;" >pubblica</button>
                                         @elseif($pianta->stato == 0)
-                                            <p class="btn btn-secondary" style="pointer-events: none" >privata</p>
+                                            <button class="btn btn-secondary" style="pointer-events: none;" >privata</button>
                                         @endif
+
+
                                     </li>
                                     <!-- fine stato -->
 
-                                    <form  action = "{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method = "POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                            <button type = "submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
-                                            <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
-                                    </form>
-                                    <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/diario.png') }}" class="icone"></a>
-                                    <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/bisogni.png') }}" class="icone"> </a>
-                                    <a href="{{ URL::action('EventoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/eventi.png') }}" class="icone"> </a>
-                                    <a href="{{ URL::action('PiantaController@show', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/visualizza.png') }}" class="icone"> </a>
                                 </ul>
                             </div>
                         </div>
                     </nav>
-<br>
+                    <br>
                     <!-- Plant info -->
                     <div class="row no-gutters">
                         <div class="col-md-4">

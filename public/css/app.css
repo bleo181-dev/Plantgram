@@ -10998,8 +10998,9 @@ a.text-dark:focus {
 
 .icone
 {
-    width: 20px;
-    height: 20px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
 }
 
 .iconeSerraCestino
@@ -11037,3 +11038,6 @@ a.text-dark:focus {
     height: 230px;
     overflow: hidden;
   }
+
+
+  
