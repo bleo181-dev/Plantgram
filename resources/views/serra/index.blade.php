@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div style="width: fill; background-color: #1e90ff; margin-bottom: 1rem;">
 
     <div class="container">
@@ -136,7 +137,6 @@
 
 </div>
 <!--endmodal-->
-
 
 @if(auth()->id() == $serra->id)
     @include('ajax_serra_index')

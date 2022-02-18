@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - #CodepenChallenge: Error 500 - Bug Hunt!</title>
+  <title>Errore 500 - Caccia ai bug!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
 	  /* Variables */
