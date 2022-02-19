@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 
 use Auth;
 use DevDojo\Chatter\Models\Models;
+use App\User;
 use Illuminate\Routing\Controller as Controller;
 
 class ChatterController extends Controller
 {
     public function index($slug = '')
     {
+        $utente = Auth::user();
         $pagination_results = config('chatter.paginate.num_of_results');
 
         $discussions = Models::discussion()->with('user')->with('post')->with('postsCount')->with('category')->orderBy('created_at', 'DESC')->paginate($pagination_results);
@@ -27,7 +29,7 @@ class ChatterController extends Controller
         // Dynamically register markdown service provider
         \App::register('GrahamCampbell\Markdown\MarkdownServiceProvider');
 
-        return view('chatter::home', compact('discussions', 'categories', 'chatter_editor'));
+        return view('chatter::home', compact('utente', 'discussions', 'categories', 'chatter_editor'));
     }
 
     public function login()

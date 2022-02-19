@@ -1,4 +1,4 @@
-@extends(Config::get('chatter.master_file_extend'))
+@extends('layouts.app_forum')
 
 @section(Config::get('chatter.yields.head'))
 	<link href="/vendor/devdojo/chatter/assets/css/chatter.css" rel="stylesheet">
@@ -91,7 +91,11 @@
 
 					        		<div class="chatter_middle">
 					        			<span class="chatter_middle_details"><a href="{{ URL::action('SerraController@show', $post->user->id)}}">{{ ucfirst($post->user->nickname) }}</a> <span class="ago chatter_middle_details">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->created_at))->diffForHumans() }}</span></span>
-					        			<div class="chatter_body">
+										@if($post->user->admin == "pro")
+                                        	<p class="dropdown-item" style="color: gold; font-weight: bold;">Utente PRO</p>
+                                    	@endif
+										
+										<div class="chatter_body">
 					        			
 					        				@if($post->markdown)
 					        					<pre class="chatter_body_md">{{ $post->body }}</pre>
