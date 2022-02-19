@@ -28,15 +28,13 @@
                                             @endif
                                         </div>
 
-                                        <form  action = "{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method = "POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                                <button type = "submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+
+                                                <button data-toggle="modal" data-target="#staticBackdrop{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
                                                 <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
-                                                <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/diario.png') }}" class="icone"></a>
+
                                                <!-- <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/bisogni.png') }}" class="icone"> </a> -->
 
-                                        </form>
+
 
                                     </li>
                                     <br>
@@ -264,6 +262,35 @@
                         </div>
                     </div>
 </div>
+
+
+<!-- Modal elimina pianta -->
+<div class="modal fade" id="staticBackdrop{{$pianta->codice_pianta}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel"> Elimina, {{$pianta->nome}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Sei sicuro di voler eliminare: {{$pianta->nome}} dal tuo green-space?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                <form action="{{ URL::action('PiantaController@destroy', $pianta->codice_pianta)}}" method="POST" class="col-md-2">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+
+                    <button class="btn btn-primary" type="submit">Si</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--endmodal-->
 
 @foreach($bis as $y)
 <script>
