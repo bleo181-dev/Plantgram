@@ -79,6 +79,10 @@
                 <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                     <a class="nav-link" id="pills-home-piante" data-toggle="pill" href="#pills-home-p" role="tab" aria-controls="pills-home-p" aria-selected="false">Home</a>
                 </li>
+
+                <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
+                    <a class="nav-link" id="pills-pubblicita-piante" data-toggle="pill" href="#pills-pubblicita-p" role="tab" aria-controls="pills-pubblicita-p" aria-selected="false">Prodotti</a>
+                </li>
             @endif
         </ul>
         <hr style="background-color: white">
@@ -109,11 +113,22 @@
                 <!-- __________________________________________ -->
 
             </div>
+
             <div class="tab-pane fade" id="pills-home-p" role="tabpanel" aria-labelledby="pills-home-piante">
 
                 <h1 style="color: white">Tutte le piante condivise</h1>
 
             </div>
+
+            <!--visualizza pubblicita -->
+            <div class="tab-pane fade" id="pills-pubblicita-p" role="tabpanel" aria-labelledby="pills-pubblicita-piante">
+                <div class="row row-cols-1 row-cols-md-3">
+                    @foreach($pubblicita as $pub)
+                        @include('pubblicita.pubblicitapost')
+                    @endforeach
+                </div>
+            </div>
+
             @if(auth()->id() == $serra->id)
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-serra-share">
 
