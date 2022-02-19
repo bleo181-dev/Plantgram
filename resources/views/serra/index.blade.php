@@ -4,35 +4,45 @@
 
 <div style="width: fill; background-color: #1e90ff; margin-bottom: 1rem;">
 
+
     <div class="container">
         <br>
-
-        <div>
             <h1 style="color: white;  vertical-align: middle;" class="display-4">
                 {{$nome_serra}}
             </h1>
 
-            <p class="lead text-left" style="color: white">Capienza totale serra: {{$serra->capienza}}</p>
-            <p class="lead text-left" style="color: white">Numero piante: {{$num_piante}}</p>
 
-            <p class="lead text-right" style="color: white" >
-                @foreach($forecast as $f)
-                    <img width=50px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">
-                @endforeach
-                <br>
+            <div
+            @if(auth()->id() == $serra->id)
+            style="display: flex; justify-content: space-between;"
+            @endif
+            >
 
-                Benvenuto, {{$nickname_utente}} <br>
-                Oggi abbiamo
-                @foreach($forecast as $f)
-                    {{$f->description}}
-                @endforeach
-                e ci sono {{$forecast_data->temp}}°C di cui percepiti {{$forecast_data->feels_like}}°C
-                @if ($forecast_data->temp < 2)
-                    <p class="lead text-right" style="color:burlywood" >
-                        Le tue piante potrebbero avere freddo se sono fuori, rientrale!
-                    </p>
+                @if(auth()->id() == $serra->id)
+                    <p class="lead text-left" style="color: white">Numero piante: {{$num_piante}} su {{$serra->capienza}}</p>
                 @endif
-        </div>
+
+                <p class="lead text-right" style="color: white" >
+                    @foreach($forecast as $f)
+                        <img width=50px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">
+                    @endforeach
+                    <br>
+
+                    Benvenuto, {{$nickname_utente}} <br>
+                    Oggi abbiamo
+                    @foreach($forecast as $f)
+                        {{$f->description}}
+                    @endforeach
+                    e ci sono {{$forecast_data->temp}}°C di cui percepiti {{$forecast_data->feels_like}}°C
+                    @if ($forecast_data->temp < 2)
+                        <p class="lead text-right" style="color:burlywood" >
+                            Le tue piante potrebbero avere freddo se sono fuori, rientrale!
+                        </p>
+                    @endif
+
+            </div>
+
+
 
             <div class="display-4 lead text-right">
                 @if(auth()->id() == $serra->id)

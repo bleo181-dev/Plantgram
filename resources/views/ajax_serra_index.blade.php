@@ -1,6 +1,6 @@
 
 <script>
-    
+
 
 var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evitando sfarfallii
 
@@ -14,8 +14,8 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                         var modal = '';
 
                         for(var count=0; count < data.length; count++){
-                                html += '<p class="dropdown-item" style="pointer-events: none;">'+data[count].nickname;
-                                html += '<button id="'+count+'" name="btn_a"type = "submit" style="float: right; pointer-events: fill; background: none; border: none; width: 10px;" data-toggle="modal" data-target="#staticBackdrop'+data[count].codice_collaborazione+'"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="icone"></button>';
+                                html += '<p class="dropdown-item" style="pointer-events: none; display: flex; justify-content: space-between; align-items: center;">'+data[count].nickname;
+                                html += '<button id="'+count+'" name="btn_a"type = "submit" style="float: right; pointer-events: fill; background: none; border: none; width: 10px;" data-toggle="modal" data-target="#staticBackdrop'+data[count].codice_collaborazione+'"><img src="'+'{{ asset("immagini/delete.png") }}'+'"  class="iconeCollabCestino"></button></p>';
 
                                 modal += '<div class="modal fade" id="staticBackdrop'+data[count].codice_collaborazione+'" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">';
                                 modal += '<div class="modal-dialog">';
@@ -91,6 +91,9 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
                             console.log('Aggiorno: Elementi variati serre');
                             oldLength_serre = data.length;
 
+                            if(data.length == 0){
+                                document.getElementById("pills-profile").innerHTML = '<h4 style="color: white">Nessuno ha ancora condiviso una serra con te, appena qualcuno lo farà potrai visionarla in questa sezione!</h4>';
+                            }
 
                         }
 

@@ -27,15 +27,8 @@
                                                 <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack"></a>
                                             @endif
                                         </div>
-
-
-                                                <button data-toggle="modal" data-target="#staticBackdrop{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
-                                                <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
-
-                                               <!-- <a href="{{ URL::action('BisognoController@index', $pianta->codice_pianta) }}"> <img src="{{ asset('immagini/bisogni.png') }}" class="icone"> </a> -->
-
-
-
+                                            <button data-toggle="modal" data-target="#staticBackdrop{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                                            <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
                                     </li>
                                     <br>
                                     <!--back button end -->
@@ -176,12 +169,11 @@
                                             <li  style="display: flex; justify-content: space-between; align-items: center;">
                                                 <h1 class="display-4 m_title">{{$evento->nome}}</h1>
                                                 <div style="display: flex; justify-content: space-between; align-items: center;">
+
                                                     <a href="{{ URL::action('BisognoController@edit', $evento->codice_bisogno) }}"> <img src="{{ asset('immagini/modifica.png') }}"  class="icone"> </a>
-                                                    <form id="delete-form-{{$evento->codice_bisogno}}" action="{{ URL::action('BisognoController@destroy', $evento->codice_bisogno) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        @method('DELETE')
-                                                        <button type="submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
-                                                    </form>
+                                                    <button data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_bisogno}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+
+
                                                 </div>
                                             </li>
                                             <div class="progress" style="width: 100%;">
@@ -229,6 +221,34 @@
                                         </div>
                                     </div>
                                     <!-- jumbotron end-->
+
+                                    <!-- Modal elimina bisogno -->
+                                    <div class="modal fade" id="staticBackdrop{{$evento->codice_bisogno}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel"> Elimina, il bisogno {{$evento->nome}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Sei sicuro di voler eliminare il bisogno {{$evento->nome}}?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+                                                    <form id="delete-form-{{$evento->codice_bisogno}}" action="{{ URL::action('BisognoController@destroy', $evento->codice_bisogno) }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        @method('DELETE')
+
+                                                        <button class="btn btn-primary" type="submit">Si</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--endmodal-->
 
                                 @endif
                             @endforeach
@@ -300,6 +320,7 @@
     </div>
 </div>
 <!--endmodal-->
+
 
 @foreach($bis as $y)
 <script>

@@ -35,7 +35,7 @@ class BisognoController extends Controller
         $utente = Auth::user();
         $bisogni = Bisogno::where('codice_pianta', $codice_pianta)->pluck('nome')->toArray();
         $pianta = Pianta::find($codice_pianta);
-        
+
         return view('bisogno.create', compact('utente', 'codice_pianta', 'bisogni', 'pianta'));
     }
 
@@ -136,7 +136,7 @@ class BisognoController extends Controller
         $bisogno->cadenza = ($request->cadenza)*86400;
 
         $bisogno->save();
-        return redirect()->route('bisogno.index', $request->codice_pianta);
+        return redirect()->route('pianta.show', $request->codice_pianta);
     }
 
     /**
