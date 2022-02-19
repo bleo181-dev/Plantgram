@@ -4,7 +4,16 @@
 <div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
     <br>
     <div id="cont" class="container">
-        <h1>Diario di {{ $pianta->nome }}</div>
+        <div style="display: flex; align-items: center;">
+            @if(auth()->id() == $pianta->codice_serra)
+            <a href="{{ URL::action('PiantaController@show', $pianta->codice_pianta) }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack"></a>
+            @else
+            <a href="{{URL::action('PiantaController@show', $pianta->codice_pianta)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack"></a>
+            @endif
+            <h1 style="margin-left:10px">Diario di {{ $pianta->nome }}</h1>
+        </div>
+    </div>  
+        
         <br>
         <hr>
     </div>

@@ -38,6 +38,20 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="prodotto" class="col-md-4 col-form-label text-md-right">{{ __('Prodotto') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="prodotto" type="text" class="form-control @error('prodotto') is-invalid @enderror" name="prodotto"  required autocomplete="produttore">
+
+                                        @error('prodotto')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
                                     
                                     <div class="col-md-6">

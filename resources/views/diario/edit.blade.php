@@ -33,9 +33,11 @@
                 <input type="file" name="foto" class="custom-file-input" id="imgInp" aria-describedby="inputGroupFileAddon01">
                 <label class="custom-file-label" for="inputGroupFile01">Carica una foto</label>
             </div>
-            <?php
-                    echo '<img id="blah" class="imagePreviewPianta" src="data:image/jpeg;base64,'.base64_encode($diario->foto).'"/>';
-            ?>
+            <div class="display: block; margin-left: auto; margin-right: auto;">
+                <?php
+                        echo '<img id="blah" style="display: block; margin-left: auto; margin-right: auto;" class="imagePreviewPianta rounded mx-auto" src="data:image/jpeg;base64,'.base64_encode($diario->foto).'"/>';
+                ?>
+            </div>
             <br>
             <br>
 

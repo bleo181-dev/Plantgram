@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('tutte le pubblciità') }}</div>
 
@@ -19,6 +19,7 @@
                             <tr>
                                 <th>Codice pubblcita</th>
                                 <th>produttore</th>
+                                <th>prodotto</th>
                                 <th>priorita</th>
                                 <th>Foto</th>
                                 <th>Url</th>
@@ -30,6 +31,7 @@
                                 <tr>
                                     <td>{{ $i->codice_pubblicita }}</td>
                                     <td>{{ $i->produttore }}</td>
+                                    <td>{{ $i->prodotto }}</td>
                                     <td>{{ $i->priorita }}</td>
                                     <td>
                                         <div style="height: 30px; width: 30px;">
