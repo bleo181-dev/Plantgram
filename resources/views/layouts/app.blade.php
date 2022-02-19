@@ -94,9 +94,17 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
+                                    @if(Auth::user()->admin != "pro")
                                     <?php
                                         echo '<img class="thumb" src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
                                     ?>
+                                    @else
+
+                                    <?php
+                                    echo '<img class="thumb" style="border: 4px solid gold;" src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
+                                    ?>
+
+                                    @endif
 
 
 
@@ -111,8 +119,8 @@
                                         {{ __('Logout') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ URL::action('UserController@edit', Auth()->id()) }}">Modifica profilo</a>
-                                    @if($utente->admin != "pro")
-                                        <a class="dropdown-item" href="{{ URL::action('UserController@upgrade', $utente->id) }}" class="btn btn-success"><button class="btn btn-success">Esegui l'upgrade a PRO</button></a>
+                                    @if(Auth::user()->admin != "pro")
+                                        <a class="dropdown-item" href="{{ URL::action('UserController@upgrade', Auth::user()->id) }}" class="btn btn-success"><button class="btn btn-success">Esegui l'upgrade a PRO</button></a>
                                     @else
                                         <p class="dropdown-item" style="color: gold; font-weight: bold;">Sei un utente PRO</p>
                                     @endif

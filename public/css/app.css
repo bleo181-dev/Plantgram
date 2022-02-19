@@ -11009,6 +11009,12 @@ a.text-dark:focus {
     height: 25px;
 }
 
+.iconeCollabCestino
+{
+    width: 25px;
+    height: 25px;
+}
+
 .iconaBack
 {
     width: 75px;
@@ -11038,6 +11044,3 @@ a.text-dark:focus {
     height: 230px;
     overflow: hidden;
   }
-
-
-  
