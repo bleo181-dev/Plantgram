@@ -51,7 +51,7 @@
                                             @foreach($diario as $i)
                                                 @if ($count == 0)
                                                     <div class="carousel-item active">
-                                                        <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}" style="text-decoration: none; color: black;" >
+                                                        <a href="{{ URL::action('DiarioController@indexPubblica', $pianta->codice_pianta)}}" style="text-decoration: none; color: black;" >
                                                             @include('diario.diariopostPianta')
                                                         </a>
                                                     </div>
@@ -59,7 +59,7 @@
 
                                                 @if ($count != 0)
                                                     <div class="carousel-item">
-                                                        <a href="{{ URL::action('DiarioController@index', $pianta->codice_pianta)}}" style="text-decoration: none; color: black;">
+                                                        <a href="{{ URL::action('DiarioController@indexPubblica', $pianta->codice_pianta)}}" style="text-decoration: none; color: black;">
                                                             @include('diario.diariopostPianta')
                                                         </a>
                                                     </div>
@@ -79,7 +79,7 @@
                                     </div>
                                 @endif
                                 @if ($count == 0)
-                                    <a href="{{ URL::action('DiarioController@create', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/diarioMAX.png') }}" class="col-md-3"></a>
+                                    <h4 style="color: white"> Nessun diario disponibile </h4>
                                 @endif
                                 <!-- fine diario -->
 
@@ -114,7 +114,7 @@
                                         @if ($evento->nome == "potatura")
                                             background-color: #759b9d;
                                         @endif
-                                        " class="jumbotron jumbotron-fluid">
+                                        " class="jumbotron jumbotron-fluid rounded-lg p-3 mb-3">
 
                                         <div class="container">
                                             <h1 class="display-4 m_title">{{$evento->nome}}</h1>

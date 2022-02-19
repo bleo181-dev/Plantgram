@@ -48,7 +48,8 @@ Route::delete('/bisogno/{codice_pianta}', 'BisognoController@destroy');
 Route::get('/bisogno/{codice_pianta}/edit', 'BisognoController@edit');
 Route::patch('/bisogno/{codice_pianta}/update', 'BisognoController@update');
 
-Route::get('/diario/{id}', 'DiarioController@index')->name('diario.index');;
+Route::get('/diario/{id}', 'DiarioController@index')->name('diario.index');
+Route::get('/diarioPub/{id}', 'DiarioController@indexPubblica');
 Route::get('/diario/{id}/create', 'DiarioController@create');
 Route::post('/diario/{id}/store', 'DiarioController@store');
 Route::delete('/diario/{id}', 'DiarioController@destroy');

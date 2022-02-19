@@ -4,7 +4,7 @@
 <div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
     <div id="cont" class="container">
         <br>
-        <h1class="col-md-4"> Crea un ricordo </h1>
+        <h1 > Crea un ricordo </h1>
         <br>
         <hr>
     </div>

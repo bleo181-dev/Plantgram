@@ -40,6 +40,7 @@ class PubblicitaController extends Controller
             'url'       => 'required|max:1000',
             'foto'      => 'required',
             'produttore'=> 'required',
+            'prodotto'=> 'required',
             'priorita'=> 'required',
         ]);
 
@@ -48,6 +49,7 @@ class PubblicitaController extends Controller
         Pubblicita::create([
             'url'       => $validateData['url'],
             'produttore'=> $validateData['produttore'],
+            'prodotto'=> $validateData['prodotto'],
             'foto'      => $data,
             'priorita'  => $validateData['priorita'],
         ]);
@@ -90,6 +92,7 @@ class PubblicitaController extends Controller
     {
         $validateData = $request->validate([
             'produttore'    => 'required|max:1000',
+            'prodotto'      => 'required',
             'foto'          => 'nullable',
             'url'           => 'required',
             'priorita'      => 'required',
@@ -101,6 +104,7 @@ class PubblicitaController extends Controller
         $pubblicita = Pubblicita::find($id);
 
         $pubblicita->produttore = $input['produttore'];
+        $pubblicita->prodotto = $input['prodotto'];
         $pubblicita->url = $input['url'];
         $pubblicita->priorita = $input['priorita'];
 

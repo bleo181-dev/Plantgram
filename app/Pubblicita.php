@@ -8,5 +8,5 @@ class Pubblicita extends Model
 {
     protected $primaryKey = 'codice_pubblicita';
     protected $table = 'pubblicita';
-    protected $fillable = ['produttore', 'url', 'priorita', 'foto'];
+    protected $fillable = ['produttore', 'prodotto', 'url', 'priorita', 'foto'];
 }
