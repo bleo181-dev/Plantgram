@@ -10,7 +10,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-10 text-truncate">
-                    <a href="{{ $pub->url}}" class="btn btn-primary" >scopri di piu</a>
+                    <a href="{{ $pub->url}}" class="btn btn-primary">scopri di piu</a>
                 </div>
             </div>
         </div>

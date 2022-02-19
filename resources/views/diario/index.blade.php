@@ -1,22 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+    <br>
+    <div id="cont" class="container">
+        <h1>Diario di {{ $pianta->nome }}</div>
+        <br>
+        <hr>
+    </div>
     <div class="row justify-content-center">
-        <div class ="col-md-8">
-            <div class="card">
-                <div class="card-header"> Diario di {{ $pianta->nome }}</div>
-
-                    <div class="card-body">
-                        <div style="padding: 10px;"> 
-                            <a href="{{ URL::action('DiarioController@create', $id) }}" class="btn btn-success"> Crea ricordo</a>
-                        </div>
-                        <div class="row">
-                            @foreach($diario as $i)
-                                @include('diario.diariopost')
-                            @endforeach
-                        </div>
-                    </div>
+        @foreach($diario as $i)
+            @include('diario.diariopost')
+        @endforeach
+    </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="jumbotron jumbotron-fluid col-md-8">
+            <div class="container">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <a href="{{ URL::action('DiarioController@create', $id) }}" > <img src="{{ asset('immagini/addSerra.png') }}" style="height: 80px; width:80px;" /></a>
                 </div>
             </div>
         </div>
