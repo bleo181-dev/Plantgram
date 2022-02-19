@@ -5,7 +5,7 @@
 <div class="container">
                 <div class="card-body">
 
-                    <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #e3f2fd" >
+                    <nav class="navbar navbar-expand-md navbar-light shadow-sm rounded-lg p-3 mb-3" style="background-color: #e3f2fd" >
                         <div class="container">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                                 <span class="navbar-toggler-icon"></span>
@@ -171,10 +171,20 @@
                                         @if ($evento->nome == "potatura")
                                             background-color: #759b9d;
                                         @endif
-                                        " class="jumbotron jumbotron-fluid">
+                                        " class="jumbotron jumbotron-fluid rounded-lg p-3 mb-3">
 
                                         <div class="container">
-                                            <h1 class="display-4 m_title">{{$evento->nome}}</h1>
+                                            <li  style="display: flex; justify-content: space-between; align-items: center;">
+                                                <h1 class="display-4 m_title">{{$evento->nome}}</h1>
+                                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                    <a href="{{ URL::action('BisognoController@edit', $evento->codice_bisogno) }}"> <img src="{{ asset('immagini/modifica.png') }}"  class="icone"> </a>
+                                                    <form id="delete-form-{{$i->codice_bisogno}}" action="{{ URL::action('BisognoController@destroy', $evento->codice_bisogno) }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        @method('DELETE')
+                                                        <button type="submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                                                    </form>
+                                                </div>
+                                            </li>
                                             <div class="progress" style="width: 100%;">
                                                 <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, #111111 {{(((strtotime('now')-strtotime($evento->data))/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 0% {{(($bisogno->cadenza/86400)*80)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*95)/(($bisogno->cadenza/86400)*1.5)}}%, #2ECC40 {{(($bisogno->cadenza/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*130)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 {{(($bisogno->cadenza/86400)*150)/(($bisogno->cadenza/86400)*1.5)}}%);" ></div>
                                             </div>
