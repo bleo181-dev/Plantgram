@@ -31,12 +31,12 @@ class SerraController extends Controller
     public function index()
     {
         if(Auth::user()){
-            $pubblicita=Pubblicita::all();
+            $pubblicita=Pubblicita::orderBy('priorita', 'desc')->get();
             $serra = Serra::where('id', auth()->id())->first();
             if($serra == null){
                 return view('serra.create');
             }else{
-                $pubblicita=Pubblicita::all();
+                $pubblicita=Pubblicita::orderBy('priorita', 'desc')->get();
                 $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
                 $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
                 $eventi = collect();
@@ -166,7 +166,7 @@ class SerraController extends Controller
             'longitudine'   => $validateData['longitudine'],
             'capienza'      => $validateData['capienza'],
         ]);
-        $pubblicita=Pubblicita::all();
+        $pubblicita=Pubblicita::orderBy('priorita', 'desc')->get();
         $serra = Serra::where('id', auth()->id())->first();
         $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
         $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
@@ -435,7 +435,7 @@ class SerraController extends Controller
                                 ->unique('nome');
                     $eventi = $eventi->merge($evento);
                 }
-                $pubblicita=Pubblicita::all();
+                $pubblicita=Pubblicita::orderBy('priorita', 'desc')->get();
                 $dataoggi = strtotime(date('Y-m-d H:i:s'));
                 $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
 
