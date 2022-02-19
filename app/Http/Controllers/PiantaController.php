@@ -94,6 +94,7 @@ class PiantaController extends Controller
      */
     public function show($id)
     {
+        $utente = Auth::user();
         $pianta=Pianta::find($id);
         $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
@@ -133,7 +134,7 @@ class PiantaController extends Controller
                 /*fine roba per grafici*/
                 
 
-                return view('pianta.show', compact('pianta','diario','eventi','serra','bisogni','bis','ev'));
+                return view('pianta.show', compact('utente', 'pianta','diario','eventi','serra','bisogni','bis','ev'));
 
             }else if(in_array(auth()->id(), $codici_collab)){
                 $pianta = Pianta::find($id);
@@ -168,10 +169,7 @@ class PiantaController extends Controller
                 $bis = Bisogno::where('codice_pianta', $id)->get();
                 /*fine roba per grafici*/
                 
-                
-
-
-                return view('pianta.show', compact('pianta','diario','eventi','serra','ev','bis','year', 'bisogni'));
+                return view('pianta.show', compact('utente', 'pianta','diario','eventi','serra','ev','bis','year', 'bisogni'));
             }else if(Auth::user()){
 
                 $cod_serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
@@ -221,7 +219,7 @@ class PiantaController extends Controller
                 $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
                 /*fine roba per grafici*/
                 
-                return view('pianta.show', compact('pianta','diario','eventi','serra', 'bisogni', 'bis', 'ev', 'year'));
+                return view('pianta.show', compact('utente', 'pianta','diario','eventi','serra', 'bisogni', 'bis', 'ev', 'year'));
                 
 
             }else{
@@ -239,6 +237,7 @@ class PiantaController extends Controller
      */
     public function view($id)
     {
+        $utente = Auth::user();
         $pianta=Pianta::find($id);
         $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
         
@@ -274,7 +273,7 @@ class PiantaController extends Controller
                 $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
                 /*fine roba per grafici*/
                 
-                return view('pianta.view', compact('pianta','diario','eventi','serra', 'bisogni', 'bis', 'ev', 'year'));
+                return view('pianta.view', compact('utente', 'pianta','diario','eventi','serra', 'bisogni', 'bis', 'ev', 'year'));
     }
 
     /**
@@ -287,6 +286,7 @@ class PiantaController extends Controller
     {
         if(Auth::user()){
 
+            $utente = Auth::user();
             if(Auth::user()->admin === 'AD'){
 
                 $pianta = Pianta::find($id);
@@ -302,7 +302,7 @@ class PiantaController extends Controller
                 if($pianta == null){
                     return redirect()->route('home');
                 }else{
-                    return view('pianta.edit', compact('pianta'));
+                    return view('pianta.edit', compact('utente', 'pianta'));
                 }
             }
 
@@ -375,7 +375,6 @@ class PiantaController extends Controller
                                 ->delete();
                 return redirect()->route('serra.index');
             }
-
         }
     }
 }

@@ -15,6 +15,7 @@ class DiarioController extends Controller
 {
     public function index($id)
     {
+        $utente = Auth::user();
         $pianta=Pianta::find($id);
         $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('id')->first();
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
@@ -22,19 +23,19 @@ class DiarioController extends Controller
             if(Auth::user()->admin === 'AD'){
                 $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
-                return view('diario.index', compact('diario', 'pianta', 'id'));
+                return view('diario.index', compact('utente', 'diario', 'pianta', 'id'));
             }else if(in_array(auth()->id(), $codici_collab)){
                 $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
-                return view('diario.index', compact('diario', 'pianta', 'id'));
+                return view('diario.index', compact('utente', 'diario', 'pianta', 'id'));
             }else if(auth()->id() == $cod_utente){
                 $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
-                return view('diario.index', compact('diario', 'pianta', 'id'));
+                return view('diario.index', compact('utente', 'diario', 'pianta', 'id'));
             }else if($pianta->stato == 1){ // se è pubblica
                 $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
-                return view('diario.view', compact('diario', 'pianta', 'id')); // diario.view è una versione di index senza pulsanti
+                return view('diario.view', compact('utente', 'diario', 'pianta', 'id')); // diario.view è una versione di index senza pulsanti
             }else{
                 return view('landingpage');
             }
@@ -46,7 +47,8 @@ class DiarioController extends Controller
 
     public function create($id)
     {
-        return view('diario.create', compact('id'));
+        $utente = Auth::user();
+        return view('diario.create', compact('utente', 'id'));
     }
 
     public function store(Request $request, $id)
@@ -72,11 +74,12 @@ class DiarioController extends Controller
 
         $pianta = Pianta::find($id);
 
-        return view('diario.index', compact('diario','pianta', 'id'));
+        return redirect()->route('diario.index', $id);
     }
 
     public function edit($id)
     {
+        $utente = Auth::user();
         $diario=Diario::find($id);
         $pianta=Pianta::find($diario->codice_pianta);
         $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('id')->first();
@@ -85,15 +88,15 @@ class DiarioController extends Controller
             
             if(Auth::user()->admin === 'AD'){
                 $diario=Diario::find($id);
-                return view('diario.edit', compact('diario'));
+                return view('diario.edit', compact('utente', 'diario'));
 
             }else if(in_array(auth()->id(), $codici_collab)){
                 $diario=Diario::find($id);
-                return view('diario.edit', compact('diario'));
+                return view('diario.edit', compact('utente', 'diario'));
 
             }else if(auth()->id() == $cod_utente){
                 $diario=Diario::find($id);
-                return view('diario.edit', compact('diario'));
+                return view('diario.edit', compact('utente', 'diario'));
             }else{
                 return view('landingpage');
             }
@@ -108,8 +111,6 @@ class DiarioController extends Controller
             'testo'   => 'required|max:1000',
             'foto'    => 'nullable',
         ]);
-
-
 
         $input = $request->all();
         $d = Diario::find($codice_diario);
@@ -131,8 +132,8 @@ class DiarioController extends Controller
                 ->get();
         $pianta = Pianta::find($id);
 
-        return view('diario.index', compact('diario','pianta', 'id'));
-    }
+        return redirect()->route('diario.index', $id);
+        }
 
     public function destroy($codice_diario)
     {
@@ -140,11 +141,6 @@ class DiarioController extends Controller
         $id=$d->codice_pianta;
         $d->delete();
 
-        $diario = Diario::where('codice_pianta', $id)
-        ->where('id', auth()->id())
-        ->get();
-        $pianta = Pianta::find($id);
-
-        return view('diario.index', compact('diario','pianta', 'id'));
+        return redirect()->route('diario.index', $id);
     }
 }

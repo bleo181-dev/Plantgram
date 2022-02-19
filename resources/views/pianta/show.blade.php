@@ -90,7 +90,6 @@
                                         <ol class="carousel-indicators" >
                                             <?php $count=0; ?>
                                             @foreach($diario as $i)
-
                                                 @if ($count == 0)
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="{{$count}}" class="active"></li>
                                                 @endif
@@ -178,7 +177,7 @@
                                                 <h1 class="display-4 m_title">{{$evento->nome}}</h1>
                                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                                     <a href="{{ URL::action('BisognoController@edit', $evento->codice_bisogno) }}"> <img src="{{ asset('immagini/modifica.png') }}"  class="icone"> </a>
-                                                    <form id="delete-form-{{$i->codice_bisogno}}" action="{{ URL::action('BisognoController@destroy', $evento->codice_bisogno) }}" method="POST">
+                                                    <form id="delete-form-{{$evento->codice_bisogno}}" action="{{ URL::action('BisognoController@destroy', $evento->codice_bisogno) }}" method="POST">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button type="submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>

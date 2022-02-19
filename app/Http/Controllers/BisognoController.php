@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Bisogno;
@@ -18,10 +18,11 @@ class BisognoController extends Controller
      */
     public function index($codice_pianta)
     {
+        $utente = Auth::user();
         $bisogni = Bisogno::where('codice_pianta', $codice_pianta)->get();
         $pianta = Pianta::find($codice_pianta);
 
-        return view('bisogno.index', compact('bisogni' , 'pianta', 'codice_pianta'));
+        return view('bisogno.index', compact('utente', 'bisogni' , 'pianta', 'codice_pianta'));
     }
 
     /**
@@ -31,9 +32,11 @@ class BisognoController extends Controller
      */
     public function create($codice_pianta)
     {
+        $utente = Auth::user();
         $bisogni = Bisogno::where('codice_pianta', $codice_pianta)->pluck('nome')->toArray();
         $pianta = Pianta::find($codice_pianta);
-        return view('bisogno.create', compact('codice_pianta', 'bisogni', 'pianta'));
+        
+        return view('bisogno.create', compact('utente', 'codice_pianta', 'bisogni', 'pianta'));
     }
 
     /**
@@ -98,8 +101,9 @@ class BisognoController extends Controller
      */
     public function edit($id)
     {
+        $utente = Auth::user();
         $bisogno = Bisogno::find($id);
-        return view('bisogno.edit', compact('bisogno'));
+        return view('bisogno.edit', compact('utente', 'bisogno'));
     }
 
     /**
