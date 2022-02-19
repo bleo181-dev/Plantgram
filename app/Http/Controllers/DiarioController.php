@@ -32,7 +32,23 @@ class DiarioController extends Controller
                 $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
                 return view('diario.index', compact('utente', 'diario', 'pianta', 'id'));
-            }else if($pianta->stato == 1){ // se è pubblica
+            }else{
+                return view('landingpage');
+            }
+        }else{
+            return view('/auth/login');
+        }
+
+    }
+
+    public function indexPubblica($id) //ho creato questa funzione a parte per il diario pubblico perchè se un utente collabora a quella serra viene visualizzato il diario normale
+    {
+        $utente = Auth::user();
+        $pianta=Pianta::find($id);
+        $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('id')->first();
+        $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
+        if(Auth::user()){
+            if($pianta->stato == 1){ // se è pubblica
                 $diario = Diario::where('codice_pianta', $id)->get();
                 $pianta = Pianta::find($id);
                 return view('diario.view', compact('utente', 'diario', 'pianta', 'id')); // diario.view è una versione di index senza pulsanti
@@ -85,7 +101,7 @@ class DiarioController extends Controller
         $cod_utente=Serra::where('codice_serra', $pianta->codice_serra)->pluck('id')->first();
         $codici_collab=Collabora::where('codice_serra',$pianta->codice_serra)->pluck('id')->toArray();
         if(Auth::user()){
-            
+
             if(Auth::user()->admin === 'AD'){
                 $diario=Diario::find($id);
                 return view('diario.edit', compact('utente', 'diario'));

@@ -88,12 +88,10 @@
                                     @else
 
                                     <?php
-                                    echo '<img class="thumb" style="border: 4px dashed gold;" src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
+                                    echo '<img class="thumb" style="border: 4px solid gold;" src="data:image/jpeg;base64,'.base64_encode(Auth::user()->foto).'" class="card-img-top"/>';
                                     ?>
 
                                     @endif
-
-
 
                                     {{ Auth::user()->nickname }} <span class="caret"></span>
 
