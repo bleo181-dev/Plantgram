@@ -29,7 +29,7 @@
                         <br>
                         <br>
 
-                        <input type="submit" value="Spedisci invito" />
+                        <input type="submit" class="btn btn-primary" value="Spedisci invito" />
                     </form>
                 </div>
             </div>

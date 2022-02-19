@@ -12,6 +12,9 @@
                 {{$nome_serra}}
             </h1>
 
+            <p class="lead text-left" style="color: white">Capienza totale serra: {{$serra->capienza}}</p>
+            <p class="lead text-left" style="color: white">Numero piante: {{$num_piante}}</p>
+
             <p class="lead text-right" style="color: white" >
                 @foreach($forecast as $f)
                     <img width=50px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">
@@ -105,7 +108,13 @@
                         <div class="col mb-4">
                             <div class="col mb-4">
                                 <div class="card">
-                                    <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> <img src="{{ asset('immagini/add.png') }}" class="card-img-top" /></a>
+                                    @if($num_piante < $serra->capienza )
+                                        <a href="{{ URL::action('PiantaController@create') }}" class="btn btn-success"> <img src="{{ asset('immagini/add.png') }}" class="card-img-top" /></a>
+                                    @else
+                                        @if($utente->admin == "nopro")
+                                            <a href="{{ URL::action('UserController@upgrade', $utente->id) }}" class="btn btn-success"><button class="btn btn-success">Esegui l'upgrade a PRO per avere accesso a piante illimitate</button></a>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                         </div>

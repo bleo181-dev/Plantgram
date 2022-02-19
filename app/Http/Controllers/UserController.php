@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Serra;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
@@ -40,7 +41,6 @@ class UserController extends Controller
             'foto'              => 'required',
             'email'             => 'required', 'string', 'email', 'max:255', 'unique:users',
             'password'          => 'required', 'string', 'min:8', 'confirmed',
-            'admin'             => 'required'
         ]);
 
         $data = file_get_contents($_FILES['foto']['tmp_name']);
@@ -50,7 +50,7 @@ class UserController extends Controller
             'foto'              => $data,
             'email'             => $request['email'],
             'password'          => Hash::make($request['password']),
-            'admin'             => $request['admin'],
+            'admin'             => "nopro",
         ]);
 
         return redirect()->route('user.index');
@@ -64,18 +64,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-
         if(($id == auth()->id() ) || (Auth::user()->admin) ){
-
-        $user = User::find($id);
-        return view('user.edit', compact('user'));
-
+            $user = User::find($id);
+            return view('user.edit', compact('user'));
         }else{
-
             return redirect()->route('user.edit', auth()->id());
-
         }
-
     }
 
     /**
@@ -92,7 +86,6 @@ class UserController extends Controller
             'foto'         => 'nullable',
             'email'        => 'required', 'string', 'email', 'max:255', 'unique:users',
             'password'     => 'required', 'string', 'min:8', 'confirmed',
-            'admin'         => 'required',
         ]);
 
         if(Auth::user()->admin === 'AD'){
@@ -108,7 +101,6 @@ class UserController extends Controller
             $user->foto = $data;
         }
         $user->password = Hash::make($request['password']);
-        $user->admin = $request['admin'];
         $user->save();
         return redirect()->route('user.index');
     }
@@ -132,4 +124,29 @@ class UserController extends Controller
         }
 
     }
+
+    public function upgrade($id){
+        $utente = User::find($id);
+        return view('user.upgradeform', compact('utente'));     
+    }
+
+    public function storeupgrade(Request $request, $id){
+        $request->validate([
+            'scelta'     => 'required'
+        ]);
+
+        if($request['scelta'] == 'no'){
+            return redirect()->route('serra.index');
+        }else{
+            $serra = Serra::where('id', $id)->first();
+            $utente = User::find($id);
+            $serra->capienza = 999;
+            $utente->admin = "pro";
+            $utente->save();
+            $serra->save();
+            return redirect()->route('serra.index');
+        }
+    }
+
+
 }

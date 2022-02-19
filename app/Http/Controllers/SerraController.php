@@ -38,6 +38,8 @@ class SerraController extends Controller
             }else{
                 $pubblicita=Pubblicita::orderBy('priorita', 'desc')->get();
                 $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
+                $num_piante = $piante->count();
+                $utente = User::find($serra->id);
                 $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
                 $eventi = collect();
                 foreach($cod_pianta as $c){
@@ -88,7 +90,7 @@ class SerraController extends Controller
 
                 if( Auth::check() )
                 {
-                    return view('serra.index', compact('piante', 'pubblicita','bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data', 'nome_serra', 'nickname_utente', 'serra', 'num_collaborazioni', 'collaboratori', 'serre_condivise'));
+                    return view('serra.index', compact('utente', 'serra', 'num_piante', 'piante', 'pubblicita','bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data', 'nome_serra', 'nickname_utente', 'serra', 'num_collaborazioni', 'collaboratori', 'serre_condivise'));
 
                 }else {
                     return view('/auth/login');
@@ -166,59 +168,10 @@ class SerraController extends Controller
             'longitudine'   => $validateData['longitudine'],
             'capienza'      => $validateData['capienza'],
         ]);
-        $pubblicita=Pubblicita::orderBy('priorita', 'desc')->get();
-        $serra = Serra::where('id', auth()->id())->first();
-        $piante = Pianta::where('codice_serra', $serra->codice_serra)->get();
-        $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
-        $eventi = Evento::whereIn('codice_pianta', $cod_pianta)->get();
-        $dataoggi = strtotime(date('Y-m-d H:i:s'));
-        $delta = strtotime($eventi);
-        $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
-
-        $num_collaborazioni = Collabora::where('codice_serra', $serra->serra)->count();
-        $collaboratori = DB::table('users')
-                        ->join('collabora', 'users.id', '=', 'collabora.id')
-                        ->pluck('nickname');
-
-        $id = auth()->id();
-        $serre_condivise = DB::table('collabora')
-                        ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
-                        ->join('users', 'serra.id', '=', 'users.id')
-                        ->where('collabora.id', $id)
-                        ->get();
-
-        $lat_serra = Serra::where('id', auth()->id())->pluck('latitudine')->first();
-        $long_serra = Serra::where('id', auth()->id())->pluck('longitudine')->first();
-        $nome_serra = Serra::where('id', auth()->id())->pluck('nome')->first();
-        $nickname_utente = User::where('id', auth()->id())->pluck('nickname')->first();
-
-        $id = auth()->id();
-        $serre_condivise = DB::table('collabora')
-                ->join('serra', 'collabora.codice_serra', '=', 'serra.codice_serra')
-                ->join('users', 'serra.id', '=', 'users.id')
-                ->where('collabora.id', $id)
-                ->get();
-
-
-        Log::info("Not from cache");
-        $APIkey = "d2c909932430658a343ead2d18b1191f";
-        $lat = $lat_serra;
-        $lon = $long_serra;
-        $url = "https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=it&appid=${APIkey}";
-        Log::info($url);
-        $client = new \GuzzleHttp\Client();
-        $res = $client->get($url);
-        if ($res->getStatusCode() == 200) {
-        $j = $res->getBody();
-        $obj = json_decode($j);
-        $forecast = $obj->current->weather ;
-        $forecast_data = $obj->current;
-        }
 
         if( Auth::check() )
         {
-            return view('serra.index', compact('piante', 'pubblicita','bisogni', 'eventi', 'dataoggi', 'forecast', 'forecast_data', 'nome_serra', 'nickname_utente', 'serra', 'num_collaborazioni', 'collaboratori', 'serre_condivise'));
-
+            return redirect()->route('serra.index');
         }else {
             return view('/auth/login');
         }

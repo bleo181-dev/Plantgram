@@ -111,6 +111,12 @@
                                         {{ __('Logout') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ URL::action('UserController@edit', Auth()->id()) }}">Modifica profilo</a>
+                                    @if($utente->admin != "pro")
+                                        <a class="dropdown-item" href="{{ URL::action('UserController@upgrade', $utente->id) }}" class="btn btn-success"><button class="btn btn-success">Esegui l'upgrade a PRO</button></a>
+                                    @else
+                                        <p class="dropdown-item" style="color: gold; font-weight: bold;">Sei un utente PRO</p>
+                                    @endif
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

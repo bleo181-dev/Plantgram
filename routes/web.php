@@ -12,6 +12,7 @@
 */
 use App\Http\Controllers\CollaboraController;
 use App\Http\Controllers\PiantaController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -30,6 +31,8 @@ Route::post('serra/process_collab', 'SerraController@process_collab');
 Route::get('/handle_collab/{token}', 'SerraController@handle_collab')->name('handle_collab');
 Route::resource('serra', 'SerraController');
 
+Route::get('user/{id}/upgrade', 'UserController@upgrade');
+Route::patch('user/{id}/storeupgrade', 'UserController@storeupgrade');
 Route::resource('user', 'UserController');
 
 Route::get('/collabora/fetch_data', 'CollaboraController@fetch_data');
