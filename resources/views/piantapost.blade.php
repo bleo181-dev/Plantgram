@@ -10,23 +10,27 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-10 text-truncate">
-                    <h5 class="card-title">{{$pianta->nome}}</h5>
+                    <h5 style="display: inline;">{{$pianta->nome}}</h5>
                 </div>
             </div>
             <!-- bisogni arrettrati -->
+            <div class="card-text col-20 text-truncate">
             @foreach($bisogni as $b)
                 @foreach($eventi as $d)
                     @if($b['codice_pianta'] == $pianta->codice_pianta)
                         @if($d['codice_pianta'] == $pianta->codice_pianta)
                             @if($d['nome'] == $b['nome'])
                                 @if($dataoggi - strtotime($d['data']) > $b['cadenza'])
-                                    <p style="color:rgb(145, 0, 0)">{{ $b['nome'] }}</p>
+                                    <div  style="color:rgb(145, 0, 0); display: inline-block; ">
+                                        {{ $b['nome'] }}
+                                    </div>
                                 @endif
                             @endif
                         @endif
                     @endif
                 @endforeach
             @endforeach
+            </div>
             <!-- fine bisogni arrettrati -->
         </div>
     </div>
