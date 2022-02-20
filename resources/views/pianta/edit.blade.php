@@ -41,6 +41,7 @@
                 Non sai come si chiama la tua pianta? Passa a pro e ci penso io
                 <a style="margin-left: 10px" href="{{ URL::action('UserController@upgrade', Auth::user()->id) }}" class="btn btn-success">Esegui l'upgrade a PRO</a>
             </div>
+            <br>
         @endif
     </div>
     <br>
