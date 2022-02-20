@@ -27,7 +27,7 @@
                                                 <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack"></a>
                                             @endif
                                         </div>
-                                            <button data-toggle="modal" data-target="#staticBackdrop{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                                            <button data-toggle="modal" data-target="#DeletePlant{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
                                             <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
                                     </li>
                                     <br>
@@ -171,7 +171,7 @@
                                                 <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                                     <a href="{{ URL::action('BisognoController@edit', $evento->codice_bisogno) }}"> <img src="{{ asset('immagini/modifica.png') }}"  class="icone"> </a>
-                                                    <button data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_bisogno}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                                                    <button data-toggle="modal" data-target="#Delete{{$evento->codice_bisogno}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
 
 
                                                 </div>
@@ -186,7 +186,7 @@
                                                 </div>
 
 
-                                                <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
+                                                <a data-toggle="modal" data-target="#Bisogno{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
 
                                                 <br>
 
@@ -223,7 +223,7 @@
                                     <!-- jumbotron end-->
 
                                     <!-- Modal elimina bisogno -->
-                                    <div class="modal fade" id="staticBackdrop{{$bisogno->codice_bisogno}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="Delete{{$bisogno->codice_bisogno}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -254,7 +254,7 @@
                             @endforeach
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop{{$evento->codice_evento}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="Bisogno{{$evento->codice_evento}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -294,7 +294,7 @@
 
 
 <!-- Modal elimina pianta -->
-<div class="modal fade" id="staticBackdrop{{$pianta->codice_pianta}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="DeletePlant{{$pianta->codice_pianta}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
