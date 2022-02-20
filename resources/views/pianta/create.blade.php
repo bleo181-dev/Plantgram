@@ -20,16 +20,8 @@
             {{ csrf_field() }}
             <h1> Crea una nuova pianta </h1>
             <br>
-            <br>
-            <input type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
-            height: 80px;
-            width:80px;
-            border: none;
-            margin-right:auto;
-            margin-left:auto;" value=""/>
-            <br>
-        </div>
     </div>
+</div>
 
     <br>
     <br>
@@ -44,11 +36,7 @@
         <div class="custom-file">
             <input type="file" name="foto" class="custom-file-input" id="imgInp">
             <label class="custom-file-label" for="inputGroupFile01">Carica una foto</label>
-
-
             <button  style="background: none; border: none; display: block; height: 80px; width:80px; border: none; margin-right:auto; margin-left:auto;" id="cerca" type="button"><img style="width: 50px;"src="{{ asset('immagini/find.png') }}"/></button>
-
-
         </div>
 
         <br>
@@ -65,7 +53,9 @@
                         <span class="input-group-text" id="inputGroup-sizing-default">Nome pianta</span>
                     </div>
                     <input id="namePlant" type="text" name="nome" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{ old('nome') }}">
-
+                </div>
+                <br>
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default2">Dove si trova?</span>
                     </div>
@@ -109,6 +99,15 @@
                 <option name="stato" value="1">Pubblica</option>
             </select>
 
+            <br>
+            <br>
+            <br>
+            <input type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
+            height: 80px;
+            width:80px;
+            border: none;
+            margin-right:auto;
+            margin-left:auto;" value=""/>
         </form>
     </div>
 
