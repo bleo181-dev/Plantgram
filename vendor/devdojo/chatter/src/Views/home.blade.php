@@ -34,7 +34,7 @@
 	@if (count($errors) > 0)
 	    <div class="chatter-alert alert alert-danger">
 	    	<div class="container">
-	    		<p><strong><i class="chatter-alert-danger"></i> {{ Config::get('chatter.alert_messages.danger') }}</strong> Please fix the following errors:</p>
+	    		<p><strong><i class="chatter-alert-danger"></i> {{ Config::get('chatter.alert_messages.danger') }}</strong> Perfavore risolvi i seguenti errori:</p>
 		        <ul>
 		            @foreach ($errors->all() as $error)
 		                <li>{{ $error }}</li>
@@ -131,7 +131,7 @@
         	<div class="row">
 	        	<div class="col-md-7">
 		        	<!-- TITLE -->
-	                <input type="text" class="form-control" id="title" name="title" placeholder="Title of {{ Config::get('chatter.titles.discussion') }}" v-model="title" value="{{ old('title') }}" >
+	                <input type="text" style="width: 100%; height:100%; border: none; text-align:center" placeholder="Scrivi il titolo qui..." id="title" name="title" v-model="title" value="{{ old('title') }}" >
 	            </div>
 
 	            <div class="col-md-4">
@@ -156,7 +156,7 @@
             <!-- BODY -->
         	<div id="editor">
         		@if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
-					<label id="tinymce_placeholder">Scrivi il contenuto della discussione qui...</label>
+					<label id="tinymce_placeholder" style="color:#494848">Scrivi il contenuto della discussione qui...</label>
     				<textarea id="body" class="richText" name="body" placeholder="">{{ old('body') }}</textarea>
     			@elseif($chatter_editor == 'simplemde')
     				<textarea id="simplemde" name="body" placeholder="">{{ old('body') }}</textarea>
@@ -166,7 +166,7 @@
             <input type="hidden" name="_token" id="csrf_token_field" value="{{ csrf_token() }}">
 
             <div id="new_discussion_footer">
-            	<input type='color' id="color" name="color" /><span class="select_color_text">Seleziona un colore (opzionale) </span>
+            	<input type='color' id="color" name="color" /><span class="select_color_text" style="color: #494848">Seleziona un colore (opzionale) </span>
             	<button id="submit_discussion" class="btn btn-success pull-right"><i class="chatter-new"></i> Crea la discussione</button>
             	<a href="/{{ Config::get('chatter.routes.home') }}" class="btn btn-default pull-right" id="cancel_discussion">Annulla</a>
             	<div style="clear:both"></div>

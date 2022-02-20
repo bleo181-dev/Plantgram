@@ -31,7 +31,7 @@
 	@if (count($errors) > 0)
 	    <div class="chatter-alert alert alert-danger">
 	    	<div class="container">
-	    		<p><strong><i class="chatter-alert-danger"></i> {{ Config::get('chatter.alert_messages.danger') }}</strong> Please fix the following errors:</p>
+	    		<p><strong><i class="chatter-alert-danger"></i> {{ Config::get('chatter.alert_messages.danger') }}</strong> Perfavore risolvi i seguenti errori:</p>
 		        <ul>
 		            @foreach ($errors->all() as $error)
 		                <li>{{ $error }}</li>

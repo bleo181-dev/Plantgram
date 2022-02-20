@@ -150,10 +150,10 @@ return [
     */
 
     'alert_messages' => [
-        'success' => 'Well done!',
-        'info'    => 'Heads Up!',
+        'success' => 'Complimenti!',
+        'info'    => 'Attenzione!',
         'warning' => 'Wuh Oh!',
-        'danger'  => 'Oh Snap!',
+        'danger'  => 'Oh no!',
     ],
 
     /*
