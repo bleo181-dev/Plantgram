@@ -227,7 +227,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel"> Elimina, il bisogno {{$bisogno->nome}}</h5>
+                                                    <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel">{{$bisogno->nome}}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -283,10 +283,10 @@
                         <br>
                     @endforeach
 
-                    <div class="jumbotron jumbotron-fluid">
+                    <div class="jumbotron jumbotron-fluid rounded-lg p-3 mb-3" style="background-color: rgba(73, 197, 73, 0.418)">
                         <div class="container">
                             <div style="display: flex; justify-content: center; align-items: center;">
-                                <a href="{{ URL::action('BisognoController@create', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/addSerra.png') }}" style="height: 80px; width:80px;" /></a>
+                                <a href="{{ URL::action('BisognoController@create', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/addbisogno.png') }}" style="height: 150px; width:150px;" /></a>
                             </div>
                         </div>
                     </div>

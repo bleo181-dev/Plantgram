@@ -1,5 +1,6 @@
 let map, infoWindow;;
 document.getElementById('invio').style.visibility = 'hidden';
+
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 41.87242987532504, lng: 14.579792463656322 }, // Cerenza sul Trigno
@@ -20,6 +21,7 @@ function initMap() {
 
     locationButton.textContent = "Trova la tua posizione";
     locationButton.setAttribute('type', 'button');
+    locationButton.setAttribute('id', 'posizioneBTN');
     locationButton.setAttribute('class', 'btn btn-secondary btn-lg btn-block');
     //map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
     //document.body.appendChild(locationButton);
@@ -58,7 +60,8 @@ function initMap() {
         let lng = marker.position.lng()
         $('#lat').val(lat)
         $('#lng').val(lng)
-        document.getElementById('lbl').style.visibility = 'hidden';
+        document.getElementById('lbl').remove();
+        document.getElementById('posizioneBTN').remove();
         document.getElementById('invio').style.visibility = 'visible' //mostra pulsante submit se è stata trovata la posizione
     })
 
