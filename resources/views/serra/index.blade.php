@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div style="width: fill; background-color: #1e90ff; margin-bottom: 1rem;">
+<div style="width: fill; background-color: #2ECC40; margin-bottom: 1rem;">
 
 
     <div class="container">
@@ -35,8 +35,8 @@
                     @endforeach
                     e ci sono {{$forecast_data->temp}}°C di cui percepiti {{$forecast_data->feels_like}}°C
                     @if ($forecast_data->temp < 2)
-                        <p class="lead text-right" style="color:burlywood" >
-                            Le tue piante potrebbero avere freddo se sono fuori, rientrale!
+                        <p class="lead text-right" style="color:yellow" >
+                            Le tue piante potrebbero avere freddo se sono fuori, se necessario mettile al sicuro!
                         </p>
                     @endif
 
