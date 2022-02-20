@@ -40,7 +40,20 @@
             </div>
             <br>
 
-            <input id="invio" type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
+            @csrf
+        </div>
+    </div>
+    <div class="col-md-8" style="margin:auto;">
+            <div id="map" style="height:400px; width: fill;" ></div>
+
+                <script src="{{ asset('js/posizione.js') }}"></script>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap" type="text/javascript"></script>
+            </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <input id="invio" type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
             height: 80px;
             width:80px;
             border: none;
@@ -48,16 +61,6 @@
             margin-left:auto;" value=""/>
             <br>
 
-            @csrf
-        </div>
-    </div>
-
-
-    <div id="map" style="height:400px; width: fill;" ></div>
-
-        <script src="{{ asset('js/posizione.js') }}"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap" type="text/javascript"></script>
-    </div>
 
 
 </form>
