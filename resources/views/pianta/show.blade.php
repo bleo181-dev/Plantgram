@@ -5,7 +5,7 @@
 <div class="container">
                 <div class="card-body">
 
-                    <nav class="navbar navbar-expand-md navbar-light shadow-sm rounded-lg p-3 mb-3" style="background-color: #e3f2fd" >
+                    <nav class="navbar navbar-expand-md navbar-light shadow-sm rounded-lg p-3 mb-3" style="background-color: #95e59f86" >
                         <div class="container">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                                 <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
                                                 <a href="{{URL::action('SerraController@indexserrashare', $pianta->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack"></a>
                                             @endif
                                         </div>
-                                            <button data-toggle="modal" data-target="#staticBackdrop{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                                            <button data-toggle="modal" data-target="#DeletePlant{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
                                             <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
                                     </li>
                                     <br>
@@ -171,7 +171,7 @@
                                                 <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                                     <a href="{{ URL::action('BisognoController@edit', $evento->codice_bisogno) }}"> <img src="{{ asset('immagini/modifica.png') }}"  class="icone"> </a>
-                                                    <button data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_bisogno}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
+                                                    <button data-toggle="modal" data-target="#Delete{{$evento->codice_bisogno}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
 
 
                                                 </div>
@@ -186,7 +186,7 @@
                                                 </div>
 
 
-                                                <a data-toggle="modal" data-target="#staticBackdrop{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
+                                                <a data-toggle="modal" data-target="#Bisogno{{$evento->codice_evento}}"class=" col-md-2 btn btn-primary ">{{$evento->nome}}</a>
 
                                                 <br>
 
@@ -223,11 +223,11 @@
                                     <!-- jumbotron end-->
 
                                     <!-- Modal elimina bisogno -->
-                                    <div class="modal fade" id="staticBackdrop{{$bisogno->codice_bisogno}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="Delete{{$bisogno->codice_bisogno}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel"> Elimina, il bisogno {{$bisogno->nome}}</h5>
+                                                    <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel">{{$bisogno->nome}}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -254,7 +254,7 @@
                             @endforeach
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop{{$evento->codice_evento}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="Bisogno{{$evento->codice_evento}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -283,10 +283,10 @@
                         <br>
                     @endforeach
 
-                    <div class="jumbotron jumbotron-fluid">
+                    <div class="jumbotron jumbotron-fluid rounded-lg p-3 mb-3" style="background-color: rgba(73, 197, 73, 0.418)">
                         <div class="container">
                             <div style="display: flex; justify-content: center; align-items: center;">
-                                <a href="{{ URL::action('BisognoController@create', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/addSerra.png') }}" style="height: 80px; width:80px;" /></a>
+                                <a href="{{ URL::action('BisognoController@create', $pianta->codice_pianta) }}" > <img src="{{ asset('immagini/addbisogno.png') }}" style="height: 150px; width:150px;" /></a>
                             </div>
                         </div>
                     </div>
@@ -294,7 +294,7 @@
 
 
 <!-- Modal elimina pianta -->
-<div class="modal fade" id="staticBackdrop{{$pianta->codice_pianta}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="DeletePlant{{$pianta->codice_pianta}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

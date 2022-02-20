@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div style="width: fill; background-color: #1e90ff; margin-bottom: 1rem;">
+<div style="width: fill; background-color: #2ECC40; margin-bottom: 1rem;">
 
 
     <div class="container">
@@ -12,16 +12,7 @@
             </h1>
 
 
-            <div
-            @if(auth()->id() == $serra->id)
-            style="display: flex; justify-content: space-between;"
-            @endif
-            >
-
-                @if(auth()->id() == $serra->id)
-                    <p class="lead text-left" style="color: white">Numero piante: {{$num_piante}} su {{$serra->capienza}}</p>
-                @endif
-
+            <div>
                 <p class="lead text-right" style="color: white" >
                     @foreach($forecast as $f)
                         <img width=50px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">
@@ -33,10 +24,10 @@
                     @foreach($forecast as $f)
                         {{$f->description}}
                     @endforeach
-                    e ci sono {{$forecast_data->temp}}°C di cui percepiti {{$forecast_data->feels_like}}°C
+                    e ci sono {{$forecast_data->temp}}°C <!--di cui percepiti {{$forecast_data->feels_like}}°C-->
                     @if ($forecast_data->temp < 2)
-                        <p class="lead text-right" style="color:burlywood" >
-                            Le tue piante potrebbero avere freddo se sono fuori, rientrale!
+                        <p class="lead text-right" style="color:yellow" >
+                            Le tue piante potrebbero avere freddo se sono fuori, se necessario mettile al sicuro!
                         </p>
                     @endif
 
@@ -90,9 +81,9 @@
                     <a class="nav-link" id="pills-serra-share" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Serre condivise</a>
                 </li>
 
-                <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
+                <!--<li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                     <a class="nav-link" id="pills-home-piante" data-toggle="pill" href="#pills-home-p" role="tab" aria-controls="pills-home-p" aria-selected="false">Home</a>
-                </li>
+                </li>-->
 
                 <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                     <a class="nav-link" id="pills-pubblicita-piante" data-toggle="pill" href="#pills-pubblicita-p" role="tab" aria-controls="pills-pubblicita-p" aria-selected="false">Prodotti</a>
@@ -108,6 +99,9 @@
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
                 <!-- _________________________________ -->
+                @if(auth()->id() == $serra->id)
+                    <p class="lead text-left" style="color: white">Numero piante: {{$num_piante}} su {{$serra->capienza}}</p>
+                @endif
 
                 <!-- pianta post -->
                 <div class="row row-cols-1 row-cols-md-3">
@@ -134,11 +128,11 @@
 
             </div>
 
-            <div class="tab-pane fade" id="pills-home-p" role="tabpanel" aria-labelledby="pills-home-piante">
+            <!--<div class="tab-pane fade" id="pills-home-p" role="tabpanel" aria-labelledby="pills-home-piante">
 
                 <h1 style="color: white">Tutte le piante condivise</h1>
 
-            </div>
+            </div>-->
 
             <!--visualizza pubblicita -->
             <div class="tab-pane fade" id="pills-pubblicita-p" role="tabpanel" aria-labelledby="pills-pubblicita-piante">

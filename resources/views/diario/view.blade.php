@@ -2,7 +2,7 @@
 
 @section('content')
 
-            <div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+            <div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
                 <br>
                 <div id="cont" class="container">
                     <div style="display: flex; align-items: center;">

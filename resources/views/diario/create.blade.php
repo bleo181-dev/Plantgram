@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+<div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
     <div id="cont" class="container">
         <br>
         <h1 > Crea un ricordo </h1>
@@ -19,13 +19,13 @@
                 </ul>
             </div>
         @endif
-    
+
 
         <form action="{{ URL::action('DiarioController@store', $id) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <h1 style="color: white"> Scrivi un ricordo </h1>
             <textarea name="testo" value="ciao" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ old('testo') }}</textarea>
-                        
+
             <br>
             <br>
             @include('foto') <!-- Serve per includere il capo foto e la sua preview -->

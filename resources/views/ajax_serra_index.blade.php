@@ -169,8 +169,8 @@ var oldLength_collab = -1; //serve per non refreshare sempre il contenutto, evit
 
             fetch_data_collab();
             fetch_data_serre();
-            setInterval(fetch_data_collab, (4 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
-            setInterval(fetch_data_serre, (4 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
+            setInterval(fetch_data_collab, (30 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
+            setInterval(fetch_data_serre, (30 * 1000)); //setta un timer che effettua la chiamata ajax ogni 4 secondi
             console.log('Intervallo di aggiornamento settato!');
 
         });

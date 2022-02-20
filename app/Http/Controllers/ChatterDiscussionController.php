@@ -81,7 +81,7 @@ class ChatterDiscussionController extends Controller
                 $minute_copy = (config('chatter.security.time_between_posts') == 1) ? ' minute' : ' minutes';
                 $chatter_alert = [
                     'chatter_alert_type' => 'danger',
-                    'chatter_alert'      => 'In order to prevent spam, please allow at least '.config('chatter.security.time_between_posts').$minute_copy.' in between submitting content.',
+                    'chatter_alert'      => 'Per prevenire lo spam aspetta almeno '.config('chatter.security.time_between_posts').$minute_copy.' tra i messaggi',
                     ];
 
                 return redirect('/'.config('chatter.routes.home'))->with($chatter_alert)->withInput();

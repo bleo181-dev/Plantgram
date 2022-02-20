@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+<div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
     <div id="cont" class="container">
         <br>
         <h1 class="col-md-4"> Modifica ricordo </h1>

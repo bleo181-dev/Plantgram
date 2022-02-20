@@ -64,7 +64,7 @@ class ChatterPostController extends Controller
                 $minute_copy = (config('chatter.security.time_between_posts') == 1) ? ' minute' : ' minutes';
                 $chatter_alert = [
                     'chatter_alert_type' => 'danger',
-                    'chatter_alert'      => 'In order to prevent spam, please allow at least '.config('chatter.security.time_between_posts').$minute_copy.' in between submitting content.',
+                    'chatter_alert'      => 'Per prevenire lo spam aspetta almeno '.config('chatter.security.time_between_posts').$minute_copy.' tra i messaggi',
                     ];
 
                 return back()->with($chatter_alert)->withInput();
@@ -100,14 +100,14 @@ class ChatterPostController extends Controller
 
             $chatter_alert = [
                 'chatter_alert_type' => 'success',
-                'chatter_alert'      => 'Response successfully submitted to '.config('chatter.titles.discussion').'.',
+                'chatter_alert'      => 'Risposta correttamente inviata nella discussione',
                 ];
 
             return redirect('/'.config('chatter.routes.home').'/'.config('chatter.routes.discussion').'/'.$category->slug.'/'.$discussion->slug)->with($chatter_alert);
         } else {
             $chatter_alert = [
                 'chatter_alert_type' => 'danger',
-                'chatter_alert'      => 'Sorry, there seems to have been a problem submitting your response.',
+                'chatter_alert'      => 'Scusa, sembra esserci un problema con la tua risposta',
                 ];
 
             return redirect('/'.config('chatter.routes.home').'/'.config('chatter.routes.discussion').'/'.$category->slug.'/'.$discussion->slug)->with($chatter_alert);

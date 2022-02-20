@@ -1,4 +1,4 @@
-document.getElementById("mostraSimile").style.display="none";
+//document.getElementById("mostraSimile").style.display="none";
 function isEmpty(str) {
     return (!str || str.length === 0 );
 }

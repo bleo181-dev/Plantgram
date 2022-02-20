@@ -4,7 +4,7 @@
 
 <form action="{{ URL::action('SerraController@store') }}" method="POST" >
 
-    <div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+    <div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
         <br>
         <div id="cont" class="container">
             @if ($errors->any())
@@ -19,7 +19,7 @@
 
 
             {{ csrf_field() }}
-            <h1> Come vuoi chiamare il tuo green-space? </h1>
+            <h1> Come vuoi chiamare la tua serra? </h1>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-default">Nome</span>
@@ -40,29 +40,23 @@
             </div>
             <br>
 
+            <button id="invio" type="submit" class="btn btn-success btn-lg " style="width:80%; font-size:40px; display: block;
+            border: none;
+            margin-right:auto;
+            margin-left:auto;"> Crea la tua serra </button>
+            <br>
+
             @csrf
         </div>
     </div>
-    <div class="col-md-8" style="margin:auto;">
+
             <div id="map" style="height:400px; width: fill;" ></div>
 
-                <script src="{{ asset('js/posizione.js') }}"></script>
-                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap" type="text/javascript"></script>
+
             </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <input id="invio" type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
-            height: 80px;
-            width:80px;
-            border: none;
-            margin-right:auto;
-            margin-left:auto;" value=""/>
-            <br>
-
-
-
 </form>
+
+<script src="{{ asset('js/posizione.js') }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap" type="text/javascript"></script>
 
 @endsection

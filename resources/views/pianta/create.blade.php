@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+<div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
     <br>
     <div id="cont" class="container">
 
@@ -18,7 +18,7 @@
 
         <form action="{{ URL::action('PiantaController@store') }}" method="POST" enctype="multipart/form-data" >
             {{ csrf_field() }}
-            <h1> Crea una nuova pianta </h1>
+            <h1 style="color: white"> Crea una nuova pianta </h1>
             <br>
     </div>
 </div>
@@ -26,17 +26,23 @@
     <br>
     <br>
 
-    <div class="container">
-
-        <h10 style="color: white">
-            Non sai come si chiama la tua pianta? Carica la sua foto clicca sull&#8217occhio e ci penso io!
-        </h10>
-        <br>
-
+    <div class="container" style="color: white;">
         <div class="custom-file">
             <input type="file" name="foto" class="custom-file-input" id="imgInp">
             <label class="custom-file-label" for="inputGroupFile01">Carica una foto</label>
-            <button  style="background: none; border: none; display: block; height: 80px; width:80px; border: none; margin-right:auto; margin-left:auto;" id="cerca" type="button"><img style="width: 50px;"src="{{ asset('immagini/find.png') }}"/></button>
+            <br>
+            <br>
+            @if(Auth::user()->admin == "pro")
+                <div style="display: flex; align-items: center;">
+                    Non sai come si chiama la tua pianta? Carica la sua foto clicca l'icona dell'occhio e ci penso io!
+                    <button  style="background: none; border: none; margin-left: 10px" id="cerca" type="button"><img style="width: 50px;"src="{{ asset('immagini/find.png') }}"/></button>
+                </div>
+            @else
+                <div style="display: flex; align-items: center;">
+                    Non sai come si chiama la tua pianta? Passa a pro e ci penso io
+                    <a style="margin-left: 10px" href="{{ URL::action('UserController@upgrade', Auth::user()->id) }}" class="btn btn-success">Esegui l'upgrade a PRO</a>
+                </div>
+            @endif
         </div>
 
         <br>
@@ -66,7 +72,7 @@
 
             <!-- pianta simile -->
 
-            <div id="mostraSimile" class="card mb-3" style="width: fill;">
+            <div id="mostraSimile" class="card mb-3" style="width: fill; display: none">
                 <div class="row no-gutters">
                   <div class="col-md-4">
                     <img id = "similarIm" src="{{ asset('immagini/add.png') }}" class="card-img">
@@ -102,9 +108,9 @@
             <br>
             <br>
             <br>
-            <input type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
-            height: 80px;
-            width:80px;
+            <input type="submit" style="background: url({{ asset('immagini/addPianta.png') }});display: block;
+            height: 150px;
+            width:150px;
             border: none;
             margin-right:auto;
             margin-left:auto;" value=""/>
@@ -113,5 +119,7 @@
 
 
 <script src="{{ asset('js/preview.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/AItrovapianta.js') }}"></script>
+@if(Auth::user()->admin == "pro")
+    <script type="text/javascript" src="{{ asset('js/AItrovapianta.js') }}"></script>
+@endif
 @endsection
