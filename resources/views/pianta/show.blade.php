@@ -5,7 +5,7 @@
 <div class="container">
                 <div class="card-body">
 
-                    <nav class="navbar navbar-expand-md navbar-light shadow-sm rounded-lg p-3 mb-3" style="background-color: #e3f2fd" >
+                    <nav class="navbar navbar-expand-md navbar-light shadow-sm rounded-lg p-3 mb-3" style="background-color: #95e59f86" >
                         <div class="container">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                                 <span class="navbar-toggler-icon"></span>

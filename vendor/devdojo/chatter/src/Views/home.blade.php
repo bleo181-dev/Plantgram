@@ -12,13 +12,12 @@
 
 <div id="chatter" class="chatter_home">
 
-	<div id="chatter_hero">
-		<div id="chatter_hero_dimmer"></div>
-		<?php $headline_logo = Config::get('chatter.headline_logo'); ?>
-		@if( isset( $headline_logo ) && !empty( $headline_logo ) )
+	<div style="width: fill; height: 150px; background-color: #2ECC40; color: white; margin-bottom: 1rem;">
+        <div class="container" style="text-align: center;">
+            <br>
 			<h1>Forum del buon vicinato</h1>
 			<p>dove ogni agricoltore in erba e non si incontrano</p>
-		@endif
+        </div>
 	</div>
 
 	@if(Session::has('chatter_alert'))
@@ -46,13 +45,13 @@
 	@endif
 
 	<div class="container chatter_container">
-		
+
 	    <div class="row">
 
 	    	<div class="col-md-3 left-column">
 	    		<!-- SIDEBAR -->
 	    		<div class="chatter_sidebar">
-					<button class="btn btn-primary" id="new_discussion_btn"><i class="chatter-new"></i> Nuova  discussione</button> 
+					<button style="color: white;" class="btn btn-primary" id="new_discussion_btn"><i class="chatter-new" style="color: white;"></i> Nuova  discussione</button>
 					<a href="/{{ Config::get('chatter.routes.home') }}"><i class="chatter-bubble"></i> Tutte le discussioni</a>
 					<ul class="nav nav-pills nav-stacked">
 						<?php $categories = DevDojo\Chatter\Models\Models::category()->all(); ?>
@@ -71,22 +70,22 @@
 				        		<a class="discussion_list" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}/{{ $discussion->category->slug }}/{{ $discussion->slug }}">
 					        		<div class="chatter_avatar">
 					        			@if(Config::get('chatter.user.avatar_image_database_field'))
-					        				
+
 					        				<?php $db_field = Config::get('chatter.user.avatar_image_database_field'); ?>
-					        				
+
 					        				<!-- If the user db field contains http:// or https:// we don't need to use the relative path to the image assets -->
 					        				@if( (substr($discussion->user->{$db_field}, 0, 7) == 'http://') || (substr($discussion->user->{$db_field}, 0, 8) == 'https://') )
 					        					<img src="{{ $discussion->user->{$db_field}  }}">
 					        				@else
 					        					<img src="{{ Config::get('chatter.user.relative_url_to_image_assets') . $discussion->user->{$db_field}  }}">
 					        				@endif
-					        			
+
 					        			@else
-					        				
+
 					        				<span class="chatter_avatar_circle" style="background-color:#<?= \DevDojo\Chatter\Helpers\ChatterHelper::stringToColorCode($discussion->user->email) ?>">
 					        					{{ strtoupper(substr($discussion->user->email, 0, 1)) }}
 					        				</span>
-					        				
+
 					        			@endif
 					        		</div>
 
@@ -102,7 +101,7 @@
 					        		</div>
 
 					        		<div class="chatter_right">
-					        			
+
 					        			<div class="chatter_count"><i class="chatter-bubble"></i> {{ $discussion->postsCount[0]->total }}</div>
 					        		</div>
 
@@ -122,7 +121,7 @@
 	</div>
 
 	<div id="new_discussion">
-	        	
+
 
     	<div class="chatter_loader dark" id="new_discussion_loader">
 		    <div></div>
@@ -151,7 +150,7 @@
 
 		        <div class="col-md-1">
 		        	<i class="chatter-close"></i>
-		        </div>	
+		        </div>
 	        </div><!-- .row -->
 
             <!-- BODY -->

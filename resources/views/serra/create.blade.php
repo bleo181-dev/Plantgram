@@ -4,7 +4,7 @@
 
 <form action="{{ URL::action('SerraController@store') }}" method="POST" >
 
-    <div style="width: fill; background-color: #1e90ff; margin-bottom: 0rem;">
+    <div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
         <br>
         <div id="cont" class="container">
             @if ($errors->any())

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div style="width: fill; background-color: #1e90ff; margin-bottom: 1rem;">
+<div style="width: fill; background-color: #2ECC40; margin-bottom: 1rem;">
     <div class="container">
         <br>
         <h1 style="color: white" class="display-4">
