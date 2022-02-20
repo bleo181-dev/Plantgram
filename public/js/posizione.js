@@ -25,7 +25,9 @@ function initMap() {
     locationButton.setAttribute('class', 'btn btn-secondary btn-lg btn-block');
     //map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
     //document.body.appendChild(locationButton);
+    //btn posizione
     document.getElementById("pos").appendChild(locationButton);
+    document.getElementById('pos').style.visibility = 'hidden';
     locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
