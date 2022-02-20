@@ -223,22 +223,22 @@
                                     <!-- jumbotron end-->
 
                                     <!-- Modal elimina bisogno -->
-                                    <div class="modal fade" id="staticBackdrop{{$evento->codice_bisogno}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="staticBackdrop{{$bisogno->codice_bisogno}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel"> Elimina, il bisogno {{$evento->nome}}</h5>
+                                                    <h5 class="modal-title card-text col-9 text-truncate" id="staticBackdropLabel"> Elimina, il bisogno {{$bisogno->nome}}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Sei sicuro di voler eliminare il bisogno {{$evento->nome}}?
+                                                    Sei sicuro di voler eliminare il bisogno {{$bisogno->nome}}?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
 
-                                                    <form id="delete-form-{{$evento->codice_bisogno}}" action="{{ URL::action('BisognoController@destroy', $evento->codice_bisogno) }}" method="POST">
+                                                    <form id="delete-form-{{$bisogno->codice_bisogno}}" action="{{ URL::action('BisognoController@destroy', $bisogno->codice_bisogno) }}" method="POST">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
 
