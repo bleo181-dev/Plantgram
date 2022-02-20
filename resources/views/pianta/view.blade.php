@@ -172,24 +172,41 @@
 
     var xArray = [];
     var yArray = [];
+    var mesi = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+    var num;
     @foreach($ev as $e)
-        @if($y->codice_bisogno==$e->codice_bisogno)
-            xArray.push({{$e->month}});
-            yArray.push({{$e->volte}});
+        @if($y->codice_bisogno == $e->codice_bisogno)
+            num={{$e->month - 1}};
+            xArray.push(mesi[num]);
+            @if((strtotime($y->created_at) - strtotime($e->created_at)) == 0)
+                yArray.push({{$e->volte -1}});
+            @else
+                yArray.push({{$e->volte}});
+            @endif
         @endif
     @endforeach
 
     var data = [{
-    x:xArray,
-    y:yArray,
-    type:"bar"
+        x:xArray,
+        y:yArray,
+        type:"bar"
     }];
 
-    var layout = {title:"azioni per mese"};
+    var layout = {title:"azioni per mese",
+        xaxis: {title: "mesi"},
+        yaxis: {title: "numero di azioni", dtick: 1,}
+        };
 
     Plotly.newPlot("myPlot{{$y->codice_bisogno}}", data, layout);
 </script>
 @endforeach
+
+
+    <script>
+        @foreach($eventi as $evento)
+        document.getElementById("{{$evento->nome}}").className = "collapse";
+        @endforeach
+    </script>
 
 
     <script>
