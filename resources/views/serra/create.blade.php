@@ -35,7 +35,7 @@
 
 
             <input type="hidden" name="capienza" value="20">
-            <p id="lbl"> Per creare il tuo green-space indica la sua posizione nella mappa o clicca su [trova la tua posizione]</p>
+            <p id="lbl"> Per creare il tuo green-space indica la sua posizione nella mappa</p>
             <div id="pos">
             </div>
             <br>
