@@ -22,9 +22,7 @@
             <br>
     </div>
 </div>
-
-    <br>
-    <br>
+<br>
 
     <div class="container" style="color: white;">
         <div class="custom-file">
