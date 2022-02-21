@@ -3,18 +3,18 @@
 @section(Config::get('chatter.yields.head'))
 	<link href="/vendor/devdojo/chatter/assets/css/chatter.css" rel="stylesheet">
 	<link href="/vendor/devdojo/chatter/assets/css/simplemde.min.css" rel="stylesheet">
-    <link href="{{ asset('css/style_bisogni.css') }}" rel="stylesheet">
+
 @stop
 
 
 @section('content')
-
+<link href="{{ asset('css/style_bisogni.css') }}" rel="stylesheet">
 <div id="chatter" class="discussion">
 
 	<div id="chatter_header" style="background-color:{{ $discussion->color }}">
 		<div class="container">
 			<a class="back_btn" href="/{{ Config::get('chatter.routes.home') }}"><i class="chatter-back"></i></a>
-			<h1 class="card-text col-5 text-truncate">{{ $discussion->title }}</h1><span class="chatter_head_details">Postato in <a class="chatter_cat" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.category') }}/{{ $discussion->category->slug }}" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</a></span>
+			<h1 class="card-text col-5 text-truncate">{{ $discussion->title }}</h1><span class="chatter_head_details"><a class="chatter_cat" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.category') }}/{{ $discussion->category->slug }}" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</a></span>
 		</div>
 	</div>
 
