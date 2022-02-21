@@ -5,7 +5,7 @@
 @if(Auth::user()->admin==='AD')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Tutte le piante') }}</div>
 
@@ -14,7 +14,7 @@
                         <a href="{{ URL::action('PiantaController@create') }}"  class="btn btn-success" > Nuova pianta</a>
                     </div>
 
-                    <table>
+                    <table class="col-md-12">
                         <thead>
                             <tr>
                                 <th>Codice Pianta</th>
