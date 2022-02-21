@@ -32,13 +32,18 @@
             <br>
             @if(Auth::user()->admin == "pro")
                 <div style="display: flex; align-items: center;">
-                    Non sai come si chiama la tua pianta? Carica la sua foto clicca l'icona dell'occhio e ci penso io!
-                    <button  style="background: none; border: none; margin-left: 10px" id="cerca" type="button"><img style="width: 50px;"src="{{ asset('immagini/find.png') }}"/></button>
+                    <div style="margin: auto">
+                        Non sai come si chiama la tua pianta? Carica la sua foto clicca l'icona dell'occhio e ci penso io!
+                        <button  style="background: none; border: none; margin-left: 10px" id="cerca" type="button"><img style="width: 50px;"src="{{ asset('immagini/find.png') }}"/></button>
+                    </div>
                 </div>
+                <br>
             @else
                 <div style="display: flex; align-items: center;">
-                    Non sai come si chiama la tua pianta? Passa a pro e ci penso io
-                    <a style="margin-left: 10px" href="{{ URL::action('UserController@upgrade', Auth::user()->id) }}" class="btn btn-success">Esegui l'upgrade a PRO</a>
+                    <div style="margin: auto">
+                        Non sai come si chiama la tua pianta? Passa a pro e ci penso io
+                        <a style="margin-left: 10px" href="{{ URL::action('UserController@upgrade', Auth::user()->id) }}" class="btn btn-success">Esegui l'upgrade a PRO</a>
+                    </div>
                 </div>
                 <br>
             @endif
@@ -46,9 +51,7 @@
 
         <br>
         <br>
-
-        <img class="imagePreviewPianta rounded mx-auto" id="blah" src="#"/>
-
+            <img class="imagePreviewPianta rounded mx-auto" id="blah" src="#"/>
         <br>
         <br>
 
@@ -73,15 +76,15 @@
 
             <div id="mostraSimile" class="card mb-3" style="width: fill; display: none">
                 <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <img id = "similarIm" src="{{ asset('immagini/add.png') }}" class="card-img">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 style= "color: rgb(0, 0, 65)" id="titlePrew" class="card-title"> </h5>
-                      <p id="description" style= "color: rgb(24, 24, 105)" class="card-text"> </p>
+                    <div class="col-md-4">
+                        <img id = "similarIm" src="{{ asset('immagini/add.png') }}" class="card-img">
                     </div>
-                  </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 style= "color: rgb(0, 0, 65)" id="titlePrew" class="card-title"> </h5>
+                             <p id="description" style= "color: rgb(24, 24, 105)" class="card-text"> </p>
+                        </div>
+                    </div>
                 </div>
               </div>
             <br>
