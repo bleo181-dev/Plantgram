@@ -5,9 +5,9 @@
 <div class="container">
                 <div class="card-body">
 
-                    <nav class="navbar navbar-expand-md navbar-light shadow-sm rounded-lg p-3 mb-3" style="background-color: #95e59f86" >
+                    <nav class="navbar navbar-light shadow-sm rounded-lg p-3 mb-3" style="background-color: #95e59f86;" >
                         <div class="container">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                                 <span class="navbar-toggler-icon"></span>
                                 <a class="navbar-brand" >
                                     Opzioni
@@ -15,7 +15,7 @@
                             </button>
                             <br>
                             <br>
-                            <div class="collapse navbar-collapse" id="navbar" >
+                            <div class="collapse navbar-collapse" id="navbar" > -->
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav mr-auto">
                                     <!--back button -->
@@ -30,7 +30,7 @@
                                             <button data-toggle="modal" data-target="#DeletePlant{{$pianta->codice_pianta}}" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
                                             <a href = "{{ URL::action('PiantaController@edit', $pianta->codice_pianta)}}"><img src="{{ asset('immagini/modifica.png') }}"  class="icone"></a>
                                     </li>
-                                    <br>
+                                    <!--<br>-->
                                     <!--back button end -->
 
 
@@ -42,7 +42,7 @@
                                 <ul class="navbar-nav ml-auto">
 
                                     <!-- inizio stato -->
-                                    <li class="nav-item" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <li class="nav-item" style="display: flex;  align-items: center;">
                                         @if($pianta->stato == 1)
                                             <button class="btn btn-light" style="pointer-events: none;" >pubblica</button>
                                         @elseif($pianta->stato == 0)
@@ -54,7 +54,7 @@
                                     <!-- fine stato -->
 
                                 </ul>
-                            </div>
+                            <!--</div>-->
                         </div>
                     </nav>
                     <br>
