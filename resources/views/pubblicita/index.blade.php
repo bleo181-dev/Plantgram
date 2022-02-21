@@ -7,23 +7,23 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('tutte le pubblciità') }}</div>
+                <div class="card-header">{{ __('Tutte le pubblicità') }}</div>
 
                 <div class="card-body">
                     <div style="padding: 10px;">
-                        <a href="{{ URL::action('PubblicitaController@create') }}" class="btn btn-success"> Nuova pubblcita</a>
+                        <a href="{{ URL::action('PubblicitaController@create') }}" class="btn btn-success"> Nuova pubblicità</a>
                     </div>
 
                     <table class = "col-md-12">
                         <thead>
                             <tr>
-                                <th>Codice pubblcita</th>
-                                <th>produttore</th>
-                                <th>prodotto</th>
-                                <th>priorita</th>
+                                <th>Codice pubblicità</th>
+                                <th>Produttore</th>
+                                <th>Prodotto</th>
+                                <th>Priorità</th>
                                 <th>Foto</th>
                                 <th>Url</th>
-                                <th>azioni</th>
+                                <th>Azioni</th>
                             </tr>
                         </thead>
                         <tbody>
