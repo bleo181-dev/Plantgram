@@ -4,7 +4,7 @@
 <div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
     <div id="cont" class="container">
         <br>
-        <h1 > Crea un ricordo </h1>
+        <h1 style="color: white;" > Crea un ricordo </h1>
         <br>
         <hr>
     </div>
@@ -27,14 +27,13 @@
             <textarea name="testo" value="ciao" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ old('testo') }}</textarea>
 
             <br>
-            <br>
             @include('foto') <!-- Serve per includere il capo foto e la sua preview -->
             <br>
             <br>
 
-            <input type="submit" style="background: url({{ asset('immagini/addSerra.png') }});display: block;
-                height: 80px;
-                width:80px;
+            <input type="submit" style="background: url({{ asset('immagini/creaPagina.png') }}); display: block;
+                height: 150px;
+                width: 150px;
                 border: none;
                 margin-right:auto;
                 margin-left:auto;" value=""/>
