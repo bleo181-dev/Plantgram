@@ -167,7 +167,7 @@
 
                                         <div class="container">
                                             <li  style="display: flex; justify-content: space-between; align-items: center;">
-                                                <h1 class="display-4 m_title">{{$evento->nome}}</h1>
+                                                <h1 class="display-4 m_title card-text col-15 text-truncate">{{$evento->nome}}</h1>
                                                 <div style="display: flex; justify-content: space-between; align-items: center;">
 
                                                     <a href="{{ URL::action('BisognoController@edit', $evento->codice_bisogno) }}"> <img src="{{ asset('immagini/modifica.png') }}"  class="icone"> </a>
