@@ -324,6 +324,7 @@
 
 @foreach($bis as $y)
 <script>
+$('document').ready(function(){
 
     var xArray = [];
     var yArray = [];
@@ -353,14 +354,20 @@
         };
 
     Plotly.newPlot("myPlot{{$y->codice_bisogno}}", data, layout);
+
+
+});
+
 </script>
 @endforeach
 
 
     <script>
+        $('document').ready(function(){
         @foreach($eventi as $evento)
         document.getElementById("{{$evento->nome}}").className = "collapse";
         @endforeach
+    });
     </script>
 
 <!--<script>
