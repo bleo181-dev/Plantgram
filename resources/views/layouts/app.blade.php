@@ -58,10 +58,14 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ URL::action('PubblicitaController@index')}}">{{ __('Pubblicita') }}</a>
+                                    <a class="nav-link" href="{{ URL::action('PubblicitaController@index')}}">{{ __('Pubblicità') }}</a>
                                 </li>
 
-                            @endif
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::action('ChatterController@index')}}">{{ __('Forum del vicinato') }}</a>
+                            </li>
+
+                            @else
                             <!-- Se sei user normale -->
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::action('SerraController@index')}}">{{ __('Serra') }}</a>
@@ -70,6 +74,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::action('ChatterController@index')}}">{{ __('Forum del vicinato') }}</a>
                             </li>
+                            @endif
 
                         @endif
 
