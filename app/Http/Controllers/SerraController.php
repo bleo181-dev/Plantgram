@@ -187,7 +187,7 @@ class SerraController extends Controller
     public function show($id)
     {
         //if(!Auth::user()){
-                $serra = Serra::where('codice_serra', $id)->first();
+                $serra = Serra::where('id', $id)->first();
                 $piante = Pianta::where('codice_serra', $serra->codice_serra)->where('stato', '1')->get(); //piante pubbliche
                 $cod_pianta = Pianta::where('codice_serra', $serra->codice_serra)->pluck('codice_pianta');
                 $eventi = collect();

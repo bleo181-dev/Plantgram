@@ -6,7 +6,7 @@
                 <div class="card-body">
                 <!--back button -->
                     <div style="padding:10px">
-                        <a href="{{URL::action('SerraController@show', $serra->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
+                        <a href="{{URL::action('SerraController@show', $serra->id)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
                     </div>
                 <!--back button end -->
 
@@ -219,7 +219,7 @@
             @foreach($eventi as $evento)
             document.getElementById("{{$evento->nome}}").className = "collapse";
             @endforeach
-        });   
+        });
     </script>
 
 <!--<script>
