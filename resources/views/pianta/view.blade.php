@@ -118,9 +118,17 @@
 
                                         <div class="container">
                                             <h1 class="display-4 m_title">{{$evento->nome}}</h1>
-                                            <div class="progress" style="width: 100%;">
-                                                <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, #111111 {{(((strtotime('now')-strtotime($evento->data))/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 0% {{(($bisogno->cadenza/86400)*80)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*95)/(($bisogno->cadenza/86400)*1.5)}}%, #2ECC40 {{(($bisogno->cadenza/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*130)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 {{(($bisogno->cadenza/86400)*150)/(($bisogno->cadenza/86400)*1.5)}}%);" ></div>
-                                            </div>
+                                            
+                                            @if( (strtotime('now')-strtotime($evento->data)) > ($bisogno->cadenza*3) )
+                                                <p style="color:red; font-weight: bold">Soddisfazione bisogno molto in ritardo</p>
+                                            @elseif( (strtotime('now')-strtotime($evento->data)) > ($bisogno->cadenza*1.5) )
+                                                <p style="color:orange; font-weight: bold">Soddisfazione bisogno in ritardo</p>
+                                            @else
+                                                <div class="progress" style="width: 100%;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 100%; background:linear-gradient(to right, #111111 {{(((strtotime('now')-strtotime($evento->data))/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 0% {{(($bisogno->cadenza/86400)*80)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*95)/(($bisogno->cadenza/86400)*1.5)}}%, #2ECC40 {{(($bisogno->cadenza/86400)*100)/(($bisogno->cadenza/86400)*1.5)}}%, #FFDC00 {{(($bisogno->cadenza/86400)*130)/(($bisogno->cadenza/86400)*1.5)}}%, #FF4136 {{(($bisogno->cadenza/86400)*150)/(($bisogno->cadenza/86400)*1.5)}}%);" ></div>
+                                                </div>
+                                            @endif
+
                                             <div>
                                                 <div style="display: flex; justify-content: space-between;">
                                                     <p>Ultima volta: {{$evento->data}}</p>
