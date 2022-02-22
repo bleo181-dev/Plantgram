@@ -10,10 +10,6 @@
                 <div class="card-header">{{ __('Tutte le piante') }}</div>
 
                 <div class="card-body">
-                    <div style="padding: 10px;">
-                        <a href="{{ URL::action('PiantaController@create') }}"  class="btn btn-success" > Nuova pianta</a>
-                    </div>
-
                     <table class="col-md-12">
                         <thead>
                             <tr>
