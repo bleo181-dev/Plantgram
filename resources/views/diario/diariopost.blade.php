@@ -2,7 +2,6 @@
     <div class="row no-gutters">
         <div class="col-md-4">
             <?php
-
                 echo '<img class="card-img" src="data:image/jpeg;base64,'.base64_encode($i->foto).'"/>';
             ?>
         </div>
@@ -10,7 +9,6 @@
             <div class="card-body">
                 <h5 class="card-title"></h5>
                 <p class="card-text" style="font-size:20px;">{{ ($i->testo)}}</p>
-
                 <p class="card-text">{{$i->updated_at}}<small class="text-muted"></small></p>
             </div>
         </div>

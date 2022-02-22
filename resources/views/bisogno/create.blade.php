@@ -5,7 +5,6 @@
 <div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
     <br>
     <div id="cont" class="container">
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -17,15 +16,15 @@
         @endif
         <form action="{{ URL::action('BisognoController@store', $codice_pianta) }}" method="POST" >
             {{ csrf_field() }}
-            <h1> Inserisci i dati del bisogno </h1>
+            <h1 style="color: white;"> Inserisci i dati del bisogno </h1>
 
             <input type="hidden" name="codice_pianta" value="{{ $codice_pianta }}"/>
             <br>
-        </div>
     </div>
-    <br>
+</div>
+            <br>
     <div class="container">
-            <h3>Seleziona una tipologia</h3>
+            <h3 style="color: white;">Seleziona una tipologia</h3>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-custom-acqua {{ in_array('acqua', $bisogni) ? 'disabled' : ''}}" >
                     <input type="radio" name="tipologia" id="option1" autocomplete="off" value="acqua"> Acqua
@@ -36,7 +35,6 @@
                     <input type="radio" name="tipologia" id="option2" autocomplete="off" value="concime"> Concime
                 </label>
             </div>
-
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-custom-svasatura {{ in_array('svasatura', $bisogni) ? 'disabled' : ''}}" >
                     <input type="radio" name="tipologia" id="option3" autocomplete="off" value="svasatura"> Svasatura

@@ -5,7 +5,6 @@
 <div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
     <br>
     <div id="cont" class="container">
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -22,9 +21,9 @@
 
             <input type="hidden" name="codice_pianta" value="{{ $bisogno->codice_pianta }}"/>
             <br>
-        </div>
     </div>
-    <br>
+</div>
+            <br>
     <div class="container">
             <h3>Seleziona una tipologia</h3>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -32,31 +31,31 @@
                     <input type="radio" name="nome" id="s1" autocomplete="off" value="acqua" {{ $bisogno->nome == 'acqua' ? 'checked' : 'disabled'}}> Acqua
                 </label>
             </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-custom-concime {{ $bisogno->nome == 'concime' ? '' : 'disabled'}}">
-                        <input type="radio" name="nome" id="s2" autocomplete="off" value="concime" {{ $bisogno->nome == 'concime' ? 'checked' : 'disabled'}}> Concime
-                    </label>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-custom-svasatura {{ $bisogno->nome == 'svasatura' ? '' : 'disabled'}}">
-                        <input type="radio" name="nome" id="s3" autocomplete="off" value="svasatura" {{ $bisogno->nome == 'svasatura' ? 'checked' : 'disabled'}}> Svasatura
-                    </label>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-custom-raccolto {{ $bisogno->nome == 'raccolto' ? '' : 'disabled'}}">
-                        <input type="radio" name="nome" id="s4" autocomplete="off" value="raccolto" {{ $bisogno->nome == 'raccolto' ? 'checked' : 'disabled'}}> Raccolto
-                    </label>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-custom-potatura {{ $bisogno->nome == 'potatura' ? '' : 'disabled'}}">
-                        <input type="radio" name="nome" id="s5" autocomplete="off" value="potatura" {{ $bisogno->nome == 'potatura' ? 'checked' : 'disabled'}}> Potatura
-                    </label>
-                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-custom-custom {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? '' : 'disabled'}}" >
-                        <input type="radio"  id="s6" autocomplete="off" {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? 'checked' : ''}}> Custom
-                    </label>
-                </div>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-custom-concime {{ $bisogno->nome == 'concime' ? '' : 'disabled'}}">
+                    <input type="radio" name="nome" id="s2" autocomplete="off" value="concime" {{ $bisogno->nome == 'concime' ? 'checked' : 'disabled'}}> Concime
+                </label>
+            </div>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-custom-svasatura {{ $bisogno->nome == 'svasatura' ? '' : 'disabled'}}">
+                    <input type="radio" name="nome" id="s3" autocomplete="off" value="svasatura" {{ $bisogno->nome == 'svasatura' ? 'checked' : 'disabled'}}> Svasatura
+                </label>
+            </div>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-custom-raccolto {{ $bisogno->nome == 'raccolto' ? '' : 'disabled'}}">
+                    <input type="radio" name="nome" id="s4" autocomplete="off" value="raccolto" {{ $bisogno->nome == 'raccolto' ? 'checked' : 'disabled'}}> Raccolto
+                </label>
+            </div>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-custom-potatura {{ $bisogno->nome == 'potatura' ? '' : 'disabled'}}">
+                    <input type="radio" name="nome" id="s5" autocomplete="off" value="potatura" {{ $bisogno->nome == 'potatura' ? 'checked' : 'disabled'}}> Potatura
+                </label>
+            </div>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-custom-custom {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? '' : 'disabled'}}" >
+                    <input type="radio"  id="s6" autocomplete="off" {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? 'checked' : ''}}> Custom
+                </label>
+            </div>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <input type="text" name="custom" value="{{ $bisogno->nome }}" placeholder="Inserisci tipologia qui" id="popup" class="{{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? '' : 'hide'}}"
                 {{ ($bisogno->nome != 'acqua') && ($bisogno->nome != 'concime') && ($bisogno->nome != 'svasatura') && ($bisogno->nome != 'raccolto') && ($bisogno->nome != 'potatura') ? 'readonly' : ''}} >

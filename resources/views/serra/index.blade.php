@@ -3,68 +3,58 @@
 @section('content')
 
 <div style="width: fill; background-color: #2ECC40; margin-bottom: 1rem;">
-
-
     <div class="container">
-        <br>
-            <h1 style="color: white;  vertical-align: middle;" class="display-4">
-                {{$nome_serra}}
-            </h1>
+    <br>
+    <h1 style="color: white;  vertical-align: middle;" class="display-4">
+        {{$nome_serra}}
+    </h1>
+        <div>
+            <p class="lead text-right" style="color: white">
+                @foreach($forecast as $f)
+                    <img width=50px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">
+                @endforeach
+                <br>
 
-
-            <div>
-                <p class="lead text-right" style="color: white" >
-                    @foreach($forecast as $f)
-                        <img width=50px src=" http://openweathermap.org/img/wn/{{$f->icon}}.png">
-                    @endforeach
-                    <br>
-
-                    Benvenuto, {{$nickname_utente}} <br>
-                    Oggi abbiamo
-                    @foreach($forecast as $f)
-                        {{$f->description}}
-                    @endforeach
-                    e ci sono {{$forecast_data->temp}}°C <!--di cui percepiti {{$forecast_data->feels_like}}°C-->
-                    @if ($forecast_data->temp < 2)
-                        <p class="lead text-right" style="color:yellow" >
-                            Le tue piante potrebbero avere freddo se sono fuori, se necessario mettile al sicuro!
-                        </p>
-                    @endif
-
-            </div>
-
-
-
-            <div class="display-4 lead text-right">
-                @if(auth()->id() == $serra->id)
-                        <!-- Aggiungi collaboratore -->
-                        <a href="{{ URL::action('SerraController@collab') }}" > <img src="{{ asset('immagini/share.png') }}"> </a>
-
-                        <!-- collaboratori -->
-
-                        <div class="btn-group">
-                            <button name="num_collab" type="button" class="btn btn-primary" style="pointer-events: none;">
-                                Collaboratori <span id="num_collab" class="badge badge-light"><!-- num collaboratori tramite ajax --></span>
-                            </button>
-                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <div id="collab" class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                                <!-- <a class="dropdown-item" href="#">Action</a> -->
-                                <!-- qui verranno aggiunti i collaboratori tramite ajax -->
-                            </div>
-                        </div>
-                        <!-- _________________ -->
-
+                Benvenuto, {{$nickname_utente}} <br>
+                Oggi abbiamo
+                @foreach($forecast as $f)
+                    {{$f->description}}
+                @endforeach
+                e ci sono {{$forecast_data->temp}}°C <!--di cui percepiti {{$forecast_data->feels_like}}°C-->
+                @if ($forecast_data->temp < 2)
+                    <p class="lead text-right" style="color:yellow" >
+                        Le tue piante potrebbero avere freddo se sono fuori, se necessario mettile al sicuro!
+                    </p>
                 @endif
-            </div>
+        </div>
+
+        <div class="display-4 lead text-right">
+            @if(auth()->id() == $serra->id)
+                <!-- Aggiungi collaboratore -->
+                <a href="{{ URL::action('SerraController@collab') }}" > <img src="{{ asset('immagini/share.png') }}"> </a>
+
+                <!-- collaboratori -->
+                <div class="btn-group">
+                    <button name="num_collab" type="button" class="btn btn-primary" style="pointer-events: none;">
+                        Collaboratori <span id="num_collab" class="badge badge-light"><!-- num collaboratori tramite ajax --></span>
+                    </button>
+                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div id="collab" class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                        <!-- <a class="dropdown-item" href="#">Action</a> -->
+                        <!-- qui verranno aggiunti i collaboratori tramite ajax -->
+                    </div>
+                </div>
+                <!-- _________________ -->
+            @endif
+        </div>
         </p>
     </div>
     <br>
 </div>
 <div class="container">
     <div class="card-body">
-
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
@@ -73,8 +63,7 @@
                 @else
                     La serra con cui collabori
                 @endif
-
-            </a>
+                </a>
             </li>
             @if(auth()->id() == $serra->id)
                 <li class="nav-item" role="presentation" style="display: block; margin-left: auto; margin-right: auto;">
