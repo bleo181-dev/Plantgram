@@ -8,8 +8,10 @@
             </div>
         </a>
         <div class="card-body">
-            <p>{{$pub->produttore}}</p>
-            <p>{{$pub->prodotto}}</p>
+            <p style="font-size: 20px">PRODUTTORE: </p>
+            <p style="font-size: 15px">{{$pub->produttore}}</p>
+            <p style="font-size: 20px">PRODOTTO: </p>
+            <p style="font-size: 15px">{{$pub->prodotto}}</p>
             <div class="row">
                 <div class="col-10 text-truncate">
                     <a href="{{ $pub->url}}" class="btn btn-primary">scopri di piu</a>
