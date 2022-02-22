@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __('Crea pubblcita') }}</div>
+                        <div class="card-header">{{ __('Crea pubblcità') }}</div>
 
                         <div class="card-body">
 
@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="priorita" class="col-md-4 col-form-label text-md-right">{{ __('Priorita') }}</label>
+                                    <label for="priorita" class="col-md-4 col-form-label text-md-right">{{ __('Priorità') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="priorita" type="number" class="form-control @error('priorita') is-invalid @enderror" name="priorita" required autocomplete="priorita">

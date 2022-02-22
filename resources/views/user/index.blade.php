@@ -6,12 +6,12 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div style="width: 100%;">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header" style="width: 100%;">{{ __('tutti gli utenti') }}</div>
+                <div class="card-header">{{ __('tutti gli utenti') }}</div>
 
                 <div class="card-body">
-                    <table>
+                    <table class = "col-md-12">
                         <thead>
                             <tr>
                                 <th>Codice utente</th>
