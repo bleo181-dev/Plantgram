@@ -14,16 +14,16 @@
                         <a href="{{ URL::action('PubblicitaController@create') }}" class="btn btn-success"> Nuova pubblicità</a>
                     </div>
 
-                    <table class = "col-md-12">
+                    <table style="padding: 1rem; word-break: break-word; width: 100%;">
                         <thead>
                             <tr>
-                                <th>Codice pubblicità</th>
-                                <th>Produttore</th>
+                                <th style="width: 10%;">Codice pubblicità</th>
+                                <th style="width: 10%;">Produttore</th>
                                 <th>Prodotto</th>
-                                <th>Priorità</th>
+                                <th style="width: 10%;">Priorità</th>
                                 <th>Foto</th>
                                 <th>Url</th>
-                                <th>Azioni</th>
+                                <th style="width: 20%;">Azioni</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +55,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                  
+
                 </div>
             </div>
         </div>

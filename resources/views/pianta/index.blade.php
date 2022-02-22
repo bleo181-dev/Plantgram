@@ -10,7 +10,7 @@
                 <div class="card-header">{{ __('Tutte le piante') }}</div>
 
                 <div class="card-body">
-                    <table class="col-md-12">
+                    <table style="padding: 1rem; word-break: break-word; width: 100%;">
                         <thead>
                             <tr>
                                 <th>Codice Pianta</th>
