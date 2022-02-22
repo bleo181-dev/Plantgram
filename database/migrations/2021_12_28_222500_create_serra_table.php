@@ -18,8 +18,8 @@ class CreateSerraTable extends Migration
             $table->unsignedBigInteger('id');
             $table->string('nome', 100);
             $table->BigInteger('capienza');
-            $table->unsignedDecimal('latitudine', 8,6);
-            $table->unsignedDecimal('longitudine', 9,6);
+            $table->decimal('latitudine', 8,6);
+            $table->decimal('longitudine', 9,6);
             $table->timestamps();
 
             $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
