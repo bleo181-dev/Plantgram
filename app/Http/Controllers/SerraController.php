@@ -229,7 +229,10 @@ class SerraController extends Controller
      */
     public function edit($id)
     {
+        $serra = Serra::find($id);
         if(Auth::user()->admin === 'AD'){
+            return view('serra.edit', compact('serra'));
+        }else if(Auth::user()->id == $serra->id){
             $serra = Serra::find($id);
             return view('serra.edit', compact('serra'));
         }else{
