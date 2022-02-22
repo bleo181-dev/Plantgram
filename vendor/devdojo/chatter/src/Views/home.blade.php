@@ -81,17 +81,15 @@
 					        				@endif
 
 					        			@else
-
-					        				<span class="chatter_avatar_circle" style="background-color:#<?= \DevDojo\Chatter\Helpers\ChatterHelper::stringToColorCode($discussion->user->email) ?>">
-					        					{{ strtoupper(substr($discussion->user->email, 0, 1)) }}
-					        				</span>
-
+											<?php
+												echo '<img src="data:image/jpeg;base64,'.base64_encode($discussion->user->foto).'" />';
+											?>					        				
 					        			@endif
 					        		</div>
 
 					        		<div class="chatter_middle">
 					        			<h3 class="chatter_middle_title">{{ $discussion->title }} <div class="chatter_cat" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</div></h3>
-					        			<span class="chatter_middle_details">Postato: <span data-href="/user">{{ ucfirst($discussion->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</span> {{ \Carbon\Carbon::createFromTimeStamp(strtotime($discussion->created_at))->diffForHumans() }}</span>
+					        			<span class="chatter_middle_details">Postato: <span data-href="/user">{{ ucfirst($discussion->user->nickname) }}</span> {{ \Carbon\Carbon::createFromTimeStamp(strtotime($discussion->created_at))->diffForHumans() }}</span>
 					        			@if($discussion->post[0]->markdown)
 					        				<?php $discussion_body = GrahamCampbell\Markdown\Facades\Markdown::convertToHtml( $discussion->post[0]->body ); ?>
 					        			@else
