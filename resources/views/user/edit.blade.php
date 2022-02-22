@@ -40,15 +40,15 @@
 
                         <div class="form-group row">
                             <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
-
-                            <div class="card col-md-7">
-                                <p>Carica una foto</p>
-                                <input type="file" name="foto" id="imgInp"> <br>
-                                <?php
-                                    echo '<img id="blah" class="imagePreviewPianta" src="data:image/jpeg;base64,'.base64_encode($user->foto).'"/>';
-                                ?>
-
-                            </div>
+                                    <div class="col-md-6">
+                                        <input type="file" name="foto" class="custom-file-input" id="imgInp" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Carica una foto</label>
+                                    </div>
+                                <div style="display: block; margin-left: auto; margin-right: auto;">   
+                                    <?php
+                                        echo '<img id="blah" style="display: block; margin-left: auto; margin-right: auto;" class="imagePreviewPianta rounded mx-auto" src="data:image/jpeg;base64,'.base64_encode($user->foto).'"/>';
+                                    ?>
+                                </div>  
                         </div>
 
                         <div class="form-group row">
