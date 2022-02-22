@@ -1,5 +1,5 @@
 <div class="col mb-4">
-    <div class="card">
+    <div class="card" style="height: 100%;">
         <a href="{{ $pub->url}}" >
             <div class="plant">
                 <?php
@@ -8,8 +8,8 @@
             </div>
         </a>
         <div class="card-body">
-            <p>{{$pub->produttore}}</p>
-            <p>{{$pub->prodotto}}</p>
+            <p style="font-size: 15px"><span style="font-size: 20px; font-weight: bold">Produttore: </span>{{$pub->produttore}}</p>
+            <p style="font-size: 15px"><span style="font-size: 20px; font-weight: bold">Prodotto: </span>{{$pub->prodotto}}</p>
             <div class="row">
                 <div class="col-10 text-truncate">
                     <a href="{{ $pub->url}}" class="btn btn-primary">scopri di piu</a>
