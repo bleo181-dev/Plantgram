@@ -53,8 +53,8 @@ class SerraController extends Controller
 
                 $dataoggi = strtotime(date('Y-m-d H:i:s'));
                 $delta = strtotime($eventi);
-                $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get(); 
-                    
+                $bisogni = Bisogno::whereIn('codice_pianta', $cod_pianta)->get();
+
                 $num_collaborazioni = Collabora::where('codice_serra', $serra->codice_serra)->count();
                 $collaboratori = DB::table('users')
                         ->join('collabora', 'users.id', '=', 'collabora.id')
@@ -214,7 +214,7 @@ class SerraController extends Controller
                 }else {
                     return view('/auth/login');
                 }
-            
+
 
         //}else {
         //    return view('/auth/login');

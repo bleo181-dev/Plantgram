@@ -27,7 +27,7 @@
         <div class="jumbotron jumbotron-fluid col-md-8 rounded-lg p-3 mb-3" style="background-color: rgba(73, 197, 73, 0.418);">
             <div class="container">
                 <div style="display: flex; justify-content: center; align-items: center;">
-                    <a href="{{ URL::action('DiarioController@create', $id) }}" > <img src="{{ asset('immagini/addSerra.png') }}" style="height: 80px; width:80px;" /></a>
+                    <a href="{{ URL::action('DiarioController@create', $id) }}" > <img src="{{ asset('immagini/addPagina.png') }}" style="height: 150px; width:150px;" /></a>
                 </div>
             </div>
         </div>

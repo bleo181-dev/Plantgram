@@ -6,7 +6,7 @@
                 <div class="card-body">
                 <!--back button -->
                     <div style="padding:10px">
-                        <a href="{{URL::action('SerraController@show', $serra->codice_serra)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
+                        <a href="{{URL::action('SerraController@show', $serra->id)  }}"><img src="{{ asset('immagini/back.png') }}" class="iconaBack" /></a>
                     </div>
                 <!--back button end -->
 
@@ -177,6 +177,7 @@
 
 @foreach($bis as $y)
 <script>
+    $('document').ready(function(){
 
     var xArray = [];
     var yArray = [];
@@ -186,7 +187,7 @@
         @if($y->codice_bisogno == $e->codice_bisogno)
             num={{$e->month - 1}};
             xArray.push(mesi[num]);
-            @if((strtotime($y->created_at) - strtotime($e->created_at)) == 0)
+            @if((strtotime($y->created_at) - strtotime($e->created_at)) > -2 || (strtotime($y->created_at) - strtotime($e->created_at) < 2))
                 yArray.push({{$e->volte -1}});
             @else
                 yArray.push({{$e->volte}});
@@ -206,21 +207,27 @@
         };
 
     Plotly.newPlot("myPlot{{$y->codice_bisogno}}", data, layout);
+
+    });
 </script>
 @endforeach
 
 
     <script>
-        @foreach($eventi as $evento)
-        document.getElementById("{{$evento->nome}}").className = "collapse";
-        @endforeach
+        $('document').ready(function(){
+            @foreach($eventi as $evento)
+            document.getElementById("{{$evento->nome}}").className = "collapse";
+            @endforeach
+        });
     </script>
 
 
     <script>
-        @foreach($eventi as $evento)
-        document.getElementById("{{$evento->nome}}").className = "collapse";
-        @endforeach
+        $('document').ready(function(){
+            @foreach($eventi as $evento)
+            document.getElementById("{{$evento->nome}}").className = "collapse";
+            @endforeach
+        });
     </script>
 
 <!--<script>

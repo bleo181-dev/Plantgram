@@ -3,17 +3,18 @@
 @section(Config::get('chatter.yields.head'))
 	<link href="/vendor/devdojo/chatter/assets/css/chatter.css" rel="stylesheet">
 	<link href="/vendor/devdojo/chatter/assets/css/simplemde.min.css" rel="stylesheet">
+
 @stop
 
 
 @section('content')
-
+<link href="{{ asset('css/style_bisogni.css') }}" rel="stylesheet">
 <div id="chatter" class="discussion">
 
 	<div id="chatter_header" style="background-color:{{ $discussion->color }}">
 		<div class="container">
 			<a class="back_btn" href="/{{ Config::get('chatter.routes.home') }}"><i class="chatter-back"></i></a>
-			<h1>{{ $discussion->title }}</h1><span class="chatter_head_details">Postato in <a class="chatter_cat" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.category') }}/{{ $discussion->category->slug }}" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</a></span>
+			<h1 class="card-text col-5 text-truncate">{{ $discussion->title }}</h1><span class="chatter_head_details"><a class="chatter_cat" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.category') }}/{{ $discussion->category->slug }}" style="background-color:{{ $discussion->category->color }}">{{ $discussion->category->name }}</a></span>
 		</div>
 	</div>
 
@@ -39,14 +40,14 @@
 		        </ul>
 		    </div>
 	    </div>
-	@endif	
+	@endif
 
 	<div class="container margin-top">
-		
+
 	    <div class="row">
 
 	        <div class="col-md-12">
-					
+
 				<div class="conversation">
 	                <ul class="discussions no-bg" style="display:block;">
 	                	@foreach($posts as $post)
@@ -70,9 +71,9 @@
 			                		@endif
 			                		<div class="chatter_avatar">
 					        			@if(Config::get('chatter.user.avatar_image_database_field'))
-					        				
+
 					        				<?php $db_field = Config::get('chatter.user.avatar_image_database_field'); ?>
-					        				
+
 					        				<!-- If the user db field contains http:// or https:// we don't need to use the relative path to the image assets -->
 					        				@if( (substr($post->user->{$db_field}, 0, 7) == 'http://') || (substr($post->user->{$db_field}, 0, 8) == 'https://') )
 					        					<img src="{{ $post->user->{$db_field}  }}">
@@ -94,9 +95,9 @@
 										@if($post->user->admin == "pro")
                                         	<p class="dropdown-item" style="color: gold; font-weight: bold;">Utente PRO</p>
                                     	@endif
-										
-										<div class="chatter_body">
-					        			
+
+										<div class="chatter_body" style="padding: 10px; width: auto; word-wrap: break-word;">
+
 					        				@if($post->markdown)
 					        					<pre class="chatter_body_md">{{ $post->body }}</pre>
 					        					<?= \DevDojo\Chatter\Helpers\ChatterHelper::demoteHtmlHeaderTags( GrahamCampbell\Markdown\Facades\Markdown::convertToHtml( $post->body ) ); ?>
@@ -104,7 +105,7 @@
 					        				@else
 					        					<?= $post->body; ?>
 					        				@endif
-					        				
+
 					        			</div>
 					        		</div>
 
@@ -113,7 +114,7 @@
 		                	</li>
 	                	@endforeach
 
-	           
+
 	                </ul>
 	            </div>
 
@@ -127,7 +128,7 @@
 		        			@if(Config::get('chatter.user.avatar_image_database_field'))
 
 		        				<?php $db_field = Config::get('chatter.user.avatar_image_database_field'); ?>
-					        				
+
 		        				<!-- If the user db field contains http:// or https:// we don't need to use the relative path to the image assets -->
 		        				@if( (substr(Auth::user()->{$db_field}, 0, 7) == 'http://') || (substr(Auth::user()->{$db_field}, 0, 8) == 'https://') )
 		        					<img src="{{ Auth::user()->{$db_field}  }}">
@@ -143,7 +144,7 @@
 		        		</div>
 
 			            <div id="new_discussion">
-			        	
+
 
 					    	<div class="chatter_loader dark" id="new_discussion_loader">
 							    <div></div>
@@ -250,13 +251,13 @@
 			}
 
 			details = container.find('.chatter_middle_details');
-			
+
 			// dynamically create a new text area
 			container.prepend('<textarea id="post-edit-' + id + '"></textarea>');
             // Client side XSS fix
             $("#post-edit-"+id).text(body.html());
 			container.append('<div class="chatter_update_actions"><button class="btn btn-success pull-right update_chatter_edit"  data-id="' + id + '" data-markdown="' + markdown + '"><i class="chatter-check"></i> Modifica post</button><button href="/" class="btn btn-default pull-right cancel_chatter_edit" data-id="' + id + '"  data-markdown="' + markdown + '">Annulla</button></div>');
-			
+
 			// create new editor from text area
 			if(markdown){
 				simplemdeEditors['post-edit-' + id] = newSimpleMde(document.getElementById('post-edit-' + id));
@@ -278,7 +279,7 @@
 				$(e.target).parents('li').find('.editor-preview-side').remove();
 				$(e.target).parents('li').find('.CodeMirror').remove();
 			}
-			
+
 			$('#post-edit-' + post_id).remove();
 			parent_actions.remove();
 

@@ -90,15 +90,15 @@
 
 
 
-        <!--
-            Visibilità
-            <br>
-            <input type="radio" name="stato" value="0" /> privata
-            <br>
-            <input type="radio" name="stato" value="1" /> pubblica
-            <br>
-            <br>
-        -->
+            <!--
+                Visibilità
+                <br>
+                <input type="radio" name="stato" value="0" /> privata
+                <br>
+                <input type="radio" name="stato" value="1" /> pubblica
+                <br>
+                <br>
+            -->
 
             <select name="stato" class="custom-select" size="3">
                 <option selected>Seleziona la visibilità della pianta</option>
@@ -109,14 +109,14 @@
             <br>
             <br>
             <br>
-            <input type="submit" class="btn btn-primary" value="Modifica pianta" />
 
-            <!--<input type="submit" style="background: url({{ asset('immagini/addPianta.png') }});display: block;
+
+            <input type="submit" style="background: url({{ asset('immagini/modificaPianta.png') }});display: block;
             height: 150px;
             width:150px;
             border: none;
             margin-right:auto;
-            margin-left:auto;" value=""/>-->
+            margin-left:auto;" value=""/>
         </form>
 
 </div>

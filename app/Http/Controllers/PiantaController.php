@@ -116,7 +116,7 @@ class PiantaController extends Controller
                 /*per grafici*/
                 //bisogni
                 $bis = Bisogno::where('codice_pianta', $id)->get();
-                //eventi di un anno, raggruppati e contati per mese 
+                //eventi di un anno, raggruppati e contati per mese
                 $ev = collect();
                 $year = date("Y");
                 foreach($bis as $b)
@@ -127,12 +127,12 @@ class PiantaController extends Controller
                                     ->where('codice_bisogno', $b->codice_bisogno)
                                     ->select(DB::raw('codice_bisogno'),DB::raw('created_at'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
-                                    ->get();             
+                                    ->get();
                     $ev = $ev->merge($evto);
                 }
                 $bis = Bisogno::where('codice_pianta', $id)->get();
                 /*fine roba per grafici*/
-                
+
 
                 return view('pianta.show', compact('utente', 'pianta','diario','eventi','serra','bisogni','bis','ev'));
 
@@ -145,13 +145,13 @@ class PiantaController extends Controller
                                 ->orderBy('data', 'desc')
                                 ->get()
                                 ->unique('nome');
-                        
+
                 $bisogni = Bisogno::where('codice_pianta', $id)->get();
-                
+
                 /*per grefici*/
                 //bisogni
                 $bis = Bisogno::where('codice_pianta', $id)->get();
-                //eventi di un anno, raggruppati e contati per mese 
+                //eventi di un anno, raggruppati e contati per mese
                 $ev = collect();
                 $year = date("Y");
                 foreach($bis as $b)
@@ -162,13 +162,13 @@ class PiantaController extends Controller
                                     ->where('codice_bisogno', $b->codice_bisogno)
                                     ->select(DB::raw('codice_bisogno'),DB::raw('created_at'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
-                                    ->get();             
-                    
+                                    ->get();
+
                     $ev = $ev->merge($evto);
                 }
                 $bis = Bisogno::where('codice_pianta', $id)->get();
                 /*fine roba per grafici*/
-                
+
                 return view('pianta.show', compact('utente', 'pianta','diario','eventi','serra','ev','bis','year', 'bisogni'));
             }else if(Auth::user()){
 
@@ -201,7 +201,7 @@ class PiantaController extends Controller
                 /*per grefici*/
                 //bisogni
                 $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
-                //eventi di un anno, raggruppati e contati per mese 
+                //eventi di un anno, raggruppati e contati per mese
                 $ev = collect();
                 $year = date("Y");
                 foreach($bis as $b)
@@ -212,15 +212,15 @@ class PiantaController extends Controller
                                     ->where('codice_bisogno', $b->codice_bisogno)
                                     ->select(DB::raw('codice_bisogno'), DB::raw('created_at'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
-                                    ->get();             
-                    
+                                    ->get();
+
                     $ev = $ev->merge($evto);
                 }
                 $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
                 /*fine roba per grafici*/
-                
+
                 return view('pianta.show', compact('utente', 'pianta','diario','eventi','serra', 'bisogni', 'bis', 'ev', 'year'));
-                
+
 
             }else{
                 return view('/auth/login');
@@ -229,7 +229,7 @@ class PiantaController extends Controller
     }
 
     /**
-     * Mostra la pianta tralasciando alcuni dati, da usare in contesti 
+     * Mostra la pianta tralasciando alcuni dati, da usare in contesti
      * dove si deve far vedere la pianta ad utenti esterni la serra
      *
      * @param  int  $id
@@ -240,7 +240,7 @@ class PiantaController extends Controller
         $utente = Auth::user();
         $pianta=Pianta::find($id);
         $serra=Serra::where('codice_serra', $pianta->codice_serra)->first();
-        
+
                 $cod_serra = Serra::where('id', auth()->id())->pluck('codice_serra')->first();
                 $diario = Diario::where('codice_pianta',$id)->get();
 
@@ -255,7 +255,7 @@ class PiantaController extends Controller
                 /*per grafici*/
                 //bisogni
                 $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
-                //eventi di un anno, raggruppati e contati per mese 
+                //eventi di un anno, raggruppati e contati per mese
                 $ev = collect();
                 $year = date("Y");
                 foreach($bis as $b)
@@ -264,15 +264,15 @@ class PiantaController extends Controller
                                     ->where('codice_pianta', $id)
                                     ->whereYear('created_at', $year)
                                     ->where('codice_bisogno', $b->codice_bisogno)
-                                    ->select(DB::raw('codice_bisogno'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
+                                    ->select(DB::raw('codice_bisogno'), DB::raw('created_at'), DB::raw('count(codice_bisogno) as `volte`'), DB::raw("DATE_FORMAT(created_at, '%m-%Y') new_date"),  DB::raw('MONTH(created_at) month'))
                                     ->groupby('month')
-                                    ->get();             
-                    
+                                    ->get();
+
                     $ev = $ev->merge($evto);
                 }
                 $bis=Bisogno::where('codice_pianta', $pianta->codice_pianta)->get();
                 /*fine roba per grafici*/
-                
+
                 return view('pianta.view', compact('utente', 'pianta','diario','eventi','serra', 'bisogni', 'bis', 'ev', 'year'));
     }
 
