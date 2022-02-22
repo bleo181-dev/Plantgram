@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-md-2">
-            <div style="display: flex; align-items: center;">
+            <div class="row" style="display: flex; align-items: center; margin-left: 5px; margin-top:20px">
                 <a href="{{ URL::action('DiarioController@edit', $i->codice_diario) }}"> <img src="{{ asset('immagini/modifica.png') }}"  class="icone"> </a>
                 <form id="delete-form-{{$i->codice_diario}}" action="{{ URL::action('DiarioController@destroy', $i->codice_diario) }}" method="POST">
                     {{ csrf_field() }}
@@ -23,6 +23,7 @@
                     <button type="submit" style="background: none; border: none;"><img src="{{ asset('immagini/delete.png') }}"  class="icone"></button>
                 </form>
             </div>
+            <br>
         </div>
     </div>
 </div>
