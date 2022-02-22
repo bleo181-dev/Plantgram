@@ -5,9 +5,12 @@
 <div style="width: fill; background-color: #2ECC40; margin-bottom: 1rem;">
     <div class="container">
     <br>
-    <h1 style="color: white;  vertical-align: middle;" class="display-4">
-        {{$nome_serra}}
-    </h1>
+        <div class="row" style="display:in-line; align-items: center;">
+            <h1 style="color: white;  vertical-align: middle;" class="display-4">
+                {{$nome_serra}}
+            </h1>
+            <a href="{{ URL::action('SerraController@edit', $serra->codice_serra) }}" style="margin-left: 20px"> <img src="{{ asset('immagini/modifica.png') }}"></a>
+        </div>
         <div>
             <p class="lead text-right" style="color: white">
                 @foreach($forecast as $f)
