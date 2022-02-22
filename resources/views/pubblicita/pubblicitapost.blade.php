@@ -1,5 +1,5 @@
 <div class="col mb-4">
-    <div class="card">
+    <div class="card" style="height: 100%;">
         <a href="{{ $pub->url}}" >
             <div class="plant">
                 <?php
