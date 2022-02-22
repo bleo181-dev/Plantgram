@@ -16,7 +16,7 @@
         <div class="container" style="text-align: center;">
             <br>
 			<h1>Forum del buon vicinato</h1>
-			<p>dove ogni agricoltore in erba e non si incontrano</p>
+			<p>dove agricoltori in erba e non si incontrano</p>
         </div>
 	</div>
 
