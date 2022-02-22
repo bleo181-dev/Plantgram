@@ -5,7 +5,7 @@
 <div style="width: fill; background-color: #2ECC40; margin-bottom: 1rem;">
     <div class="container">
     <br>
-        <div class="row" style="display:in-line; align-items: center;">
+        <div class="row" style="display:in-line; align-items: center; margin:auto">
             <h1 style="color: white;  vertical-align: middle;" class="display-4">
                 {{$nome_serra}}
             </h1>
