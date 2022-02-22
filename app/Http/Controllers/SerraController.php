@@ -249,16 +249,27 @@ class SerraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->admin === 'AD'){
-            $validateData = $request->validate([
-                'nome'          => 'required|max:100',
-                'latitudine'    => 'required',
-                'longitudine'   => 'required',
-                'capienza'      => 'required'
-            ]);
+        $validateData = $request->validate([
+            'nome'          => 'required|max:100',
+            'latitudine'    => 'required',
+            'longitudine'   => 'required',
+            'capienza'      => 'required'
+        ]);
 
+        $serra = Serra::find($id);
+
+        if(Auth::user()->admin === 'AD'){
             $input = $request->all();
-            $serra = Serra::find($id);
+
+            $serra->nome = $input['nome'];
+            $serra->latitudine = $input['latitudine'];
+            $serra->longitudine = $input['longitudine'];
+            $serra->capienza = $input['capienza'];
+
+            $serra->save();
+            return redirect()->route('serra.index');
+        }else if(Auth::user()->id == $serra->id){
+            $input = $request->all();
 
             $serra->nome = $input['nome'];
             $serra->latitudine = $input['latitudine'];

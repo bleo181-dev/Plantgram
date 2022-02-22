@@ -25,37 +25,31 @@
             <br>
     <div class="container">
             <h3 style="color: white;">Seleziona una tipologia</h3>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <div class="btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-custom-acqua {{ in_array('acqua', $bisogni) ? 'disabled' : ''}}" >
                     <input type="radio" name="tipologia" id="option1" autocomplete="off" value="acqua"> Acqua
                 </label>
-            </div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
                 <label class="btn btn-custom-concime {{ in_array('concime', $bisogni) ? 'disabled' : ''}}" >
                     <input type="radio" name="tipologia" id="option2" autocomplete="off" value="concime"> Concime
                 </label>
-            </div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
                 <label class="btn btn-custom-svasatura {{ in_array('svasatura', $bisogni) ? 'disabled' : ''}}" >
                     <input type="radio" name="tipologia" id="option3" autocomplete="off" value="svasatura"> Svasatura
                 </label>
-            </div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
                 <label class="btn btn-custom-raccolto {{ in_array('raccolto', $bisogni) ? 'disabled' : ''}}" >
                     <input type="radio" name="tipologia" id="option4" autocomplete="off" value="raccolto"> Raccolto
                 </label>
-            </div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
                 <label class="btn btn-custom-potatura {{ in_array('potatura', $bisogni) ? 'disabled' : ''}}" >
                     <input type="radio" name="tipologia" id="option5" autocomplete="off" value="potatura"> Potatura
                 </label>
-            </div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
                 <label class="btn btn-custom-custom" >
                     <input type="radio"  id="option6" autocomplete="off" onclick="clickMe()"> Custom
                 </label>
-            </div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
                 <input type="text" name="custom" placeholder="Inserisci tipologia qui" id="popup" class="hide">
             </div>
             <br>

@@ -1,14 +1,16 @@
 let map, infoWindow;
-document.getElementById('invio').style.visibility = 'hidden';
-
+//document.getElementById('invio').style.visibility = 'hidden';
+var oldLAT = parseFloat(document.getElementById("lat").value);
+var oldLONG = parseFloat(document.getElementById("lng").value);
+console.log(oldLAT, oldLONG);
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 41.87242987532504, lng: 14.579792463656322 }, // Cerenza sul Trigno
+    center: { lat: oldLAT, lng: oldLONG },
     zoom: 8,
     scrollwheel: true,
     });
 
-    const uluru = { lat: 41.87242987532504, lng: 14.579792463656322 };
+    const uluru = { lat: oldLAT, lng: oldLONG };
         let marker = new google.maps.Marker({
         position: uluru,
         map: map,
@@ -23,12 +25,12 @@ function initMap() {
     locationButton.setAttribute('type', 'button');
     locationButton.setAttribute('id', 'posizioneBTN');
     locationButton.setAttribute('class', 'btn btn-secondary btn-lg btn-block');
-    /*map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-    document.body.appendChild(locationButton);
+    //map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+    //document.body.appendChild(locationButton);
     //btn posizione
-    document.getElementById("pos").appendChild(locationButton);
-    document.getElementById('pos').style.visibility = 'hidden';
-    locationButton.addEventListener("click", () => {
+    //document.getElementById("pos").appendChild(locationButton);
+    //document.getElementById('pos').style.visibility = 'hidden';
+    /*locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -62,10 +64,13 @@ function initMap() {
         let lng = marker.position.lng()
         $('#lat').val(lat)
         $('#lng').val(lng)
+        console.log(lat, lng);
         if(flag == 0){
             document.getElementById('lbl').remove();
             flag = 1;
         }
+
+        //document.getElementById('posizioneBTN').remove();
         document.getElementById('invio').style.visibility = 'visible' //mostra pulsante submit se è stata trovata la posizione
     })
 

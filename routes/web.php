@@ -30,6 +30,8 @@ Route::get('serra/collab', 'SerraController@collab')->name('invito_view');
 Route::post('serra/process_collab', 'SerraController@process_collab');
 Route::get('/handle_collab/{token}', 'SerraController@handle_collab')->name('handle_collab');
 Route::resource('serra', 'SerraController');
+Route::put('/serra/{id}/update', 'SerraController@update');
+
 
 Route::get('user/{id}/upgrade', 'UserController@upgrade');
 Route::patch('user/{id}/storeupgrade', 'UserController@storeupgrade');

@@ -2,7 +2,9 @@
 
 @section('content')
 
-<form action="{{ URL::action('SerraController@store') }}" method="POST" >
+<form action="{{ URL::action('SerraController@update', $serra->codice_serra) }}" method="POST" >
+    {{ csrf_field() }}
+        @method('PUT')
 
     <div style="width: fill; background-color: #2ECC40; margin-bottom: 0rem;">
         <br>
@@ -18,7 +20,7 @@
             @endif
 
 
-            {{ csrf_field() }}
+
             <h1> Come vuoi chiamare la tua serra? </h1>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -56,8 +58,9 @@
             </div>
 </form>
 
-<script src="{{ asset('js/posizione.js') }}"></script>
+<script src="{{ asset('js/posizioneEdit.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap" type="text/javascript"></script>
+
 
 
 @endsection
