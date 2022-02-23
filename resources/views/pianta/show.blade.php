@@ -341,7 +341,7 @@ $('document').ready(function(){
         @if($y->codice_bisogno == $e->codice_bisogno)
             num={{$e->month - 1}};
             xArray.push(mesi[num]);
-            @if((strtotime($y->created_at) - strtotime($e->created_at)) > -2 || (strtotime($y->created_at) - strtotime($e->created_at) < 2))
+            @if((strtotime($y->created_at) - strtotime($e->created_at)) < 2 && (strtotime($y->created_at) - strtotime($e->created_at) > -2))
                 yArray.push({{$e->volte -1}});
             @else
                 yArray.push({{$e->volte}});
