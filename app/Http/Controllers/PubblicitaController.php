@@ -110,7 +110,7 @@ class PubblicitaController extends Controller
 
         if(!empty($input['foto'])){
             $data = file_get_contents($_FILES['foto']['tmp_name']);
-            $$pubblicita->foto = $data;
+            $pubblicita->foto = $data;
         }
 
         $pubblicita->save();
