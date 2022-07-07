@@ -57,7 +57,9 @@
 </form>
 
 <script src="{{ asset('js/posizione.js') }}"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBG8E5nHu7nZYmu5B0ONoerF4U5TZ2y2ao&callback=initMap" type="text/javascript"></script>
+
+<!-- [your_apiKey] in src -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=[your_key]&callback=initMap" type="text/javascript"></script>
 
 
 @endsection

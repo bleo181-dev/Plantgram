@@ -21,7 +21,7 @@ document.querySelector('#cerca').onclick = function sendIdentification() {
       console.log(base64files)
 
       const data = {
-        api_key: "XNSt2KUrKzgoo38cwCI4dDGxVoY5PDg4HDm6YcapVInXdjhyTg",
+        api_key: "[your_apiKey]",
         images: base64files,
         // modifiers docs: https://github.com/flowerchecker/Plant-id-API/wiki/Modifiers
         modifiers: ["crops_fast", "similar_images"],
