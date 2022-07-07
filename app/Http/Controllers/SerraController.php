@@ -74,7 +74,7 @@ class SerraController extends Controller
                 $nickname_utente = User::where('id', auth()->id())->pluck('nickname')->first();
 
                 Log::info("Not from cache");
-                $APIkey = "d2c909932430658a343ead2d18b1191f";
+                $APIkey = "[Your API key here]";
                 $lat = $lat_serra;
                 $lon = $long_serra;
                 $url = "https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=it&appid=${APIkey}";
@@ -424,7 +424,7 @@ class SerraController extends Controller
                 $nickname_utente = User::where('id', Auth()->id())->pluck('nickname')->first();
 
                 Log::info("Not from cache");
-                $APIkey = "d2c909932430658a343ead2d18b1191f";
+                $APIkey = "[Your API key here]";
                 $lat = $lat_serra;
                 $lon = $long_serra;
                 $url = "https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&lang=it&appid=${APIkey}";
